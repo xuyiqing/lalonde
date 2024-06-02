@@ -110,7 +110,7 @@ ldw.tr <- c(apply(ldw_tr[, X], 2, mean))
 ldw.co <- apply(ldw_co[, X], 2, mean)
 cps <- apply(cps1[, X], 2, mean)
 psid <- apply(psid1[, X], 2, mean)
-out <- cbind.data.frame(nsw.tr, nsw.co, ldw.tr, ldw.co, cps, psid)
+out <- cbind.data.frame(nsw.tr, nsw.co, cps, psid, ldw.tr, ldw.co)
 out[c("re75", "re74"), ] <- out[c("re75", "re74"), ]/1000
 
 # sd
@@ -120,7 +120,7 @@ ldw.tr <- c(apply(ldw_tr[, X], 2, sd))
 ldw.co <- apply(ldw_co[, X], 2, sd)
 cps <- apply(cps1[, X], 2, sd)
 psid <- apply(psid1[, X], 2, sd)
-out2 <- cbind.data.frame(nsw.tr, nsw.co, ldw.tr, ldw.co, cps, psid)
+out2 <- cbind.data.frame(nsw.tr, nsw.co, cps, psid, ldw.tr, ldw.co)
 out2[c("re75", "re74"), ] <- out2[c("re75", "re74"), ]/1000
 
 # columns are samples

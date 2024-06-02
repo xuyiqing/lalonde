@@ -40,16 +40,21 @@ save(out1, out2, out3, out4, out5, out6, out7, file = "output/est_ldw.RData")
 load("output/est_ldw.RData")
 a <- list(out4, out5, out6, out7)
 # columns are samples
-n <- nrow(out1)   
+n <- nrow(out1) + 1   # add experimental benchmark
 sav <- matrix("", n, length(a)*3-1)
 for (j in 1:length(a)) {
     out <- a[[j]]
-    n <- nrow(out)    
-    for (i in 1:nrow(out)) {
-        sav[i, j*3-2] <- sprintf("%.0f", out[i, 1])
-        sav[i, j*3-1] <- paste0("(", sprintf("%.0f", out[i, 2]), ")")    
+    for (i in 1: (n-1)) {
+        sav[i+1, j*3-2] <- sprintf("%.0f", out[i, 1])
+        sav[i+1, j*3-1] <- paste0("(", sprintf("%.0f", out[i, 2]), ")")    
     }
 }
+sav[1, 1] <- sav[1, 4] <- sprintf("%.0f", out1[1, 1]) # full experimental
+sav[1, 7] <- sprintf("%.0f", out2[1, 1]) # trimmed experimental (CPS)
+sav[1, 10] <- sprintf("%.0f", out3[1, 1]) # trimmed experimental (PSID)
+sav[1, 2] <- sav[1, 5] <- paste0("(", sprintf("%.0f", out1[1, 2]), ")")    
+sav[1, 8] <- paste0("(", sprintf("%.0f", out2[1, 2]), ")")    
+sav[1, 11] <- paste0("(", sprintf("%.0f", out3[1, 2]), ")")   
 print(sav)
 
 write.csv(sav, file = "tables/ldw.csv", row.names = FALSE)
@@ -122,18 +127,22 @@ save(out1, out2, out3, out4, out5, out6, out7, file = "output/est_ldw_no74.RData
 
 load("output/est_ldw_no74.RData")
 a <- list(out4, out5, out6, out7)
-
 # columns are samples
-n <- nrow(out1)   
+n <- nrow(out1) + 1   # add experimental benchmark
 sav <- matrix("", n, length(a)*3-1)
 for (j in 1:length(a)) {
     out <- a[[j]]
-    n <- nrow(out)    
-    for (i in 1:nrow(out)) {
-        sav[i, j*3-2] <- sprintf("%.0f", out[i, 1])
-        sav[i, j*3-1] <- paste0("(", sprintf("%.0f", out[i, 2]), ")")    
+    for (i in 1: (n-1)) {
+        sav[i+1, j*3-2] <- sprintf("%.0f", out[i, 1])
+        sav[i+1, j*3-1] <- paste0("(", sprintf("%.0f", out[i, 2]), ")")    
     }
 }
+sav[1, 1] <- sav[1, 4] <- sprintf("%.0f", out1[1, 1]) # full experimental
+sav[1, 7] <- sprintf("%.0f", out2[1, 1]) # trimmed experimental (CPS)
+sav[1, 10] <- sprintf("%.0f", out3[1, 1]) # trimmed experimental (PSID)
+sav[1, 2] <- sav[1, 5] <- paste0("(", sprintf("%.0f", out1[1, 2]), ")")    
+sav[1, 8] <- paste0("(", sprintf("%.0f", out2[1, 2]), ")")    
+sav[1, 11] <- paste0("(", sprintf("%.0f", out3[1, 2]), ")")   
 print(sav)
 
 write.csv(sav, file = "tables/ldw_no74.csv", row.names = FALSE)
@@ -173,18 +182,22 @@ save(out1, out2, out3, out4, out5, out6, out7, file = "output/est_ldw_placebo.RD
 
 load("output/est_ldw_placebo.RData")
 a <- list(out4, out5, out6, out7)
-
 # columns are samples
-n <- nrow(out1)   
+n <- nrow(out1) + 1   # add experimental benchmark
 sav <- matrix("", n, length(a)*3-1)
 for (j in 1:length(a)) {
     out <- a[[j]]
-    n <- nrow(out)    
-    for (i in 1:nrow(out)) {
-        sav[i, j*3-2] <- sprintf("%.0f", out[i, 1])
-        sav[i, j*3-1] <- paste0("(", sprintf("%.0f", out[i, 2]), ")")    
+    for (i in 1: (n-1)) {
+        sav[i+1, j*3-2] <- sprintf("%.0f", out[i, 1])
+        sav[i+1, j*3-1] <- paste0("(", sprintf("%.0f", out[i, 2]), ")")    
     }
 }
+sav[1, 1] <- sav[1, 4] <- sprintf("%.0f", out1[1, 1]) # full experimental
+sav[1, 7] <- sprintf("%.0f", out2[1, 1]) # trimmed experimental (CPS)
+sav[1, 10] <- sprintf("%.0f", out3[1, 1]) # trimmed experimental (PSID)
+sav[1, 2] <- sav[1, 5] <- paste0("(", sprintf("%.0f", out1[1, 2]), ")")    
+sav[1, 8] <- paste0("(", sprintf("%.0f", out2[1, 2]), ")")    
+sav[1, 11] <- paste0("(", sprintf("%.0f", out3[1, 2]), ")")   
 print(sav)
 write.csv(sav, file = "tables/ldw_placebo.csv", row.names = FALSE)
 
@@ -259,18 +272,23 @@ save(out1, out2, out3, out4, out5, out6, out7, file = "output/est_nsw.RData")
 load("output/est_nsw.RData")
 # columns are samples
 a <- list(out4, out5, out6, out7)
-n <- nrow(out1)   
+# columns are samples
+n <- nrow(out1) + 1   # add experimental benchmark
 sav <- matrix("", n, length(a)*3-1)
 for (j in 1:length(a)) {
     out <- a[[j]]
-    n <- nrow(out)    
-    for (i in 1:nrow(out)) {
-        sav[i, j*3-2] <- sprintf("%.0f", out[i, 1])
-        sav[i, j*3-1] <- paste0("(", sprintf("%.0f", out[i, 2]), ")")    
+    for (i in 1: (n-1)) {
+        sav[i+1, j*3-2] <- sprintf("%.0f", out[i, 1])
+        sav[i+1, j*3-1] <- paste0("(", sprintf("%.0f", out[i, 2]), ")")    
     }
 }
+sav[1, 1] <- sav[1, 4] <- sprintf("%.0f", out1[1, 1]) # full experimental
+sav[1, 7] <- sprintf("%.0f", out2[1, 1]) # trimmed experimental (CPS)
+sav[1, 10] <- sprintf("%.0f", out3[1, 1]) # trimmed experimental (PSID)
+sav[1, 2] <- sav[1, 5] <- paste0("(", sprintf("%.0f", out1[1, 2]), ")")    
+sav[1, 8] <- paste0("(", sprintf("%.0f", out2[1, 2]), ")")    
+sav[1, 11] <- paste0("(", sprintf("%.0f", out3[1, 2]), ")")   
 print(sav)
-
 write.csv(sav, file = "tables/nsw.csv", row.names = FALSE)
 
 
