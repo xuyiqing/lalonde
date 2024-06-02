@@ -1,0 +1,3 @@
+"0",""
+"0","# trimmed NSW-PSID data"
+"0","sens_ana(nsw_trim_psid, Y, treat, covar, bm, kd = 1)"

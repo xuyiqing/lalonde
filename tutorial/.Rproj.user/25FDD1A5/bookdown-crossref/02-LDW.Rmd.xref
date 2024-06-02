@@ -1,0 +1,17 @@
+h1:lalonde-dehejia-wahba-ldw-data LaLonde-Dehejia-Wahba (LDW) Data
+h2:assessing-overlap Assessing Overlap
+h3:ldw-experimental LDW-Experimental
+h3:ldw-cps1-and-lwd-psid1 LDW-CPS1 and LWD-PSID1
+h3:overlap-in-original-ldw-samples Overlap in Original LDW Samples
+h2:trimming-to-improve-overlap Trimming to Improve Overlap
+h2:reassessing-overlap Reassessing Overlap
+h2:estimating-the-att Estimating the ATT
+tab:class  Table A1 in the Supplementary Materials (SM)
+h2:alternative-estimands-catt-and-qtet Alternative Estimands: CATT and QTET
+h3:conditional-average-treatment-effect-on-the-treated-catt Conditional Average Treatment Effect on the Treated (CATT)
+h3:quantile-treatment-effect-on-the-treated-qtet Quantile Treatment Effect on the Treated (QTET)
+h2:validation-through-placebo-analyses Validation through Placebo Analyses
+tab:class  Table A2 in the Supplementary Materials (SM)
+h2:sensitivity-analyses Sensitivity Analyses
+h2:summary Summary
+

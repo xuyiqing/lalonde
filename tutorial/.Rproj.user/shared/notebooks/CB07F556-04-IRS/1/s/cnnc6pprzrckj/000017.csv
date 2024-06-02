@@ -1,0 +1,4 @@
+"0","par(mfrow = c(4,1))"
+"0","ylim <- c(-20, 20)"
+"0",""
+"0","plot_coef(out1, ylim = ylim, main = ""Big Winner vs. Non-Winner"", main.pos = 3)"

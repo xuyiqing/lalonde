@@ -1,0 +1,136 @@
+{
+    "sources": [
+        {
+            "author": [
+                {
+                    "family": "Dehejia",
+                    "given": "Rajeev H"
+                },
+                {
+                    "family": "Wahba",
+                    "given": "Sadek"
+                }
+            ],
+            "container-title": "Journal of the American statistical Association",
+            "id": "dehejiawahba",
+            "issue": "448",
+            "issued": {
+                "date-parts": [
+                    [
+                        1999
+                    ]
+                ]
+            },
+            "page": "1053-1062",
+            "publisher": "Taylor & Francis Group",
+            "title": "Causal effects in nonexperimental studies: Reevaluating the evaluation of training programs",
+            "title-short": "Causal effects in nonexperimental studies",
+            "type": "article-journal",
+            "volume": "94"
+        },
+        {
+            "author": [
+                {
+                    "family": "Dehejia",
+                    "given": "Rajeev H"
+                },
+                {
+                    "family": "Wahba",
+                    "given": "Sadek"
+                }
+            ],
+            "container-title": "Review of Economics and statistics",
+            "id": "dehejia2002propensity",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2002
+                    ]
+                ]
+            },
+            "page": "151-161",
+            "publisher": "MIT Press",
+            "title": "Propensity score-matching methods for nonexperimental causal studies",
+            "type": "article-journal",
+            "volume": "84"
+        },
+        {
+            "author": [
+                {
+                    "family": "Firpo",
+                    "given": "Sergio"
+                }
+            ],
+            "container-title": "Econometrica",
+            "id": "firpo2007efficient",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2007
+                    ]
+                ]
+            },
+            "page": "259-276",
+            "publisher": "Wiley Online Library",
+            "title": "Efficient semiparametric estimation of quantile treatment effects",
+            "type": "article-journal",
+            "volume": "75"
+        },
+        {
+            "author": [
+                {
+                    "family": "Imbens",
+                    "given": "Guido W"
+                },
+                {
+                    "family": "Rubin",
+                    "given": "Donald B"
+                },
+                {
+                    "family": "Sacerdote",
+                    "given": "Bruce I"
+                }
+            ],
+            "container-title": "American Economic Review",
+            "id": "imbensrubinsacerdote",
+            "issued": {
+                "date-parts": [
+                    [
+                        2001
+                    ]
+                ]
+            },
+            "page": "778-794",
+            "publisher": "JSTOR",
+            "title": "Estimating the effect of unearned income on labor earnings, savings, and consumption: Evidence from a survey of lottery players",
+            "title-short": "Estimating the effect of unearned income on labor earnings, savings, and consumption",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "family": "LaLonde",
+                    "given": "Robert J"
+                }
+            ],
+            "container-title": "The American economic review",
+            "id": "LaLonde",
+            "issued": {
+                "date-parts": [
+                    [
+                        1986
+                    ]
+                ]
+            },
+            "page": "604-620",
+            "publisher": "JSTOR",
+            "title": "Evaluating the econometric evaluations of training programs with experimental data",
+            "type": "article-journal"
+        }
+    ],
+    "project_biblios": [
+        "refs.bib"
+    ]
+}

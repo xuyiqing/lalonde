@@ -1,0 +1,6 @@
+"0","load(""data/lottery.RData"")"
+"0","d$tr <- d$winner"
+"0","d$tr1 <- ifelse(d$bigwinner == 1, 1, 0) # big winner"
+"0","d$tr2 <- ifelse(d$bigwinner == 0 & d$winner == 1, 1, 0) # small winner"
+"0","d$co <- ifelse(d$winner == 0, 1, 0) # control"
+"0","d$college <- ifelse(d$educ >= 16, 1, 0)"

@@ -1,0 +1,92 @@
+"0","# required packages"
+"0","packages <- c(""haven"", ""labelled"", ""Matching"", ""grf"", ""sensemakr"", ""qte"","
+"0","    ""estimatr"", ""CBPS"", ""hbal"", ""DoubleML"", ""mlr3learners"", ""mlr3"",""fixest"", ""ggplot2"")"
+"0",""
+"0","# install packages"
+"0","install_all <- function(packages) {"
+"0","  installed_pkgs <- installed.packages()[, ""Package""]"
+"0","  for (pkg in packages) {"
+"0","    if (!pkg %in% installed_pkgs) {"
+"0","      install.packages(pkg)"
+"0","    }"
+"0","  }"
+"0","}"
+"0",""
+"0","install_all(packages)"
+"0",""
+"0","# load packages"
+"0","library(haven)"
+"0","library(labelled)"
+"0","library(grf)"
+"0","library(Matching)"
+"2","载入需要的程序包：MASS
+"
+"2","## 
+##  Matching (Version 4.10-14, Build Date: 2023-09-13)
+##  See https://www.jsekhon.com for additional documentation.
+##  Please cite software as:
+##   Jasjeet S. Sekhon. 2011. ``Multivariate and Propensity Score Matching
+##   Software with Automated Balance Optimization: The Matching package for R.''
+##   Journal of Statistical Software, 42(7): 1-52. 
+##
+
+"
+"0","library(estimatr)"
+"0","library(hbal)"
+"2","hbal: Hierarchically Regularized Entropy Balancing, v.1.2.12
+Report bugs -> yiqingxu@stanford.edu
+"
+"0","library(CBPS)"
+"2","载入需要的程序包：MatchIt
+"
+"2","
+载入程序包：‘MatchIt’
+
+"
+"2","The following object is masked from ‘package:hbal’:
+
+    lalonde
+
+"
+"2","载入需要的程序包：nnet
+"
+"2","载入需要的程序包：numDeriv
+"
+"2","载入需要的程序包：glmnet
+"
+"2","载入需要的程序包：Matrix
+"
+"2","Loaded glmnet 4.1-8
+"
+"2","CBPS: Covariate Balancing Propensity Score
+Version: 0.23
+Authors: Christian Fong [aut, cre],
+  Marc Ratkovic [aut],
+  Kosuke Imai [aut],
+  Chad Hazlett [ctb],
+  Xiaolin Yang [ctb],
+  Sida Peng [ctb],
+  Inbeom Lee [ctb]
+
+"
+"0","library(DoubleML)"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"
+"0","library(mlr3learners)"
+"2","载入需要的程序包：mlr3
+"
+"0","library(mlr3)"
+"0","library(fixest)"
+"0","library(ggplot2)"
+"0","library(qte)"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"0","library(sensemakr)"
+"2","See details in:
+"
+"2","Carlos Cinelli and Chad Hazlett (2020). Making Sense of Sensitivity: Extending Omitted Variable Bias. Journal of the Royal Statistical Society, Series B (Statistical Methodology).
+"

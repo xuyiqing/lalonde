@@ -1,0 +1,7 @@
+"0","trim <- function(data, ps = ""ps_assoverlap"", threshold = 0.9) {"
+"0","  sub <- data[which(data[, ps] < threshold), ]"
+"0","  return(sub)"
+"0","}"
+"0",""
+"0","ldw_cps_trim <- trim(ldw_cps_ps, threshold = 0.9)"
+"0","ldw_psid_trim <- trim(ldw_psid_ps, threshold = 0.8)"

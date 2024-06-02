@@ -1,0 +1,2 @@
+"0","plot(1, xlim = c(3.7, 13.3), ylim = c(-20, 10), type = ""n"", axes = FALSE, "
+"0","    ylab = ""Effects on Earnings (thousand USD)"", xlab = ""Year Relative to Winning"")"

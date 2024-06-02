@@ -1,0 +1,290 @@
+# Original LaLonde Data (Male Sample)
+
+In this section, we will focus on the original LaLonde data set (loaded as NSW below) to assess the effect of the treatment (participation in the job training program) on the participants' earnings in 1978. 
+
+## Prepare the Data
+First, the dataset is split into treatment and control groups by the treatment dummy. Note, two pretreatment variables (earnings in 1974 and employment status in 1974) are absent from this sample. We thus remove variables re74 (earnings in 1974), u74 (unemployment status in 1974), and tau (the treatment effect estimate) from the CPS-1 and PSID-1 datasets to match the structure of the treatment dataset.
+
+```{r, class.source = "fold-show"}
+load("data/lalonde.RData")
+load("data/trimmed.RData")
+treat <- "treat"
+nsw_co$treat <- 1
+
+# drop re74, u74, tau from cps1 and psid1
+cps1a <- subset(cps1, select =  -c(re74, u74))
+nsw_cps <- rbind.data.frame(nsw_tr, cps1a)
+
+psid1a <- subset(psid1, select =  -c(re74, u74))
+nsw_psid <- rbind.data.frame(nsw_tr, psid1a)
+
+
+nsw_cps.plus <- rbind.data.frame(nsw_cps, nsw_co)
+nsw_psid.plus <- rbind.data.frame(nsw_psid, nsw_co)
+```
+
+## Assessing Overlap
+
+In this step, we define variables for the outcome (Y = "re78"), treatment indicator (treat), and covariates that include age, education, race/ethnicity indicators, marital status, degree status, and earnings in 1975.
+
+Again, we assess overlap in covariate distributions between treated and control groups based on the propensity score via GRF (log odds ratio) for the LDW-Experimental, LDW-CPS1, and LWD-PSID1 data.
+
+```{r, class.source = "fold-show"}
+# define variables
+Y <- "re78"
+treat <- "treat"
+covar <- c("age", "education", "black", "hispanic", "married", "nodegree", "re75", "u75")
+```
+
+### NSW-Experimental
+
+Figure: Experimental (male sample).
+
+```{r, class.source = "fold-show", fig.cap='FIGUREA5 (SM). SubfigureA:LDW-Experimental.', out.width='80%', fig.asp=1, fig.align='center'}
+nsw_ps <- assess_overlap(data = nsw, treat = treat, cov = covar, xlim = c(-2, 1.5))
+```
+
+
+### NSW-CPS1 and NSW-PSID1
+
+```{r, class.source = "fold-show", fig.cap='FIGUREA5 (SM). SubfigureB:NSW-CPS1. SubfigureC:NSW-PSID1.',out.width='100%', fig.asp=0.5}
+par(mfrow = c(1,2))
+nsw_cps_ps <- assess_overlap(data = nsw_cps, treat = treat, cov = covar, xlim = c(-15, 5))
+nsw_psid_ps <- assess_overlap(data = nsw_psid, treat = treat, cov = covar, xlim = c(-15, 5))
+```
+
+## Trimming to Improve Overlap
+
+We then trim the data to improve overlap in covariate distributions by removing units with poor overlap based on the propensity score. This step aims to refine the datasets to improve later causal inference. With the trimmed data, we can reassess overlap for each group.
+
+Like before, we start by assessing overlaps between the distributions of the treated and control groups based on log-odds derived from propensity scores.
+
+```{r, class.source = "fold-show", fig.show = "hide"}
+nsw_cps.plus_ps <- assess_overlap(data = nsw_cps.plus, treat = treat, cov = covar, xlim = c(-15, 5))
+nsw_psid.plus_ps <- assess_overlap(data = nsw_psid.plus, treat = treat, cov = covar, xlim = c(-15, 5))
+```
+
+Then, we proceed with trimming to improve the quality of the causal inference. After trimming, we would expect the distributions to align more closely - the treatment and control groups are more comparable according to their covariates.
+
+```{r, class.source = "fold-show"}
+#Trim
+nsw_cps_trim <- trim(nsw_cps.plus_ps, threshold = 0.85)
+nsw_psid_trim <- trim(nsw_psid.plus_ps, threshold = 0.85)
+
+# cps data
+# excluding the experimental controls
+nsw_cps_trim_match <- subset(nsw_cps_trim, sample %in% c(0,3) & ps_assoverlap)
+# re-estimate propensity scores and employ 1:1 matching
+nsw_cps_trim_match <- psmatch(data = nsw_cps_trim_match, Y = "re78", treat = "treat", cov = covar)
+
+# psid data
+# excluding the experimental controls
+nsw_psid_trim_match <- subset(nsw_psid_trim, sample %in% c(0,4) & ps_assoverlap)
+# re-estimate propensity scores and employ 1:1 matching
+nsw_psid_trim_match <- psmatch(data = nsw_psid_trim_match, Y = "re78", treat = "treat", cov = covar)
+
+```
+
+```{r, class.source = "fold-show"}
+threshold = 0.85
+#cps
+nsw_trim_cps <- subset(nsw_cps_trim, sample %in% c(0,0.5))
+nsw_trim_cps$treat[which(nsw_trim_cps$sample == 0.5)] <- 0
+#psid
+nsw_trim_psid <- subset(nsw_psid_trim, sample %in% c(0,0.5))
+nsw_trim_psid$treat[which(nsw_trim_psid$sample == 0.5)] <- 0
+```
+
+## Reassessing Overlap
+
+The propensity scores are reestimated after trimming.The plots below show good overlaps especially in the center, indicating an improved balance and common support between the treated and control groups. The before-after trimming comparison suggests that the trim effectively removes units that were less comparable.
+
+```{r, out.width='100%', fig.asp=0.5, fig.cap="FIGUREA5 (SM). SubfigureD:TrimmedLDW-CPS1. SubfigureE:TrimmedLDW-PSID1."}
+par(mfrow = c(1,2))
+# cps data
+nsw_cps_trim_match_ps <- assess_overlap(data = nsw_cps_trim_match, treat = treat, cov = covar, xlim = c(-3,3))
+
+# psid data
+nsw_psid_trim_match_ps <- assess_overlap(data = nsw_psid_trim_match, treat = treat, cov = covar, xlim = c(-3,3))
+
+```
+
+## Estimating the ATT
+
+The table below presents the ATT estimates using the original LaLonde male sample, of which the LDW sample is a subset. Table shows that, with sufficient overlap, most estimators yield estimates within relatively narrow ranges when using either CPS-SSA-1 or PSID-1 as control groups. However, these estimates do not align with the experimental benchmarks, with most estimates being negative.
+
+
+```{r, class.source = "fold-show", warning=FALSE}
+# experimental
+out1 <- estimate_all(nsw, "re78", "treat", covar)
+out2 <- estimate_all(nsw_trim_cps, "re78", "treat", covar)
+out3 <- estimate_all(nsw_trim_psid, "re78", "treat", covar)
+# nonexperimental
+out4 <- estimate_all(nsw_cps, "re78", "treat", covar)
+out5 <- estimate_all(nsw_psid, "re78", "treat", covar)
+out6 <- estimate_all(nsw_cps_trim_match, "re78", "treat", covar)
+out7 <- estimate_all(nsw_psid_trim_match, "re78", "treat", covar)
+```
+
+```{r class.source = 'fold-hide'}
+# print the result
+a <- list(out4, out5, out6, out7)
+n <- nrow(out1)
+sav <- matrix("", n+1, length(a)*3-1)
+for (j in 1:length(a)) {
+    out <- a[[j]]
+    n <- nrow(out)
+    for (i in 2:(nrow(out)+1)) {
+        sav[i, j*3-2] <- sprintf("%.2f", out[i-1, 1])
+        sav[i, j*3-1] <- paste0("(", sprintf("%.2f", out[i-1, 2]), ")")
+    }
+}
+sav[1, 1] <- sprintf("%.2f", out1[1, 1])
+sav[1, 2] <- paste0("(", sprintf("%.2f", out1[1, 2]), ")")
+sav[1, 4] <- sprintf("%.2f", out1[1, 1])
+sav[1, 5] <- paste0("(", sprintf("%.2f", out1[1, 2]), ")")
+sav[1, 7] <- sprintf("%.2f", out2[1, 1])
+sav[1, 8] <- paste0("(", sprintf("%.2f", out2[1, 2]), ")")
+sav[1, 10] <- sprintf("%.2f", out3[1, 1])
+sav[1, 11] <- paste0("(", sprintf("%.2f", out3[1, 2]), ")")
+colnames(sav) <- c("NSW-CPS1", "", "", "NSW-PSID1", "", "", "NSW-CPS1 (PS Trimmed) ", "", "", "NSW-PSID1 (PS Trimmed)", "")
+rownames(sav) <- c("Experimental Benchmark", "Difference-in-Means", "Regression", " Oaxaca Blinder", "GRF", "NN Matching", "PS Matching", "IPW", "CBPS", "Entropy Balancing", "DML-ElasticNet", "AIPW-GRF")
+sav %>% knitr::kable(booktabs=TRUE, caption = " Table A4 in the Supplementary Materials (SM), ATT Estimates: LaLonde Male Sample")
+```
+
+The table above lists the ATT estimates using different statistical methods to assess the impact of a treatment-job training program- on earnings in 1978 (re78). The results are shown for two control groups (CPS1 and PSID1) both before and after trimming based on propensity scores to improve the match between treated and control units. While the trimming generally moves the estimates closer to the experimental benchmark, estimates derived from observational data are generally lower (more negative) than the experimental benchmark.
+
+## Alternative Estimands: CATT and QTET
+
+### Conditional Average Treatment Effect on the Treated (CATT)
+
+The figures below show the CATT estimates using the original LaLonde data (male sample).
+
+Each point on the scatter plots represents a pair of CATT estimates for a single unit: one from the experimental benchmark and one from the observational method. Points that lie on the 45-degree line (the red line) are cases where the observational and experimental methods yield the same estimate.
+
+```{r, class.source = "fold-show", warning=FALSE}
+# estimate catt
+catt.nsw <- catt(nsw, Y, treat, covar)
+catt.cps <- catt(nsw_cps, Y, treat, covar)
+catt.psid <- catt(nsw_psid, Y, treat, covar)
+catt.cps.trim <- catt(nsw_cps_trim_match, Y, treat, covar)
+catt.psid.trim <- catt(nsw_psid_trim_match, Y, treat, covar)
+# trimmed experimental data
+catt.nsw.cps <- catt(nsw_trim_cps, Y, treat, covar)
+catt.nsw.psid <- catt(nsw_trim_psid, Y, treat, covar)
+```
+
+
+```{r, out.width='100%', fig.asp=1, fig.cap="FIGURE A6. CATT Estimates for the LaLonde Data (Male Sample)"}
+par(mfrow = c(2,2))
+# plot catt - "CATT (Experimental)" and "CATT (CPS-Full)"
+catt1 <- catt.nsw$catt
+att1 <- catt.nsw$att[1]
+catt2 <- catt.cps$catt
+att2 <- catt.cps$att[1]
+plot_catt(catt1, catt2, att1, att2, "CATT (Experimental)", "CATT (CPS-Full)",
+          main = "A. NSW-CPS1", c(-8000, 8000))
+
+# plot catt - "CATT (Experimental)" and "CATT (PSID-Full)"
+catt1 <- catt.nsw$catt
+att1 <- catt.nsw$att[1]
+catt2 <- catt.psid$catt
+att2 <- catt.psid$att[1]
+plot_catt(catt1, catt2, att1, att2, "CATT (Experimental)", "CATT (PSID-Full)",
+    main = "B. NSW-PSID1", c(-8000, 8000))
+
+# plot catt - "CATT (Experimental)" and "CATT (CPS-Trimmed)"
+catt1 <- catt.nsw.cps$catt
+att1 <- catt.nsw.cps$att[1]
+catt2 <- catt.cps.trim$catt
+att2 <- catt.cps.trim$att[1]
+plot_catt(catt1, catt2, att1, att2, "CATT (Experimental)", "CATT (CPS-Trimmed)",
+    main = "C. NSW-CPS1 Trimmed", c(-8000, 8000))
+
+# plot catt - "CATT (Experimental)" and "CATT (PSID-Trimmed)"
+catt1 <- catt.nsw.psid$catt
+att1 <- catt.nsw.psid$att[1]
+catt2 <- catt.psid.trim$catt
+att2 <- catt.psid.trim$att[1]
+plot_catt(catt1, catt2, att1, att2, "CATT (Experimental)", "CATT (PSID-Trimmed)",
+    main = "D. NSW-PSID1 Trimmed", c(-8000, 8000))
+```
+
+Note: Scatterplots show the CATT using both experimental data (x-axis) and nonexperimental data (y-axis) from LaLonde (1986) (male sample). Each dot corresponds to a CATT estimate based on the covariate values of a treated unit, while each red cross symbolizes the ATT estimates. For every estimate, the AIPW estimator is employed, with the GRF approach for estimating nuisance parameters. Different subfigures indicate various data comparisons: Subfigure A: Compares Experimental with LaLonde-CPS1. Subfigure B: Compares Experimental with LaLonde-PSID1. Subfigure C: Compares trimmed Experimental (removing 30 treated units) against trimmed NSW-CPS1. Subfigure D: Compares trimmed Experimental (removing 150 treated units) to trimmed NSW-PSID1.
+
+Based on untrimmed data, Subfigure A and B show a wide dispersion of points around the 45-degree line. This raises our concern about the lack of agreement between the experimental benchmark and the CATT estimates from the CPS1 and PSID1 control groups.
+
+On the other hand,  after trimming based on propensity scores, the dispersion of points in Subfigure C and D is more concentrated around the 45-degree line, indicating that the agreement between the experimental benchmark and the CATT estimates has improved. The comparison suggests that trimming has successfully reduced bias in estimating the treatment effect by ensuring that the treated and control groups are more similar in covariates distributions. 
+
+### Quantile Treatment Effect on the Treated (QTET)
+The Figures below show the quantile treatment effects on the treated in the original LaLonde male sample. QTET analysis helps us to see where along the outcome distribution the treatment is more or less effective.
+The code below consists of two main parts:
+
+- The `est_qte` function estimates the QTET. 
+- Plotting QTET: The `plot_qte` function creates the plots, with separate plots for each data comparison (NSW-CPS, NSW-CPS trimmed, NSW-PSID, and NSW-PSID trimmed). 
+
+```{r, class.source = "fold-show", warning=FALSE}
+# estimate qte (some of the following lines are not run due to computational limitation)
+qte.nsw <- est_qte(Y, treat, NULL, data = nsw)
+qte.nsw.cps <- est_qte(Y, treat, NULL, data = nsw_trim_cps)
+qte.nsw.psid <- est_qte(Y, treat, NULL, data = nsw_trim_psid)
+#qte.nsw_cps <- est_qte(Y, treat, covar, data = nsw_cps) # adjusted
+#qte.nsw_cps0 <- est_qte(Y, treat, NULL, data = nsw_cps) # unadjusted
+qte.nsw_cps.trim <- est_qte(Y, treat, covar, data = nsw_cps_trim_match) # adjusted
+qte.nsw_cps.trim0 <- est_qte(Y, treat, NULL, data = nsw_cps_trim_match) # unadjusted
+#qte.nsw_psid <- est_qte(Y, treat, covar, data = nsw_psid) # adjusted
+#qte.nsw_psid0 <- est_qte(Y, treat, NULL, data = nsw_psid) # unadjusted
+qte.nsw_psid.trim <- est_qte(Y, treat, covar, data = nsw_psid_trim_match) # adjusted
+qte.nsw_psid.trim0 <- est_qte(Y, treat, NULL, data = nsw_psid_trim_match) # unadjusted
+```
+
+```{r, out.width='100%', fig.asp=1, fig.cap="FIGURE A7. Quantile Treatment Effects: Experimental vs. Nonexperimental"}
+# plot qte
+
+#load the data
+load("data/qte_nsw.rds")
+
+par(mfrow = c(2,2))
+# CPS
+plot_qte(qte.nsw_cps, qte.nsw_cps0, qte.nsw, main = "NSW-CPS", ylim = c(-25000, 15000))
+legend("bottomleft", legend = c("Experimental", "Unadjusted", "Adjusted"), lty = 1, pch = c(16, 17, 16), col = c(4, 2, 1), bty = "n")
+
+## CPS trimmed
+plot_qte(qte.nsw_cps.trim, qte.nsw_cps.trim0, qte.nsw.cps, main = "NSW-CPS (Trimmed)", ylim = c(-25000, 15000))
+legend("bottomleft", legend = c("Experimental", "Unadjusted", "Adjusted"), 
+    lty = 1, pch = c(16, 17, 16), col = c(4, 2, 1), bty = "n")
+
+# PSID
+plot_qte(qte.nsw_psid, qte.nsw_psid0, qte.nsw, main = "NSW-PSID", ylim = c(-25000, 15000))
+legend("bottomleft", legend = c("Experimental", "Unadjusted", "Adjusted"), 
+    lty = 1, pch = c(16, 17, 16), col = c(4, 2, 1), bty = "n")
+
+# PSID trimmed
+plot_qte(qte.nsw_psid.trim, qte.nsw_psid.trim0, qte.nsw.psid, main = "NSW-PSID (Trimmed)", ylim = c(-25000, 15000))
+legend("bottomleft", legend = c("Experimental", "Unadjusted", "Adjusted"), 
+    lty = 1, pch = c(16, 17, 16), col = c(4, 2, 1), bty = "n")
+```
+
+Note: Figures show QTET using both experimental data (in blue) and nonexperimental data (in red for raw estimates and black for covariate-adjusted estimates). Each dot corresponds to a QTET estimate at a particular quantile, while shaded areas represent bootstrapped 95% confidence intervals. Unadjusted models do not incorporate covariates while adjustment models use the full set of covariates to estimate the propensity scores with a logit.
+
+## Sensitivity Analyses
+
+Below are our sensitivity analyses using the original LaLonde male sample, with results depicted in contour plots below.
+
+```{r, out.width='100%', fig.asp=0.75, fig.cap="FIGURE A3. Sensitivity Analyses for Trimmed NSW-CPS1 and NSW-PSID1"}
+par(mfrow = c(1,2))
+
+## datasets to be used: nsw, nsw_trim_cps, nsw_trim_psid
+Y <- "re78"
+treat <- "treat"
+covar <- c("age", "education", "black", "hispanic", "married", "nodegree", "re75", "u75")
+bm <- c("re75")
+
+# trimmed NSW-CPS data
+sens_ana(nsw_trim_cps, Y, treat, covar, bm, kd = 1:3)
+
+# trimmed NSW-PSID data
+sens_ana(nsw_trim_psid, Y, treat, covar, bm, kd = 1)
+```
+
+The analyses suggest that the estimated training effect based on trimmed NSW-CPS is less sensitive to potential confounders compared to trimmed NSW-PSID.

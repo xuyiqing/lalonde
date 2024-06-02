@@ -1,0 +1,3 @@
+"0","par(mfrow = c(1,2))"
+"0","# cps data"
+"0","ldw_cps_trim_match_ps <- assess_overlap(data = ldw_cps_trim_match, treat = treat, cov = covar, xlim = c(-3,3))"

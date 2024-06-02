@@ -1,0 +1,4 @@
+"0","# define variables"
+"0","Y <- ""re78"""
+"0","treat <- ""treat"""
+"0","covar <- c(""age"", ""education"", ""black"", ""hispanic"", ""married"", ""nodegree"", ""re75"", ""u75"")"

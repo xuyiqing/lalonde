@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>2 LaLonde-Dehejia-Wahba (LDW) Data | Tutorial and Code for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’</title>
+<meta name="author" content="Guido Imbens, Yiqing Xu">
+<meta name="description" content="LaLonde (1986) assessed the impact of the National Supported Work Demonstration (NSW) program on both female and male participants, with females drawn from the Aid to Families with Dependent...">
+<meta name="generator" content="bookdown 0.39 with bs4_book()">
+<meta property="og:title" content="2 LaLonde-Dehejia-Wahba (LDW) Data | Tutorial and Code for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’">
+<meta property="og:type" content="book">
+<meta property="og:description" content="LaLonde (1986) assessed the impact of the National Supported Work Demonstration (NSW) program on both female and male participants, with females drawn from the Aid to Families with Dependent...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2 LaLonde-Dehejia-Wahba (LDW) Data | Tutorial and Code for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’">
+<meta name="twitter:description" content="LaLonde (1986) assessed the impact of the National Supported Work Demonstration (NSW) program on both female and male participants, with females drawn from the Aid to Families with Dependent...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.7.0/transition.js"></script><script src="libs/bs3compat-0.7.0/tabs.js"></script><script src="libs/bs3compat-0.7.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Tutorial and Code for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome!</a></li>
+<li><a class="" href="getting-started.html"><span class="header-section-number">1</span> Getting Started</a></li>
+<li><a class="active" href="lalonde-dehejia-wahba-ldw-data.html"><span class="header-section-number">2</span> LaLonde-Dehejia-Wahba (LDW) Data</a></li>
+<li><a class="" href="original-lalonde-data-male-sample.html"><span class="header-section-number">3</span> Original LaLonde Data (Male Sample)</a></li>
+<li><a class="" href="the-lottery-data.html"><span class="header-section-number">4</span> The Lottery Data</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/xuyiqing/lalonde">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="lalonde-dehejia-wahba-ldw-data" class="section level1" number="2">
+<h1>
+<span class="header-section-number">2</span> LaLonde-Dehejia-Wahba (LDW) Data<a class="anchor" aria-label="anchor" href="#lalonde-dehejia-wahba-ldw-data"><i class="fas fa-link"></i></a>
+</h1>
+<p>LaLonde (1986) assessed the impact of the National Supported Work Demonstration (NSW) program on both female and male participants, with females drawn from the Aid to Families with Dependent Children (AFDC) program and males from three other target groups: ex-drug addicts, ex-criminal offenders, and high-school dropouts. LaLonde used two primary data sources:</p>
+<ul>
+<li>CPS-SSA-1, from Westat’s Matched Current Population Survey–Social Security Administration File for individuals under 55 matching specific criteria.</li>
+<li>PSID-1, from the Panel Study of Income Dynamics for household heads under 55 from specific years who were not retired in 1975, adjusted for factors like employment status and poverty level, resulting in four additional comparison groups.</li>
+</ul>
+<p>Dehejia and Wahba (1999) subsampled 62% of LaLonde’s original dataset focusing on 1974 earnings and unemployment status of male participants. Since the construction relies solely on pretreatment information like month of assignment and employment history to ensure treatment assignment remains orthogonal to all pretreatment variables, Dehejia and Wahba argue the refined dataset, LaLonde-Dehejia-Wahba (LDW) data, is a valid experimental sample.</p>
+<p>Built upon LDW data, our analysis examines three samples: (1) LDW-Experimental, with 185 treated and 280 control participants from the experimental data; (2) LDW-CPS1, featuring the same treated individuals alongside 15,992 controls from CPS-SSA-1; and (3) LDW-PSID1, including the same treated participants and 2,490 controls from PSID-1. Then, we apply the same set of statistical tools to analyze the original male sample from LaLonde (1986) in section 4 as an additional demonstration.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/lalonde.RData"</span><span class="op">)</span></span>
+<span><span class="va">ldw_co</span><span class="op">$</span><span class="va">treat</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">ldw_cps.plus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind.data.frame</a></span><span class="op">(</span><span class="va">ldw_cps</span>, <span class="va">ldw_co</span><span class="op">)</span></span>
+<span><span class="va">ldw_psid.plus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind.data.frame</a></span><span class="op">(</span><span class="va">ldw_psid</span>, <span class="va">ldw_co</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># define variables</span></span>
+<span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="st">"re78"</span></span>
+<span><span class="va">treat</span> <span class="op">&lt;-</span> <span class="st">"treat"</span></span>
+<span><span class="va">covar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"education"</span>, <span class="st">"black"</span>, <span class="st">"hispanic"</span>, <span class="st">"married"</span>,</span>
+<span>           <span class="st">"nodegree"</span>, <span class="st">"re74"</span>, <span class="st">"re75"</span>, <span class="st">"u74"</span>, <span class="st">"u75"</span><span class="op">)</span></span></code></pre></div>
+<div id="assessing-overlap" class="section level2" number="2.1">
+<h2>
+<span class="header-section-number">2.1</span> Assessing Overlap<a class="anchor" aria-label="anchor" href="#assessing-overlap"><i class="fas fa-link"></i></a>
+</h2>
+<p>To identify the average causal effect under unconfoundedness, we need to ensure that we can estimate the average effect at every value for the covariates. Thus, we require overlaps between the treated and control units. Using the <code>assess_overlap</code> function, we can assess overlaps in propensity scores. To test the overlap assumption, we plot histograms using the log-odds of propensity scores, i.e., <span class="math inline">\(\log(\frac{\hat{e}}{1-\hat{e}})\)</span>.</p>
+<p>Ideally, for a well-balanced experimental design, the distributions of the treated (red) and the control (gray) groups should overlap.</p>
+<div id="ldw-experimental" class="section level3" number="2.1.1">
+<h3>
+<span class="header-section-number">2.1.1</span> LDW-Experimental<a class="anchor" aria-label="anchor" href="#ldw-experimental"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ldw_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="co">#&gt; -1.2254 0.7533904</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="tutorial0601_files/figure-html/unnamed-chunk-16-1.png" alt="FIGURE1. SubfigureA:LDW-Experimental." width="80%"><p class="caption">
+Figure 2.1: FIGURE1. SubfigureA:LDW-Experimental.
+</p>
+</div>
+</div>
+<div id="ldw-cps1-and-lwd-psid1" class="section level3" number="2.1.2">
+<h3>
+<span class="header-section-number">2.1.2</span> LDW-CPS1 and LWD-PSID1<a class="anchor" aria-label="anchor" href="#ldw-cps1-and-lwd-psid1"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">ldw_cps_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw_cps</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="co">#&gt; -16.1181 1.787226</span></span>
+<span><span class="va">ldw_psid_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw_psid</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="co">#&gt; -16.1181 3.824234</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="tutorial0601_files/figure-html/unnamed-chunk-17-1.png" alt="FIGURE1. SubfigureB:LDW-CPS1. SubfigureC:LDW-PSID1." width="100%"><p class="caption">
+Figure 2.2: FIGURE1. SubfigureB:LDW-CPS1. SubfigureC:LDW-PSID1.
+</p>
+</div>
+</div>
+<div id="overlap-in-original-ldw-samples" class="section level3" number="2.1.3">
+<h3>
+<span class="header-section-number">2.1.3</span> Overlap in Original LDW Samples<a class="anchor" aria-label="anchor" href="#overlap-in-original-ldw-samples"><i class="fas fa-link"></i></a>
+</h3>
+<p>As expected, LDW-Experimental shows a almost perfect overlap. However, both observational samples show very poor overlaps. Most notably, the propensity scores of many treated units do not lie within the support of the controls’ propensity scores, and a substantial proportion of the control units possess extremely low log-odds.</p>
+</div>
+</div>
+<div id="trimming-to-improve-overlap" class="section level2" number="2.2">
+<h2>
+<span class="header-section-number">2.2</span> Trimming to Improve Overlap<a class="anchor" aria-label="anchor" href="#trimming-to-improve-overlap"><i class="fas fa-link"></i></a>
+</h2>
+<p>Based on LDW-CPS1 and LWD-PSID1, we further construct two trimmed samples to improve overlap. Trimming involves two steps.</p>
+<p>First, we merge the experimental controls from LDW-Experimental into LDW-CPS1 (or LDW-PSID1) to enhance the control group with more units. Then, we can estimate each unit’s propensity included in the experiment using GRF. The purpose of trimming is to remove units that are too dissimilar from the other group to ensure a better balance between the treated and control groups. We can use <code>trim</code> to trim the data.</p>
+<ul>
+<li>For LDW-CPS1, the threshold is set at 0.9, meaning any unit with a propensity score higher than 0.9 will be excluded.</li>
+<li>For LDW-PSID1, the threshold is lower, at 0.8, indicating a stricter criterion for inclusion in the analysis.</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># re-estimate each unit’s propensity by merged data</span></span>
+<span><span class="va">ldw_cps_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw_cps.plus</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="co">#&gt; -16.1181 3.542706</span></span>
+<span><span class="va">ldw_psid_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw_psid.plus</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="co">#&gt; -16.1181 7.102692</span></span>
+<span></span>
+<span><span class="va">trim</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">ps</span> <span class="op">=</span> <span class="st">"ps_assoverlap"</span>, <span class="va">threshold</span> <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">sub</span> <span class="op">&lt;-</span> <span class="va">data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>, <span class="va">ps</span><span class="op">]</span> <span class="op">&lt;</span> <span class="va">threshold</span><span class="op">)</span>, <span class="op">]</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sub</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">ldw_cps_trim</span> <span class="op">&lt;-</span> <span class="fu">trim</span><span class="op">(</span><span class="va">ldw_cps_ps</span>, threshold <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
+<span><span class="va">ldw_psid_trim</span> <span class="op">&lt;-</span> <span class="fu">trim</span><span class="op">(</span><span class="va">ldw_psid_ps</span>, threshold <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code></pre></div>
+<p>Second, using the trimmed data and the same set of covariates, we reestimate propensity scores with GRF; this time, experimental controls are excluded.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># cps data</span></span>
+<span><span class="co"># excluding the experimental controls</span></span>
+<span><span class="va">ldw_cps_trim_match</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">ldw_cps_trim</span>, <span class="va">sample</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">ps_assoverlap</span><span class="op">)</span></span>
+<span><span class="co"># re-estimate propensity scores and employ 1:1 matching</span></span>
+<span><span class="va">ldw_cps_trim_match</span> <span class="op">&lt;-</span> <span class="fu">psmatch</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw_cps_trim_match</span>, Y <span class="op">=</span> <span class="st">"re78"</span>, treat <span class="op">=</span> <span class="st">"treat"</span>, cov <span class="op">=</span> <span class="va">covar</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># psid data</span></span>
+<span><span class="co"># excluding the experimental controls</span></span>
+<span><span class="va">ldw_psid_trim_match</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">ldw_psid_trim</span>, <span class="va">sample</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">ps_assoverlap</span><span class="op">)</span></span>
+<span><span class="co"># re-estimate propensity scores and employ 1:1 matching</span></span>
+<span><span class="va">ldw_psid_trim_match</span> <span class="op">&lt;-</span> <span class="fu">psmatch</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw_psid_trim_match</span>, Y <span class="op">=</span> <span class="st">"re78"</span>, treat <span class="op">=</span> <span class="st">"treat"</span>, cov <span class="op">=</span> <span class="va">covar</span><span class="op">)</span></span></code></pre></div>
+<p>We then employ a 1:1 matching based on the reestimated propensity scores to further trim the nonexperimental controls.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># We conduct this procedure to trim all samples simultaneously to improve overlap in the final samples.</span></span>
+<span></span>
+<span><span class="co">#cps</span></span>
+<span><span class="va">ldw_trim_cps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">ldw_cps_trim</span>, <span class="va">sample</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">ps_assoverlap</span> <span class="op">&lt;=</span> <span class="fl">0.9</span><span class="op">)</span></span>
+<span><span class="va">ldw_trim_cps</span><span class="op">$</span><span class="va">treat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ldw_trim_cps</span><span class="op">$</span><span class="va">sample</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="co">#psid</span></span>
+<span><span class="va">ldw_trim_psid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">ldw_psid_trim</span>, <span class="va">sample</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">ps_assoverlap</span> <span class="op">&lt;=</span> <span class="fl">0.8</span><span class="op">)</span></span>
+<span><span class="va">ldw_trim_psid</span><span class="op">$</span><span class="va">treat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">ldw_trim_psid</span><span class="op">$</span><span class="va">sample</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span></code></pre></div>
+</div>
+<div id="reassessing-overlap" class="section level2" number="2.3">
+<h2>
+<span class="header-section-number">2.3</span> Reassessing Overlap<a class="anchor" aria-label="anchor" href="#reassessing-overlap"><i class="fas fa-link"></i></a>
+</h2>
+<p>As shown in the following figures, overlap improves significantly in both samples post-trimming, though this comes with the cost of reduced sample sizes.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># cps data</span></span>
+<span><span class="va">ldw_cps_trim_match_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw_cps_trim_match</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># psid data</span></span>
+<span><span class="va">ldw_psid_trim_match_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw_psid_trim_match</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<img src="tutorial0601_files/figure-html/unnamed-chunk-21-1.png" alt="FIGURE1. SubfigureD:TrimmedLDW-CPS1. SubfigureE:TrimmedLDW-PSID1." width="100%"><p class="caption">
+Figure 2.3: FIGURE1. SubfigureD:TrimmedLDW-CPS1. SubfigureE:TrimmedLDW-PSID1.
+</p>
+</div>
+</div>
+<div id="estimating-the-att" class="section level2" number="2.4">
+<h2>
+<span class="header-section-number">2.4</span> Estimating the ATT<a class="anchor" aria-label="anchor" href="#estimating-the-att"><i class="fas fa-link"></i></a>
+</h2>
+<p>Next, we estimate the ATT using both the original LDW observational samples and the newly constructed trimmed samples. We apply a variety of estimators, including simple difference-in-means, regression, the OaxacaBlinderestimator, GRF as an outcome model, 1: 5 nearest neighbor matching with bias correction, IPW with propensity scores estimated by GRF, covariate balancing propensity score (CBPS), entropy balancing, double/debiased matching learning using elastic net, and AIPW implemented via GRF. All estimators use the same set of ten covariates as before.</p>
+<p>To achieve such a comprehensive analysis of the ATT, we can use the <code>estimate_all</code> function.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/trimmed.RData"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># experimental</span></span>
+<span><span class="va">out1</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ldw</span>, Y <span class="op">=</span> <span class="st">"re78"</span>, treat <span class="op">=</span> <span class="st">"treat"</span>, cov <span class="op">=</span> <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">out2</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_trim_cps</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">out3</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_trim_psid</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="co"># nonexperimental</span></span>
+<span><span class="va">out4</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_cps</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">out5</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_psid</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in average_treatment_effect(c.forest, target.sample</span></span>
+<span><span class="co">#&gt; = "treated", : Estimated treatment propensities take values</span></span>
+<span><span class="co">#&gt; between 0.003 and 0.988 and in particular get very close to</span></span>
+<span><span class="co">#&gt; 0 and 1. In this case, using `target.sample=overlap`, or</span></span>
+<span><span class="co">#&gt; filtering data as in Crump, Hotz, Imbens, and Mitnik</span></span>
+<span><span class="co">#&gt; (Biometrika, 2009) may be helpful.</span></span>
+<span><span class="va">out6</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_cps_trim</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">out7</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_psid_trim</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">band</span> <span class="op">&lt;-</span> <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">est</span> <span class="op">&lt;-</span> <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_coef</span><span class="op">(</span><span class="va">out4</span>, band <span class="op">=</span> <span class="va">band</span>, line <span class="op">=</span> <span class="va">est</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15500</span>, <span class="fl">5500</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"(A) LDW-CPS1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">band</span> <span class="op">&lt;-</span> <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">est</span> <span class="op">&lt;-</span> <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_coef</span><span class="op">(</span><span class="va">out5</span>, band <span class="op">=</span> <span class="va">band</span>, line <span class="op">=</span> <span class="va">est</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15500</span>, <span class="fl">5500</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"(B) LDW-PSID1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">band</span> <span class="op">&lt;-</span> <span class="va">out2</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">est</span> <span class="op">&lt;-</span> <span class="va">out2</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_coef</span><span class="op">(</span><span class="va">out6</span>, band <span class="op">=</span> <span class="va">band</span>, line <span class="op">=</span> <span class="va">est</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15500</span>, <span class="fl">5500</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"(C) Trimmed LDW-CPS1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">band</span> <span class="op">&lt;-</span> <span class="va">out3</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">est</span> <span class="op">&lt;-</span> <span class="va">out3</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_coef</span><span class="op">(</span><span class="va">out7</span>, band <span class="op">=</span> <span class="va">band</span>, line <span class="op">=</span> <span class="va">est</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15500</span>, <span class="fl">5500</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">"(D) Trimmed LDW-PSID1"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<img src="tutorial0601_files/figure-html/unnamed-chunk-22-1.png" alt="FIGURE 3. ATT Estimates Given Unconfoundedness: LDW Samples" width="100%"><p class="caption">
+Figure 2.4: FIGURE 3. ATT Estimates Given Unconfoundedness: LDW Samples
+</p>
+</div>
+<p>The above figures show the ATT estimates and their 95% confidence intervals using four different samples: LDW-CPS1, LDW-PSID1, Trimmed LDW-CPS1, and Trimmed LDW-PSID1.</p>
+<p>As shown in Figure 3(A), when using LDW-CPS1, all estimators, except difference in-means, produce positive estimates, although there are noticeable variations among them. Nearest neighbor matching outperforms other estimators, aligning closely with the experimental benchmark of $1,794. Notably, CBPS, entropy balancing, and AIPW-GRF also produce results close to the benchmark. Despite numerical differences, these estimates, except for difference-in-means, cannot be statistically distinguished from one another. Figure 3(B) shows that estimates based on LDW-PSID1 exhibit greater variations. Setting aside the difference-in-means, the estimates span from $4 to $2,420. Among them, the AIPW-GRF estimator produces an estimate closest to the experimental benchmark.</p>
+<p>Figure 3(C) and (D) show that by using trimmed data with improved overlap, estimates produced by various estimators are substantially more stable.</p>
+<p>The ATT results are presented in the table below:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># print the result</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">out4</span>, <span class="va">out5</span>, <span class="va">out6</span>, <span class="va">out7</span><span class="op">)</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">out1</span><span class="op">)</span></span>
+<span><span class="va">sav</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="st">""</span>, <span class="va">n</span><span class="op">+</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">*</span><span class="fl">3</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span></span>
+<span>    <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="va">sav</span><span class="op">[</span><span class="va">i</span>, <span class="va">j</span><span class="op">*</span><span class="fl">3</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>        <span class="va">sav</span><span class="op">[</span><span class="va">i</span>, <span class="va">j</span><span class="op">*</span><span class="fl">3</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">7</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out2</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">8</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out2</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out3</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">11</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out3</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">sav</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LDW-CPS1"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"LDW-PSID1"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"LDW-CPS1 (PS Trimmed) "</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"LDW-PSID1 (PS Trimmed)"</span>, <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">sav</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Experimental Benchmark"</span>, <span class="st">"Difference-in-Means"</span>, <span class="st">"Regression"</span>, <span class="st">" Oaxaca Blinder"</span>, <span class="st">"GRF"</span>, <span class="st">"NN Matching"</span>, <span class="st">"PS Matching"</span>, <span class="st">"IPW"</span>, <span class="st">"CBPS"</span>, <span class="st">"Entropy Balancing"</span>, <span class="st">"DML-ElasticNet"</span>, <span class="st">"AIPW-GRF"</span><span class="op">)</span></span>
+<span><span class="va">sav</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>booktabs<span class="op">=</span><span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">" Table A1 in the Supplementary Materials (SM)"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:unnamed-chunk-23">Table 2.1: </span> Table A1 in the Supplementary Materials (SM)</caption>
+<colgroup>
+<col width="17%">
+<col width="6%">
+<col width="6%">
+<col width="2%">
+<col width="7%">
+<col width="7%">
+<col width="2%">
+<col width="17%">
+<col width="6%">
+<col width="2%">
+<col width="17%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="left">LDW-CPS1</th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">LDW-PSID1</th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">LDW-CPS1 (PS Trimmed)</th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">LDW-PSID1 (PS Trimmed)</th>
+<th align="left"></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Experimental Benchmark</td>
+<td align="left">1794.34</td>
+<td align="left">(670.82)</td>
+<td align="left"></td>
+<td align="left">1794.34</td>
+<td align="left">(670.82)</td>
+<td align="left"></td>
+<td align="left">1911.04</td>
+<td align="left">(737.71)</td>
+<td align="left"></td>
+<td align="left">306.29</td>
+<td align="left">(985.98)</td>
+</tr>
+<tr class="even">
+<td align="left">Difference-in-Means</td>
+<td align="left">-8497.52</td>
+<td align="left">(581.92)</td>
+<td align="left"></td>
+<td align="left">-15204.78</td>
+<td align="left">(655.91)</td>
+<td align="left"></td>
+<td align="left">1483.82</td>
+<td align="left">(824.44)</td>
+<td align="left"></td>
+<td align="left">-1505.24</td>
+<td align="left">(1219.89)</td>
+</tr>
+<tr class="odd">
+<td align="left">Regression</td>
+<td align="left">1066.38</td>
+<td align="left">(626.85)</td>
+<td align="left"></td>
+<td align="left">4.16</td>
+<td align="left">(854.15)</td>
+<td align="left"></td>
+<td align="left">1751.16</td>
+<td align="left">(824.20)</td>
+<td align="left"></td>
+<td align="left">-1939.59</td>
+<td align="left">(1154.45)</td>
+</tr>
+<tr class="even">
+<td align="left">Oaxaca Blinder</td>
+<td align="left">1133.28</td>
+<td align="left">(624.26)</td>
+<td align="left"></td>
+<td align="left">687.82</td>
+<td align="left">(635.26)</td>
+<td align="left"></td>
+<td align="left">1507.48</td>
+<td align="left">(672.08)</td>
+<td align="left"></td>
+<td align="left">-1511.20</td>
+<td align="left">(900.46)</td>
+</tr>
+<tr class="odd">
+<td align="left">GRF</td>
+<td align="left">1078.83</td>
+<td align="left">(629.88)</td>
+<td align="left"></td>
+<td align="left">766.29</td>
+<td align="left">(635.04)</td>
+<td align="left"></td>
+<td align="left">1442.19</td>
+<td align="left">(665.76)</td>
+<td align="left"></td>
+<td align="left">-1401.32</td>
+<td align="left">(792.83)</td>
+</tr>
+<tr class="even">
+<td align="left">NN Matching</td>
+<td align="left">1729.12</td>
+<td align="left">(815.38)</td>
+<td align="left"></td>
+<td align="left">2255.47</td>
+<td align="left">(1403.83)</td>
+<td align="left"></td>
+<td align="left">2137.90</td>
+<td align="left">(946.11)</td>
+<td align="left"></td>
+<td align="left">-1564.93</td>
+<td align="left">(1209.89)</td>
+</tr>
+<tr class="odd">
+<td align="left">PS Matching</td>
+<td align="left">1490.20</td>
+<td align="left">(764.60)</td>
+<td align="left"></td>
+<td align="left">-1527.99</td>
+<td align="left">(1040.73)</td>
+<td align="left"></td>
+<td align="left">1483.82</td>
+<td align="left">(850.49)</td>
+<td align="left"></td>
+<td align="left">-1505.24</td>
+<td align="left">(1384.51)</td>
+</tr>
+<tr class="even">
+<td align="left">IPW</td>
+<td align="left">1236.84</td>
+<td align="left">(687.14)</td>
+<td align="left"></td>
+<td align="left">739.34</td>
+<td align="left">(893.32)</td>
+<td align="left"></td>
+<td align="left">1343.01</td>
+<td align="left">(826.44)</td>
+<td align="left"></td>
+<td align="left">-2117.63</td>
+<td align="left">(1270.02)</td>
+</tr>
+<tr class="odd">
+<td align="left">CBPS</td>
+<td align="left">1408.01</td>
+<td align="left">(654.96)</td>
+<td align="left"></td>
+<td align="left">2437.70</td>
+<td align="left">(877.80)</td>
+<td align="left"></td>
+<td align="left">1471.35</td>
+<td align="left">(813.29)</td>
+<td align="left"></td>
+<td align="left">-1885.28</td>
+<td align="left">(1369.64)</td>
+</tr>
+<tr class="even">
+<td align="left">Entropy Balancing</td>
+<td align="left">1406.27</td>
+<td align="left">(654.93)</td>
+<td align="left"></td>
+<td align="left">2420.49</td>
+<td align="left">(876.85)</td>
+<td align="left"></td>
+<td align="left">1472.12</td>
+<td align="left">(812.92)</td>
+<td align="left"></td>
+<td align="left">-1776.73</td>
+<td align="left">(1551.89)</td>
+</tr>
+<tr class="odd">
+<td align="left">DML-ElasticNet</td>
+<td align="left">1068.62</td>
+<td align="left">(627.81)</td>
+<td align="left"></td>
+<td align="left">91.01</td>
+<td align="left">(861.30)</td>
+<td align="left"></td>
+<td align="left">1912.25</td>
+<td align="left">(818.40)</td>
+<td align="left"></td>
+<td align="left">-2112.57</td>
+<td align="left">(1125.17)</td>
+</tr>
+<tr class="even">
+<td align="left">AIPW-GRF</td>
+<td align="left">1571.17</td>
+<td align="left">(703.86)</td>
+<td align="left"></td>
+<td align="left">1422.82</td>
+<td align="left">(772.78)</td>
+<td align="left"></td>
+<td align="left">1426.58</td>
+<td align="left">(815.99)</td>
+<td align="left"></td>
+<td align="left">-1830.25</td>
+<td align="left">(1169.91)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Columns 1 and 2 report the estimates from LDW-CPS1 and LDW-PSID1, respectively, while columns 3 and 4 report the estimates from the trimmed samples with improved overlap. Robust standard errors are in the parentheses. Improved overlap in trimmed samples generally leads to estimates with higher consistency with the benchmark. The trimmed samples often show increased standard errors, which is expected as trimming reduces the sample size, thus increasing variance.</p>
+<p>As shown in column 1, when using LDW-CPS1, all estimators, except difference-in-means, produce estimates exceeding $1,000, although there are noticeable variations among them. Nearest neighbor matching outperforms other estimators, aligning closely with the experimental benchmark of $1,794. Notably, propensity score matching, entropy balancing, and AIPW-GRF also produce results close to the benchmark. The standard errors of these estimates are large. As a result, despite numerical differences, these estimates, except for difference-in-means, cannot be statistically distinguished from one another. Column 2 shows that estimates based on LDW-PSID1 exhibit greater variations.</p>
+<p>These findings suggest that while improved overlap based on observed covariates can reduce model dependency and estimate variability across different estimators, it does not guarantee consistency without validating unconfoundedness.</p>
+</div>
+<div id="alternative-estimands-catt-and-qtet" class="section level2" number="2.5">
+<h2>
+<span class="header-section-number">2.5</span> Alternative Estimands: CATT and QTET<a class="anchor" aria-label="anchor" href="#alternative-estimands-catt-and-qtet"><i class="fas fa-link"></i></a>
+</h2>
+<div id="conditional-average-treatment-effect-on-the-treated-catt" class="section level3" number="2.5.1">
+<h3>
+<span class="header-section-number">2.5.1</span> Conditional Average Treatment Effect on the Treated (CATT)<a class="anchor" aria-label="anchor" href="#conditional-average-treatment-effect-on-the-treated-catt"><i class="fas fa-link"></i></a>
+</h3>
+<p>Exploring causal estimates for alternative estimands, such as heterogeneous treatment effects and quantile treatment effects, can help assess unconfoundedness.</p>
+<p>CATT can reveal how the treatment effect varies across different subgroups defined by covariates. Using both the original LDW data and the trimmed versions, we estimate the CATT using a causal forest through AIPW-GRF. We can use the wrapper function <code>catt</code> to estimate CATT.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># estimate catt</span></span>
+<span><span class="va">catt.ldw</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">ldw</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">catt.cps</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">ldw_cps</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">catt.psid</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">ldw_psid</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">catt.cps.trim</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">ldw_cps_trim</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">catt.psid.trim</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">ldw_psid_trim</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="co"># trimmed experimental data</span></span>
+<span><span class="va">catt.ldw.cps</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">ldw_trim_cps</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">catt.ldw.psid</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">ldw_trim_psid</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span></code></pre></div>
+<p>Then, we can use <code>plot_catt</code> to visualize the result. In the following figures, we plot the estimated CATT from observational data at the covariate values of each treated unit against their corresponding experimental benchmarks. The gray dot represents a pair of CATT estimates, while the red cross depicts the pair of estimated ATTs.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># plot catt - "CATT (Experimental)" and "CATT (CPS-Full)"</span></span>
+<span><span class="va">catt1</span> <span class="op">&lt;-</span> <span class="va">catt.ldw</span><span class="op">$</span><span class="va">catt</span></span>
+<span><span class="va">att1</span> <span class="op">&lt;-</span> <span class="va">catt.ldw</span><span class="op">$</span><span class="va">att</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">catt2</span> <span class="op">&lt;-</span> <span class="va">catt.cps</span><span class="op">$</span><span class="va">catt</span></span>
+<span><span class="va">att2</span> <span class="op">&lt;-</span> <span class="va">catt.cps</span><span class="op">$</span><span class="va">att</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_catt</span><span class="op">(</span><span class="va">catt1</span>, <span class="va">catt2</span>, <span class="va">att1</span>, <span class="va">att2</span>, <span class="st">"CATT (Experimental)"</span>, <span class="st">"CATT (CPS-Full)"</span>,</span>
+<span>          main <span class="op">=</span> <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8000</span>, <span class="fl">8000</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot catt - "CATT (Experimental)" and "CATT (PSID-Full)"</span></span>
+<span><span class="va">catt1</span> <span class="op">&lt;-</span> <span class="va">catt.ldw</span><span class="op">$</span><span class="va">catt</span></span>
+<span><span class="va">att1</span> <span class="op">&lt;-</span> <span class="va">catt.ldw</span><span class="op">$</span><span class="va">att</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">catt2</span> <span class="op">&lt;-</span> <span class="va">catt.psid</span><span class="op">$</span><span class="va">catt</span></span>
+<span><span class="va">att2</span> <span class="op">&lt;-</span> <span class="va">catt.psid</span><span class="op">$</span><span class="va">att</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_catt</span><span class="op">(</span><span class="va">catt1</span>, <span class="va">catt2</span>, <span class="va">att1</span>, <span class="va">att2</span>, <span class="st">"CATT (Experimental)"</span>, <span class="st">"CATT (PSID-Full)"</span>,</span>
+<span>    main <span class="op">=</span> <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8000</span>, <span class="fl">8000</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot catt - "CATT (Experimental)" and "CATT (CPS-Trimmed)"</span></span>
+<span><span class="va">catt1</span> <span class="op">&lt;-</span> <span class="va">catt.ldw.cps</span><span class="op">$</span><span class="va">catt</span></span>
+<span><span class="va">att1</span> <span class="op">&lt;-</span> <span class="va">catt.ldw.cps</span><span class="op">$</span><span class="va">att</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">catt2</span> <span class="op">&lt;-</span> <span class="va">catt.cps.trim</span><span class="op">$</span><span class="va">catt</span></span>
+<span><span class="va">att2</span> <span class="op">&lt;-</span> <span class="va">catt.cps.trim</span><span class="op">$</span><span class="va">att</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_catt</span><span class="op">(</span><span class="va">catt1</span>, <span class="va">catt2</span>, <span class="va">att1</span>, <span class="va">att2</span>, <span class="st">"CATT (Experimental)"</span>, <span class="st">"CATT (CPS-Trimmed)"</span>,</span>
+<span>    main <span class="op">=</span> <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8000</span>, <span class="fl">8000</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># plot catt - "CATT (Experimental)" and "CATT (PSID-Trimmed)"</span></span>
+<span><span class="va">catt1</span> <span class="op">&lt;-</span> <span class="va">catt.ldw.psid</span><span class="op">$</span><span class="va">catt</span></span>
+<span><span class="va">att1</span> <span class="op">&lt;-</span> <span class="va">catt.ldw.psid</span><span class="op">$</span><span class="va">att</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">catt2</span> <span class="op">&lt;-</span> <span class="va">catt.psid.trim</span><span class="op">$</span><span class="va">catt</span></span>
+<span><span class="va">att2</span> <span class="op">&lt;-</span> <span class="va">catt.psid.trim</span><span class="op">$</span><span class="va">att</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_catt</span><span class="op">(</span><span class="va">catt1</span>, <span class="va">catt2</span>, <span class="va">att1</span>, <span class="va">att2</span>, <span class="st">"CATT (Experimental)"</span>, <span class="st">"CATT (PSID-Trimmed)"</span>,</span>
+<span>    main <span class="op">=</span> <span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8000</span>, <span class="fl">8000</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:unnamed-chunk-25"></span>
+<img src="tutorial0601_files/figure-html/unnamed-chunk-25-1.png" alt="FIGURE 4. CATT Estimates using LDW Data: Experimental vs. Nonexperimental" width="100%"><p class="caption">
+Figure 2.5: FIGURE 4. CATT Estimates using LDW Data: Experimental vs. Nonexperimental
+</p>
+</div>
+<p>Although the AIPW estimator can produce ATT estimates closely aligned with the experimental benchmark using LDW data, its performance for revealing the true CATT is considerably worse. Specifically, with LDW-CPS1, CATT estimates span from $-5,456.1 to $6,997.1, contrasting with the CATT estimated from experimental data which ranges from $-345.3 to $4,148.5. It overestimates CATT that exceeds the ATT and underestimates CATT that falls below the ATT. Employing LDW-PSID generates CATT estimates ranging from $-8131.2 to $4381.0. With trimmed LDW-CPS, the CATT estimates align more closely with those from the experimental data. However, using trimmed LDW-PSID, the majority of CATT estimates are negative, suggesting significant biases.</p>
+</div>
+<div id="quantile-treatment-effect-on-the-treated-qtet" class="section level3" number="2.5.2">
+<h3>
+<span class="header-section-number">2.5.2</span> Quantile Treatment Effect on the Treated (QTET)<a class="anchor" aria-label="anchor" href="#quantile-treatment-effect-on-the-treated-qtet"><i class="fas fa-link"></i></a>
+</h3>
+<p>QTET is less sensitive to outliers and can uncover the heterogeneity in treatment effects that may be obscured by average treatment effect estimates. Our calculation of the QTET uses the propensity score re-weighting approach proposed by Firpo (2007).</p>
+<p>To proceed, we can use the wrapper function <code>qte</code>.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># estimate qte (some of the following lines are not run due to computational limitation)</span></span>
+<span></span>
+<span><span class="co">## experimental</span></span>
+<span><span class="va">qte.ldw</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="cn">NULL</span>, data <span class="op">=</span> <span class="va">ldw</span><span class="op">)</span></span>
+<span><span class="va">qte.ldw.cps</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="cn">NULL</span>, data <span class="op">=</span> <span class="va">ldw_trim_cps</span><span class="op">)</span></span>
+<span><span class="va">qte.ldw.psid</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="cn">NULL</span>, data <span class="op">=</span> <span class="va">ldw_trim_psid</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## non-experimental</span></span>
+<span><span class="co">#qte.ldw_cps &lt;- est_qte(Y, treat, covar, data = ldw_cps) # adjusted</span></span>
+<span><span class="co">#qte.ldw_cps0 &lt;- est_qte(Y, treat, NULL, data = ldw_cps) # unadjusted</span></span>
+<span><span class="va">qte.ldw_cps.trim</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span>, data <span class="op">=</span> <span class="va">ldw_cps_trim</span><span class="op">)</span> <span class="co"># adjusted</span></span>
+<span><span class="va">qte.ldw_cps.trim0</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="cn">NULL</span>, data <span class="op">=</span> <span class="va">ldw_cps_trim</span><span class="op">)</span> <span class="co"># unadjusted</span></span>
+<span><span class="co">#qte.ldw_psid &lt;- est_qte(Y, treat, covar, data = ldw_psid) # adjusted</span></span>
+<span><span class="co">#qte.ldw_psid0 &lt;- est_qte(Y, treat, NULL, data = ldw_psid) # unadjusted</span></span>
+<span><span class="va">qte.ldw_psid.trim</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span>, data <span class="op">=</span> <span class="va">ldw_psid_trim</span><span class="op">)</span> <span class="co"># adjusted</span></span>
+<span><span class="va">qte.ldw_psid.trim0</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="cn">NULL</span>, data <span class="op">=</span> <span class="va">ldw_psid_trim</span><span class="op">)</span> <span class="co"># unadjusted</span></span></code></pre></div>
+<p>We can use <code>plot_qte</code> to plot the result and compare the treatment effects estimated both before and after trimming based on propensity scores.</p>
+<p>For each dataset, there are three lines representing:</p>
+<ul>
+<li>Experimental (blue line with diamond markers): QTET estimates based on experimental data, which serve as a benchmark.</li>
+<li>Unadjusted (pink line with triangle markers): QTET estimates from the observational data without any adjustments.</li>
+<li>Adjusted (black line with circle markers): QTET estimates from the observational data after adjusting for covariates.</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># plot qte</span></span>
+<span></span>
+<span><span class="co">#load the data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/qte_ldw.rds"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># CPS</span></span>
+<span><span class="fu">plot_qte</span><span class="op">(</span><span class="va">qte.ldw_cps</span>, <span class="va">qte.ldw_cps0</span>, <span class="va">qte.ldw</span>, main <span class="op">=</span> <span class="st">"LDW-CPS"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">25000</span>, <span class="fl">15000</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Experimental"</span>, <span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">17</span>, <span class="fl">16</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## CPS trimmed</span></span>
+<span><span class="fu">plot_qte</span><span class="op">(</span><span class="va">qte.ldw_cps.trim</span>, <span class="va">qte.ldw_cps.trim0</span>, <span class="va">qte.ldw.cps</span>, main <span class="op">=</span> <span class="st">"LDW-CPS (Trimmed)"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">25000</span>, <span class="fl">15000</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Experimental"</span>, <span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span><span class="op">)</span>, </span>
+<span>    lty <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">17</span>, <span class="fl">16</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># PSID</span></span>
+<span><span class="fu">plot_qte</span><span class="op">(</span><span class="va">qte.ldw_psid</span>, <span class="va">qte.ldw_psid0</span>, <span class="va">qte.ldw</span>, main <span class="op">=</span> <span class="st">"LDW-PSID"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">25000</span>, <span class="fl">15000</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Experimental"</span>, <span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span><span class="op">)</span>, </span>
+<span>    lty <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">17</span>, <span class="fl">16</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># PSID trimmed</span></span>
+<span><span class="fu">plot_qte</span><span class="op">(</span><span class="va">qte.ldw_psid.trim</span>, <span class="va">qte.ldw_psid.trim0</span>, <span class="va">qte.ldw.psid</span>, main <span class="op">=</span> <span class="st">"LDW-PSID (Trimmed)"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">25000</span>, <span class="fl">15000</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Experimental"</span>, <span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span><span class="op">)</span>, </span>
+<span>    lty <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">17</span>, <span class="fl">16</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:unnamed-chunk-27"></span>
+<img src="tutorial0601_files/figure-html/unnamed-chunk-27-1.png" alt="FIGURE 5. Quantile Treatment Effects: Experimental vs. Nonexperimental" width="100%"><p class="caption">
+Figure 2.6: FIGURE 5. Quantile Treatment Effects: Experimental vs. Nonexperimental
+</p>
+</div>
+<p>These figures plot the QTET estimates using both the LDW experimental data and non-experimental data. The QTET estimates from either the original or trimmed LDW-CPS1 data align reasonably well with the true QTET, although they are often underpowered. In contrast, the QTET of the original or trimmed LDW-PSID1 data displays notable biases compared to the experimental benchmark, which is close to zero.</p>
+<p>This analysis suggests that, when considering alternative estimands such as CATT and QTET among the four observational samples, only trimmed LDW-CPS1 yields results consistently aligned closely with the experimental benchmark.</p>
+</div>
+</div>
+<div id="validation-through-placebo-analyses" class="section level2" number="2.6">
+<h2>
+<span class="header-section-number">2.6</span> Validation through Placebo Analyses<a class="anchor" aria-label="anchor" href="#validation-through-placebo-analyses"><i class="fas fa-link"></i></a>
+</h2>
+<p>We conduct placebo analyses to further assess the plausibility of unconfoundedness. To do so, we select earnings in 1975 (re75) as the placebo outcome and remove both re75 and u75 from the set of conditioning variables. The trimmed samples are based on 1:1 matching of propensity scores estimated via GRF. (Two new trimmed samples are created without using re75 and u75.) Similarly, we can use <code>estimate_all</code> to calculate the ATT for the placebo
+analysis, conditional on the remaining covariates.</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="st">"re75"</span></span>
+<span><span class="va">treat</span> <span class="op">&lt;-</span> <span class="st">"treat"</span></span>
+<span><span class="va">covar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"education"</span>, <span class="st">"black"</span>, <span class="st">"hispanic"</span>, <span class="st">"married"</span>, <span class="st">"nodegree"</span>, <span class="st">"re74"</span>, <span class="st">"u74"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># experimental</span></span>
+<span><span class="va">out1</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw</span>, <span class="va">Y</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">out2</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_trim_cps_pl</span>, <span class="va">Y</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">out3</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_trim_psid_pl</span>, <span class="va">Y</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="co"># no experimental</span></span>
+<span><span class="va">out4</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_cps</span>, <span class="va">Y</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">out5</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_psid</span>, <span class="va">Y</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">out6</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_cps_trim_pl</span>, <span class="va">Y</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
+<span><span class="va">out7</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">ldw_psid_trim_pl</span>, <span class="va">Y</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">band</span> <span class="op">&lt;-</span> <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">est</span> <span class="op">&lt;-</span> <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">ylim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">12000</span>, <span class="fl">2000</span><span class="op">)</span></span>
+<span><span class="fu">plot_coef</span><span class="op">(</span><span class="va">out4</span>, band <span class="op">=</span> <span class="va">band</span>, line <span class="op">=</span> <span class="va">est</span>, ylim <span class="op">=</span> <span class="va">ylim</span>, main <span class="op">=</span> <span class="st">"(A) LDW-CPS1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">band</span> <span class="op">&lt;-</span> <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">est</span> <span class="op">&lt;-</span> <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_coef</span><span class="op">(</span><span class="va">out5</span>, band <span class="op">=</span> <span class="va">band</span>, line <span class="op">=</span> <span class="va">est</span>, ylim <span class="op">=</span> <span class="va">ylim</span>, main <span class="op">=</span> <span class="st">"(B) LDW-PSID1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">band</span> <span class="op">&lt;-</span> <span class="va">out2</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">est</span> <span class="op">&lt;-</span> <span class="va">out2</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_coef</span><span class="op">(</span><span class="va">out6</span>, band <span class="op">=</span> <span class="va">band</span>, line <span class="op">=</span> <span class="va">est</span>, ylim <span class="op">=</span> <span class="va">ylim</span>, main <span class="op">=</span> <span class="st">"(C) Trimmed LDW-CPS1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">band</span> <span class="op">&lt;-</span> <span class="va">out3</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">est</span> <span class="op">&lt;-</span> <span class="va">out3</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span></span>
+<span><span class="fu">plot_coef</span><span class="op">(</span><span class="va">out7</span>, band <span class="op">=</span> <span class="va">band</span>, line <span class="op">=</span> <span class="va">est</span>, ylim <span class="op">=</span> <span class="va">ylim</span>, main <span class="op">=</span> <span class="st">"(D) Trimmed LDW-PSID1"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:unnamed-chunk-29"></span>
+<img src="tutorial0601_files/figure-html/unnamed-chunk-29-1.png" alt="FIGURE 6. Placebo Test: ’75 Earnings as the Outcome" width="100%"><p class="caption">
+Figure 2.7: FIGURE 6. Placebo Test: ’75 Earnings as the Outcome
+</p>
+</div>
+<p>Figure 6 presents the findings. Not surprisingly, the experimental benchmarks are near zero and statistically insignificant. However, all estimators using nonexperimental data generate large, negative estimates. Again, with trimmed data, the estimates are stable but remain statistically different from zero.</p>
+<p>The <em>Placebo</em> ATT results are presented in the table below:</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># print the result</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">out4</span>, <span class="va">out5</span>, <span class="va">out6</span>, <span class="va">out7</span><span class="op">)</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">out1</span><span class="op">)</span></span>
+<span><span class="va">sav</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="st">""</span>, <span class="va">n</span><span class="op">+</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">*</span><span class="fl">3</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">out</span> <span class="op">&lt;-</span> <span class="va">a</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span></span>
+<span>    <span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="va">sav</span><span class="op">[</span><span class="va">i</span>, <span class="va">j</span><span class="op">*</span><span class="fl">3</span><span class="op">-</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>        <span class="va">sav</span><span class="op">[</span><span class="va">i</span>, <span class="va">j</span><span class="op">*</span><span class="fl">3</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out1</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">7</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out2</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">8</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out2</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out3</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">11</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out3</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">sav</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LDW-CPS1"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"LDW-PSID1"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"LDW-CPS1 (PS Trimmed) "</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"LDW-PSID1 (PS Trimmed)"</span>, <span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">sav</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Experimental Benchmark"</span>, <span class="st">"Difference-in-Means"</span>, <span class="st">"Regression"</span>, <span class="st">" Oaxaca Blinder"</span>, <span class="st">"GRF"</span>, <span class="st">"NN Matching"</span>, <span class="st">"PS Matching"</span>, <span class="st">"IPW"</span>, <span class="st">"CBPS"</span>, <span class="st">"Entropy Balancing"</span>, <span class="st">"DML-ElasticNet"</span>, <span class="st">"AIPW-GRF"</span><span class="op">)</span></span>
+<span><span class="va">sav</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>booktabs<span class="op">=</span><span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">" Table A2 in the Supplementary Materials (SM)"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<caption>
+<span id="tab:unnamed-chunk-30">Table 2.2: </span> Table A2 in the Supplementary Materials (SM)</caption>
+<colgroup>
+<col width="17%">
+<col width="7%">
+<col width="6%">
+<col width="2%">
+<col width="7%">
+<col width="6%">
+<col width="2%">
+<col width="17%">
+<col width="6%">
+<col width="2%">
+<col width="17%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="left">LDW-CPS1</th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">LDW-PSID1</th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">LDW-CPS1 (PS Trimmed)</th>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">LDW-PSID1 (PS Trimmed)</th>
+<th align="left"></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Experimental Benchmark</td>
+<td align="left">265.15</td>
+<td align="left">(305.00)</td>
+<td align="left"></td>
+<td align="left">265.15</td>
+<td align="left">(305.00)</td>
+<td align="left"></td>
+<td align="left">273.86</td>
+<td align="left">(334.27)</td>
+<td align="left"></td>
+<td align="left">-210.15</td>
+<td align="left">(693.12)</td>
+</tr>
+<tr class="even">
+<td align="left">Difference-in-Means</td>
+<td align="left">-12118.75</td>
+<td align="left">(247.18)</td>
+<td align="left"></td>
+<td align="left">-17531.28</td>
+<td align="left">(360.60)</td>
+<td align="left"></td>
+<td align="left">-1456.55</td>
+<td align="left">(484.60)</td>
+<td align="left"></td>
+<td align="left">-4670.77</td>
+<td align="left">(1057.12)</td>
+</tr>
+<tr class="odd">
+<td align="left">Regression</td>
+<td align="left">-1134.82</td>
+<td align="left">(272.44)</td>
+<td align="left"></td>
+<td align="left">-2757.40</td>
+<td align="left">(589.02)</td>
+<td align="left"></td>
+<td align="left">-1256.96</td>
+<td align="left">(329.96)</td>
+<td align="left"></td>
+<td align="left">-3694.56</td>
+<td align="left">(852.84)</td>
+</tr>
+<tr class="even">
+<td align="left">Oaxaca Blinder</td>
+<td align="left">-1096.70</td>
+<td align="left">(395.18)</td>
+<td align="left"></td>
+<td align="left">-2640.76</td>
+<td align="left">(367.46)</td>
+<td align="left"></td>
+<td align="left">-1232.17</td>
+<td align="left">(402.36)</td>
+<td align="left"></td>
+<td align="left">-3528.62</td>
+<td align="left">(827.83)</td>
+</tr>
+<tr class="odd">
+<td align="left">GRF</td>
+<td align="left">-1579.02</td>
+<td align="left">(373.45)</td>
+<td align="left"></td>
+<td align="left">-4334.56</td>
+<td align="left">(343.83)</td>
+<td align="left"></td>
+<td align="left">-1345.15</td>
+<td align="left">(362.39)</td>
+<td align="left"></td>
+<td align="left">-3879.50</td>
+<td align="left">(656.89)</td>
+</tr>
+<tr class="even">
+<td align="left">NN Matching</td>
+<td align="left">-1465.93</td>
+<td align="left">(351.78)</td>
+<td align="left"></td>
+<td align="left">-1913.65</td>
+<td align="left">(805.37)</td>
+<td align="left"></td>
+<td align="left">-1411.42</td>
+<td align="left">(357.45)</td>
+<td align="left"></td>
+<td align="left">-3790.08</td>
+<td align="left">(929.82)</td>
+</tr>
+<tr class="odd">
+<td align="left">PS Matching</td>
+<td align="left">-1295.90</td>
+<td align="left">(407.36)</td>
+<td align="left"></td>
+<td align="left">-4526.25</td>
+<td align="left">(586.88)</td>
+<td align="left"></td>
+<td align="left">-1456.55</td>
+<td align="left">(509.56)</td>
+<td align="left"></td>
+<td align="left">-4670.77</td>
+<td align="left">(1133.95)</td>
+</tr>
+<tr class="even">
+<td align="left">IPW</td>
+<td align="left">-1568.77</td>
+<td align="left">(337.54)</td>
+<td align="left"></td>
+<td align="left">-3183.02</td>
+<td align="left">(734.24)</td>
+<td align="left"></td>
+<td align="left">-1674.99</td>
+<td align="left">(500.00)</td>
+<td align="left"></td>
+<td align="left">-4199.29</td>
+<td align="left">(1022.62)</td>
+</tr>
+<tr class="odd">
+<td align="left">CBPS</td>
+<td align="left">-1227.83</td>
+<td align="left">(297.89)</td>
+<td align="left"></td>
+<td align="left">-2282.31</td>
+<td align="left">(834.92)</td>
+<td align="left"></td>
+<td align="left">-1231.13</td>
+<td align="left">(468.41)</td>
+<td align="left"></td>
+<td align="left">-3676.24</td>
+<td align="left">(1059.83)</td>
+</tr>
+<tr class="even">
+<td align="left">Entropy Balancing</td>
+<td align="left">-1228.49</td>
+<td align="left">(297.88)</td>
+<td align="left"></td>
+<td align="left">-2250.80</td>
+<td align="left">(842.15)</td>
+<td align="left"></td>
+<td align="left">-1231.01</td>
+<td align="left">(468.56)</td>
+<td align="left"></td>
+<td align="left">-3551.89</td>
+<td align="left">(1062.82)</td>
+</tr>
+<tr class="odd">
+<td align="left">DML-ElasticNet</td>
+<td align="left">-1152.96</td>
+<td align="left">(271.75)</td>
+<td align="left"></td>
+<td align="left">-2725.28</td>
+<td align="left">(591.57)</td>
+<td align="left"></td>
+<td align="left">-1262.44</td>
+<td align="left">(330.59)</td>
+<td align="left"></td>
+<td align="left">-3779.88</td>
+<td align="left">(830.53)</td>
+</tr>
+<tr class="even">
+<td align="left">AIPW-GRF</td>
+<td align="left">-1275.34</td>
+<td align="left">(262.33)</td>
+<td align="left"></td>
+<td align="left">-2506.00</td>
+<td align="left">(620.09)</td>
+<td align="left"></td>
+<td align="left">-1370.92</td>
+<td align="left">(370.87)</td>
+<td align="left"></td>
+<td align="left">-3836.34</td>
+<td align="left">(823.57)</td>
+</tr>
+</tbody>
+</table></div>
+<p>The first row of the table shows that the experimental benchmarks are near zero and statistically insignificant. In the placebo analysis, all estimators using observational data generate large, negative estimates.</p>
+<p>Moreover, almost all the estimators are significantly different from the targeted analysis. Since the placebo estimates are always large and negative while the estimates in the former analysis are smaller in magnitude or positive, this could suggest that the methods are sensitive to the true effect.</p>
+</div>
+<div id="sensitivity-analyses" class="section level2" number="2.7">
+<h2>
+<span class="header-section-number">2.7</span> Sensitivity Analyses<a class="anchor" aria-label="anchor" href="#sensitivity-analyses"><i class="fas fa-link"></i></a>
+</h2>
+<p>We also conduct sensitivity analyses using the LDW data, with results depicted in contour plots below. We can use <code>sens_ana</code> to conduct the sensitivity analyses.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="st">"re78"</span></span>
+<span><span class="va">treat</span> <span class="op">&lt;-</span> <span class="st">"treat"</span></span>
+<span><span class="va">covar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"education"</span>, <span class="st">"black"</span>, <span class="st">"hispanic"</span>, <span class="st">"married"</span>, <span class="st">"nodegree"</span>, <span class="st">"re74"</span>, <span class="st">"re75"</span>, <span class="st">"u74"</span>, <span class="st">"u75"</span><span class="op">)</span></span>
+<span><span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"re75"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># ldw data</span></span>
+<span><span class="co"># sens_ana(ldw, Y, treat, covar, bm)</span></span>
+<span></span>
+<span><span class="co"># trimmed LDW-CPS data</span></span>
+<span><span class="fu">sens_ana</span><span class="op">(</span><span class="va">ldw_cps</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span>, <span class="va">bm</span>, kd <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># trimmed LDW-PSID data</span></span>
+<span><span class="fu">sens_ana</span><span class="op">(</span><span class="va">ldw_psid</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span>, <span class="va">bm</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<img src="tutorial0601_files/figure-html/unnamed-chunk-31-1.png" alt="FIGURE A3. Sensitivity Analyses for Trimmed LDW-CPS1 and LDW-PSID1" width="100%"><p class="caption">
+Figure 2.8: FIGURE A3. Sensitivity Analyses for Trimmed LDW-CPS1 and LDW-PSID1
+</p>
+</div>
+<p>The analyses suggest that the estimated training effect based on trimmed LDW-CPS is less sensitive to potential confounders compared to trimmed LDW-PSID. For instance, with trimmed LDW-CPS, the estimate remains positive and large even when a confounder’s correlations with treatment and outcome are triple those of re75, whereas the presence of re75 would lead to a negative estimated effect using trimmed LDW-PSID.</p>
+</div>
+<div id="summary" class="section level2" number="2.8">
+<h2>
+<span class="header-section-number">2.8</span> Summary<a class="anchor" aria-label="anchor" href="#summary"><i class="fas fa-link"></i></a>
+</h2>
+<p>After reexamining both the LDW data and the original Lalonde male sample, we offer some new insights into the challenge posed by LaLonde. First, we agree with existing literature that ensuring overlap and using comparable control units are essential for credible causal estimates. Second, while the choice of method is less critical with overlap, as most methods yield similar results, the propensity score remains a vital tool for assessing overlap and is integral to many estimators. Third, we stress the importance of understanding the treatment assignment mechanism and the need for additional tests to validate unconfoundedness. The LDW dataset is somewhat unique in that many methods approximate the experimental benchmark for the <em>average effects</em> under overlap, a success not mirrored with the original LaLonde data. However, even with LDW data, placebo tests fail to substantiate unconfoundedness, and sensitivity analysis reveals the fragility of the regression estimate using LDW-PSID1.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="getting-started.html"><span class="header-section-number">1</span> Getting Started</a></div>
+<div class="next"><a href="original-lalonde-data-male-sample.html"><span class="header-section-number">3</span> Original LaLonde Data (Male Sample)</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lalonde-dehejia-wahba-ldw-data"><span class="header-section-number">2</span> LaLonde-Dehejia-Wahba (LDW) Data</a></li>
+<li>
+<a class="nav-link" href="#assessing-overlap"><span class="header-section-number">2.1</span> Assessing Overlap</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ldw-experimental"><span class="header-section-number">2.1.1</span> LDW-Experimental</a></li>
+<li><a class="nav-link" href="#ldw-cps1-and-lwd-psid1"><span class="header-section-number">2.1.2</span> LDW-CPS1 and LWD-PSID1</a></li>
+<li><a class="nav-link" href="#overlap-in-original-ldw-samples"><span class="header-section-number">2.1.3</span> Overlap in Original LDW Samples</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#trimming-to-improve-overlap"><span class="header-section-number">2.2</span> Trimming to Improve Overlap</a></li>
+<li><a class="nav-link" href="#reassessing-overlap"><span class="header-section-number">2.3</span> Reassessing Overlap</a></li>
+<li><a class="nav-link" href="#estimating-the-att"><span class="header-section-number">2.4</span> Estimating the ATT</a></li>
+<li>
+<a class="nav-link" href="#alternative-estimands-catt-and-qtet"><span class="header-section-number">2.5</span> Alternative Estimands: CATT and QTET</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#conditional-average-treatment-effect-on-the-treated-catt"><span class="header-section-number">2.5.1</span> Conditional Average Treatment Effect on the Treated (CATT)</a></li>
+<li><a class="nav-link" href="#quantile-treatment-effect-on-the-treated-qtet"><span class="header-section-number">2.5.2</span> Quantile Treatment Effect on the Treated (QTET)</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#validation-through-placebo-analyses"><span class="header-section-number">2.6</span> Validation through Placebo Analyses</a></li>
+<li><a class="nav-link" href="#sensitivity-analyses"><span class="header-section-number">2.7</span> Sensitivity Analyses</a></li>
+<li><a class="nav-link" href="#summary"><span class="header-section-number">2.8</span> Summary</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/xuyiqing/lalonde/blob/main/tutorial/02-LDW.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/xuyiqing/lalonde/edit/main/tutorial/02-LDW.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Tutorial and Code for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’</strong>" was written by Guido Imbens, Yiqing Xu. It was last built on 2024-06-02.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
