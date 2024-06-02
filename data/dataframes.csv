@@ -1,0 +1,29 @@
+﻿Dataframe,Source,Type,Units,Note,SampleID
+nsw,LaLonde,experimental,treated and controls,Original,0 & 0.5
+nsw_tr,LaLonde,experimental,treated,Original,0
+nsw_co,LaLonde,experimental,controls,Original,0.5
+ldw,LaLonde-Dehejia-Wahba (LDW),experimental,treated and controls,Original,1 & 2
+ldw_tr,LDW,experimental,treated,Original,1
+lds_co,LDW,experimental,controls,Original,2
+cps1,CPS1,nonexperimental,controls,Original,3
+psid1,PSID1,nonexperimental,controls,Original,4
+nsw_cps,LaLonde-CPS1,nonexperimental,treated and controls,Merged,0 & 3
+nsw_psid,LaLonde-PSID1,nonexperimental,treated and controls,Merged,0 & 4
+ldw_cps,LDW-CPS1,nonexperimental,treated and controls,Merged,1 & 3
+ldw_psid,LDW-PSID1,nonexperimental,treated and controls,Merged,1 & 4
+ldw_trim_cps,LDW,experimental,treated and controls,LDW,1 & 2
+ldw_trim_psid,LDW,experimental,treated and controls,LDW,1 & 2
+ldw_trim_cps_pl,LDW-CPS1,experimental,treated and controls,LDW-Placebo,1 & 2
+ldw_trim_psid_pl,LDW-PSID1,experimental,treated and controls,LDW-Placebo,1 & 2
+ldw_cps_trim,LDW-CPS1,nonexperimental,treated and controls,LDW,1 & 3
+ldw_psid_trim,LDW-PSID1,nonexperimental,treated and controls,LDW,1 & 4
+ldw_cps_trim_pl,LDW-CPS1,nonexperimental,treated and controls,LDW-Placebo,1 & 3
+ldw_psid_trim_pl,LDW-PSID1,nonexperimental,treated and controls,LDW-Placebo,1 & 4
+nsw_trim_cps,Lalonde,experimental,treated and controls,LaLonde,0 & 0.5
+nsw_trim_psid,Lalonde,experimental,treated and controls,LaLonde,0 & 0.5
+nsw_cps_trim,Lalonde-CPS1,nonexperimental,treated and controls,LaLonde,0 & 3
+nsw_psid_trim,LaLonde-PSID1,nonexperimental,treated and controls,LaLonde,0 & 4
+ldw_trim_cps_no74,LDW,experimental,treated and controls,LDW-No74,1 & 2
+ldw_trim_psid_no74,LDW,experimental,treated and controls,LDW-No74,1 & 2
+ldw_cps_trim_no74,LDW-CPS1,nonexperimental,treated and controls,LDW-No74,1 & 3
+ldw_psid_trim_no74,LDW-PSID1,nonexperimental,treated and controls,LDW-No74,1 & 4

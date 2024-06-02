@@ -1,0 +1,9 @@
+﻿Data files,Details,Type,Units,Source
+nsw,NSW experimental (used in LaLonde 1986),experimental,treated and controls,https://users.nber.org/~rdehejia/data/.nswdata2.html
+nsw_dw,NSW experimental subset with 74 info (used in Dehejia & Wahba 1999 ),experimental,treated and controls,same as above
+cps_controls,CPS-SSA-1,nonexperimental,controls,same as above
+cps_controls2,CPS-SSA-2,nonexperimental,controls,same as above
+cps_controls3,CPS-SSA-3,nonexperimental,controls,same as above
+psid_controls,PSID-1,nonexperimental,controls,same as above
+psid_controls2,PSID-2,nonexperimental,controls,same as above
+psid_controls3,PSID-3,nonexperimental,controls,same as above
