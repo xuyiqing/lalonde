@@ -230,20 +230,16 @@ treat <- "treat"
 covar <- c("age", "education", "black", "hispanic", "married", "nodegree", "re75", "u75")
 
 set.seed(1234)
-catt.nsw <- catt(nsw, Y, treat, covar)
-catt.cps <- catt(ldw_cps, Y, treat, covar)
-catt.psid <- catt(ldw_psid, Y, treat, covar)
+catt.nsw <- catt(nsw, Y, treat, covar) # nsw experimental
+catt.cps <- catt(nsw_cps, Y, treat, covar)
+catt.psid <- catt(nsw_psid, Y, treat, covar)
 catt.cps.trim <- catt(nsw_cps_trim, Y, treat, covar)
 catt.psid.trim <- catt(nsw_psid_trim, Y, treat, covar)
 # trimmed experimental data
 catt.nsw.cps <- catt(nsw_trim_cps, Y, treat, covar)
 catt.nsw.psid <- catt(nsw_trim_psid, Y, treat, covar)
 
-range(catt.nsw.cps$catt)
-range(catt.cps$catt)
-range(catt.psid$catt)
-
-pdf("graphs/lalonde/nsw_catt_cps.pdf", width = 5.5, height = 5.5)
+pdf("graphs/lalonde/catt_nsw_cps.pdf", width = 5.5, height = 5.5)
 par(mar = c(4, 4, 1, 1))
 catt1 <- catt.nsw$catt
 att1 <- catt.nsw$att[1]
@@ -253,7 +249,7 @@ plot_catt(catt1, catt2, att1, att2, "CATT (Experimental)", "CATT (CPS-Full)",
     main = "", c(-8000, 8000))
 graphics.off()
 
-pdf("graphs/lalonde/nsw_catt_psid.pdf", width = 5.5, height = 5.5)
+pdf("graphs/lalonde/catt_nsw_psid.pdf", width = 5.5, height = 5.5)
 par(mar = c(4, 4, 1, 1))
 catt1 <- catt.nsw$catt
 att1 <- catt.nsw$att[1]
@@ -265,7 +261,7 @@ graphics.off()
 
 ## Trimmed sample
 
-pdf("graphs/lalonde/nsw_catt_cps_trim.pdf", width = 5.5, height = 5.5)
+pdf("graphs/lalonde/catt_nsw_cps_trim.pdf", width = 5.5, height = 5.5)
 par(mar = c(4, 4, 1, 1))
 catt1 <- catt.nsw.cps$catt
 att1 <- catt.nsw.cps$att[1]
@@ -275,7 +271,7 @@ plot_catt(catt1, catt2, att1, att2, "CATT (Experimental)", "CATT (CPS-Trimmed)",
     main = "", c(-8000, 8000))
 graphics.off()
 
-pdf("graphs/lalonde/nsw_catt_psid_trim.pdf", width = 5.5, height = 5.5)
+pdf("graphs/lalonde/catt_nsw_psid_trim.pdf", width = 5.5, height = 5.5)
 par(mar = c(4, 4, 1, 1))
 catt1 <- catt.nsw.psid$catt
 att1 <- catt.nsw.psid$att[1]
