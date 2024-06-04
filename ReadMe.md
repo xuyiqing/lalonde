@@ -3,7 +3,7 @@ Replications Files for Imbens & Xu (2024)
 
 This Github repo contains the data and code necessary to replicate
 **Imbens and Xu (2024)**: “LaLonde (1986) After Nearly Four Decades:
-Lessons Learned.”
+Lessons Learned.” [\[arXiv\]](https://arxiv.org/abs/2406.00827)
 
 **Tutorial**: For a detailed bookdown tutorial, see
 [here](https://yiqingxu.org/tutorials/lalonde/). We thank Zihan Xie and
@@ -111,7 +111,7 @@ Economic Review* 91 (4): 778–94.
 <div id="ref-imbensxu" class="csl-entry">
 
 Imbens, Guido W, and Yiqing Xu. 2024. “LaLonde (1986) After Nearly Four
-Decades: Lessons Learned.” arXiv:TBD.
+Decades: Lessons Learned.” arXiv:2406.00827.
 
 </div>
 
