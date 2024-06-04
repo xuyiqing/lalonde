@@ -1,2 +1,0 @@
-"0","par(mfrow = c(1,2))"
-"0","lcps_ps <- assess_overlap(data = nsw_cps, treat = treat, cov = covar, xlim = c(-15, 5))"

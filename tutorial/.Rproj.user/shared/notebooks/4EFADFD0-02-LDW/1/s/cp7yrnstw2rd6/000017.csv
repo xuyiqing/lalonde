@@ -1,5 +1,0 @@
-"0","# re-estimate each unit’s propensity by merged data"
-"0","ldw_cps_ps <- assess_overlap(data = ldw_cps.plus, treat = treat, cov = covar)"
-"1","-16.1181"
-"1"," "
-"1","3.542706"

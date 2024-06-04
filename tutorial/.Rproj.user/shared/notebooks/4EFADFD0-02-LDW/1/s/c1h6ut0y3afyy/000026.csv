@@ -1,3 +1,0 @@
-"0",""
-"0","## CPS trimmed"
-"0","plot_qte(qte.ldw_cps.trim, qte.ldw_cps.trim0, qte.ldw.cps, main = ""LDW-CPS (Trimmed)"", ylim = c(-25000, 15000))"

@@ -1,8 +1,0 @@
-"0","# plot qte"
-"0",""
-"0","#load the data"
-"0","load(""data/qte_nsw.rds"")"
-"0",""
-"0","par(mfrow = c(2,2))"
-"0","# CPS"
-"0","plot_qte(qte.nsw_cps, qte.nsw_cps0, qte.nsw, main = ""NSW-CPS"", ylim = c(-25000, 15000))"

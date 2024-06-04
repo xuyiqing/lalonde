@@ -1,1 +1,0 @@
-"0","nsw_cps.plus_ps <- assess_overlap(data = nsw_cps.plus, treat = treat, cov = covar, xlim = c(-15, 5))"

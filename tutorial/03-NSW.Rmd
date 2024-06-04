@@ -1,11 +1,19 @@
 # Original LaLonde Data (Male Sample)
 
-In this section, we will focus on the original LaLonde data set (loaded as NSW below) to assess the effect of the treatment (participation in the job training program) on the participants' earnings in 1978. 
+In this section, we will focus on the original LaLonde data set (loaded as NSW below) to assess the effect of the treatment (participation in the job training program) on the participants' earnings in 1978.
 
 ## Prepare the Data
+
 First, the dataset is split into treatment and control groups by the treatment dummy. Note, two pretreatment variables (earnings in 1974 and employment status in 1974) are absent from this sample. We thus remove variables re74 (earnings in 1974), u74 (unemployment status in 1974), and tau (the treatment effect estimate) from the CPS-1 and PSID-1 datasets to match the structure of the treatment dataset.
 
+```{r, message=FALSE, warning=FALSE}
+#| code-fold: show
+# source the functions provided in part 1
+source("functions.R")
+```
+
 ```{r, class.source = "fold-show"}
+#| code-fold: show
 load("data/lalonde.RData")
 load("data/trimmed.RData")
 treat <- "treat"
@@ -30,6 +38,7 @@ In this step, we define variables for the outcome (Y = "re78"), treatment indica
 Again, we assess overlap in covariate distributions between treated and control groups based on the propensity score via GRF (log odds ratio) for the LDW-Experimental, LDW-CPS1, and LWD-PSID1 data.
 
 ```{r, class.source = "fold-show"}
+#| code-fold: show
 # define variables
 Y <- "re78"
 treat <- "treat"
@@ -41,13 +50,14 @@ covar <- c("age", "education", "black", "hispanic", "married", "nodegree", "re75
 Figure: Experimental (male sample).
 
 ```{r, class.source = "fold-show", fig.cap='FIGUREA5 (SM). SubfigureA:LDW-Experimental.', out.width='80%', fig.asp=1, fig.align='center'}
+#| code-fold: show
 nsw_ps <- assess_overlap(data = nsw, treat = treat, cov = covar, xlim = c(-2, 1.5))
 ```
-
 
 ### NSW-CPS1 and NSW-PSID1
 
 ```{r, class.source = "fold-show", fig.cap='FIGUREA5 (SM). SubfigureB:NSW-CPS1. SubfigureC:NSW-PSID1.',out.width='100%', fig.asp=0.5}
+#| code-fold: show
 par(mfrow = c(1,2))
 nsw_cps_ps <- assess_overlap(data = nsw_cps, treat = treat, cov = covar, xlim = c(-15, 5))
 nsw_psid_ps <- assess_overlap(data = nsw_psid, treat = treat, cov = covar, xlim = c(-15, 5))
@@ -60,6 +70,7 @@ We then trim the data to improve overlap in covariate distributions by removing 
 Like before, we start by assessing overlaps between the distributions of the treated and control groups based on log-odds derived from propensity scores.
 
 ```{r, class.source = "fold-show", fig.show = "hide"}
+#| code-fold: show
 nsw_cps.plus_ps <- assess_overlap(data = nsw_cps.plus, treat = treat, cov = covar, xlim = c(-15, 5))
 nsw_psid.plus_ps <- assess_overlap(data = nsw_psid.plus, treat = treat, cov = covar, xlim = c(-15, 5))
 ```
@@ -67,6 +78,13 @@ nsw_psid.plus_ps <- assess_overlap(data = nsw_psid.plus, treat = treat, cov = co
 Then, we proceed with trimming to improve the quality of the causal inference. After trimming, we would expect the distributions to align more closely - the treatment and control groups are more comparable according to their covariates.
 
 ```{r, class.source = "fold-show"}
+#| code-fold: show
+
+trim <- function(data, ps = "ps_assoverlap", threshold = 0.9) {
+  sub <- data[which(data[, ps] < threshold), ]
+  return(sub)
+}
+
 #Trim
 nsw_cps_trim <- trim(nsw_cps.plus_ps, threshold = 0.85)
 nsw_psid_trim <- trim(nsw_psid.plus_ps, threshold = 0.85)
@@ -86,7 +104,7 @@ nsw_psid_trim_match <- psmatch(data = nsw_psid_trim_match, Y = "re78", treat = "
 ```
 
 ```{r, class.source = "fold-show"}
-threshold = 0.85
+#| code-fold: show
 #cps
 nsw_trim_cps <- subset(nsw_cps_trim, sample %in% c(0,0.5))
 nsw_trim_cps$treat[which(nsw_trim_cps$sample == 0.5)] <- 0
@@ -100,6 +118,7 @@ nsw_trim_psid$treat[which(nsw_trim_psid$sample == 0.5)] <- 0
 The propensity scores are reestimated after trimming.The plots below show good overlaps especially in the center, indicating an improved balance and common support between the treated and control groups. The before-after trimming comparison suggests that the trim effectively removes units that were less comparable.
 
 ```{r, out.width='100%', fig.asp=0.5, fig.cap="FIGUREA5 (SM). SubfigureD:TrimmedLDW-CPS1. SubfigureE:TrimmedLDW-PSID1."}
+#| code-fold: show
 par(mfrow = c(1,2))
 # cps data
 nsw_cps_trim_match_ps <- assess_overlap(data = nsw_cps_trim_match, treat = treat, cov = covar, xlim = c(-3,3))
@@ -113,8 +132,8 @@ nsw_psid_trim_match_ps <- assess_overlap(data = nsw_psid_trim_match, treat = tre
 
 The table below presents the ATT estimates using the original LaLonde male sample, of which the LDW sample is a subset. Table shows that, with sufficient overlap, most estimators yield estimates within relatively narrow ranges when using either CPS-SSA-1 or PSID-1 as control groups. However, these estimates do not align with the experimental benchmarks, with most estimates being negative.
 
-
 ```{r, class.source = "fold-show", warning=FALSE}
+#| code-fold: show
 # experimental
 out1 <- estimate_all(nsw, "re78", "treat", covar)
 out2 <- estimate_all(nsw_trim_cps, "re78", "treat", covar)
@@ -163,6 +182,7 @@ The figures below show the CATT estimates using the original LaLonde data (male 
 Each point on the scatter plots represents a pair of CATT estimates for a single unit: one from the experimental benchmark and one from the observational method. Points that lie on the 45-degree line (the red line) are cases where the observational and experimental methods yield the same estimate.
 
 ```{r, class.source = "fold-show", warning=FALSE}
+#| code-fold: show
 # estimate catt
 catt.nsw <- catt(nsw, Y, treat, covar)
 catt.cps <- catt(nsw_cps, Y, treat, covar)
@@ -173,7 +193,6 @@ catt.psid.trim <- catt(nsw_psid_trim_match, Y, treat, covar)
 catt.nsw.cps <- catt(nsw_trim_cps, Y, treat, covar)
 catt.nsw.psid <- catt(nsw_trim_psid, Y, treat, covar)
 ```
-
 
 ```{r, out.width='100%', fig.asp=1, fig.cap="FIGURE A6. CATT Estimates for the LaLonde Data (Male Sample)"}
 par(mfrow = c(2,2))
@@ -214,16 +233,17 @@ Note: Scatterplots show the CATT using both experimental data (x-axis) and nonex
 
 Based on untrimmed data, Subfigure A and B show a wide dispersion of points around the 45-degree line. This raises our concern about the lack of agreement between the experimental benchmark and the CATT estimates from the CPS1 and PSID1 control groups.
 
-On the other hand,  after trimming based on propensity scores, the dispersion of points in Subfigure C and D is more concentrated around the 45-degree line, indicating that the agreement between the experimental benchmark and the CATT estimates has improved. The comparison suggests that trimming has successfully reduced bias in estimating the treatment effect by ensuring that the treated and control groups are more similar in covariates distributions. 
+On the other hand, after trimming based on propensity scores, the dispersion of points in Subfigure C and D is more concentrated around the 45-degree line, indicating that the agreement between the experimental benchmark and the CATT estimates has improved. The comparison suggests that trimming has successfully reduced bias in estimating the treatment effect by ensuring that the treated and control groups are more similar in covariates distributions.
 
 ### Quantile Treatment Effect on the Treated (QTET)
-The Figures below show the quantile treatment effects on the treated in the original LaLonde male sample. QTET analysis helps us to see where along the outcome distribution the treatment is more or less effective.
-The code below consists of two main parts:
 
-- The `est_qte` function estimates the QTET. 
-- Plotting QTET: The `plot_qte` function creates the plots, with separate plots for each data comparison (NSW-CPS, NSW-CPS trimmed, NSW-PSID, and NSW-PSID trimmed). 
+The Figures below show the quantile treatment effects on the treated in the original LaLonde male sample. QTET analysis helps us to see where along the outcome distribution the treatment is more or less effective. The code below consists of two main parts:
+
+-   The `est_qte` function estimates the QTET.
+-   Plotting QTET: The `plot_qte` function creates the plots, with separate plots for each data comparison (NSW-CPS, NSW-CPS trimmed, NSW-PSID, and NSW-PSID trimmed).
 
 ```{r, class.source = "fold-show", warning=FALSE}
+#| code-fold: show
 # estimate qte (some of the following lines are not run due to computational limitation)
 qte.nsw <- est_qte(Y, treat, NULL, data = nsw)
 qte.nsw.cps <- est_qte(Y, treat, NULL, data = nsw_trim_cps)
@@ -272,6 +292,7 @@ Note: Figures show QTET using both experimental data (in blue) and nonexperiment
 Below are our sensitivity analyses using the original LaLonde male sample, with results depicted in contour plots below.
 
 ```{r, out.width='100%', fig.asp=0.75, fig.cap="FIGURE A3. Sensitivity Analyses for Trimmed NSW-CPS1 and NSW-PSID1"}
+#| code-fold: show
 par(mfrow = c(1,2))
 
 ## datasets to be used: nsw, nsw_trim_cps, nsw_trim_psid

@@ -1,3 +1,0 @@
-"0",""
-"0","# PSID trimmed"
-"0","plot_qte(qte.nsw_psid.trim, qte.nsw_psid.trim0, qte.nsw.psid, main = ""NSW-PSID (Trimmed)"", ylim = c(-25000, 15000))"

@@ -1,8 +1,0 @@
-"0",""
-"0","# plot catt - ""CATT (Experimental)"" and ""CATT (PSID-Full)"""
-"0","catt1 <- catt.ldw$catt"
-"0","att1 <- catt.ldw$att[1]"
-"0","catt2 <- catt.psid$catt"
-"0","att2 <- catt.psid$att[1]"
-"0","plot_catt(catt1, catt2, att1, att2, ""CATT (Experimental)"", ""CATT (PSID-Full)"","
-"0","    main = """", c(-8000, 8000))"

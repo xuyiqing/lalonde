@@ -1,6 +1,0 @@
-"0","for (i in 4:length(outcomes)) {"
-"0","    dens <- density(tau[,i], bw = 0.5)"
-"0","    polygon(i + dens$y, dens$x, col = ""#AAAAAA50"", border = NA)"
-"0","    lines(i + dens$y, dens$x, lwd = 1) "
-"0","    points(i+0.01,  att[i], pch = 16, cex = 0.8)  # Coef"
-"0","}"

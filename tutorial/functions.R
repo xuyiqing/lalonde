@@ -1,15 +1,8 @@
-# Getting Started
+# 1.1 Installation
 
-## Installation
-
-Several R packages are required for subsequent data analysis and visualization. The code below checks for all required messages and installs the missing ones. After the installation, call to load the packages.
-
-**Packages**: "haven", "labelled", "estimatr", "grf", "ggplot2", "Matching", "hbal", "CBPS", "DoubleML", "mlr3learners", "fixest", "qte", "sensemakr"
-
-```{r, eval=FALSE}
 # required packages
 packages <- c("haven", "labelled", "Matching", "grf", "sensemakr", "qte",
-    "estimatr", "CBPS", "hbal", "DoubleML", "mlr3learners", "mlr3","fixest", "ggplot2")
+              "estimatr", "CBPS", "hbal", "DoubleML", "mlr3learners", "mlr3","fixest", "ggplot2")
 
 # install packages
 install_all <- function(packages) {
@@ -38,34 +31,9 @@ library(fixest)
 library(ggplot2)
 library(qte)
 library(sensemakr)
-```
 
-## Wrapper Functions
+# 1.2.2 plot_hist(), love.plot() & assess_overlap()
 
-::: callout-warning
-The following functions are wrapped by RA. It may differ from the original code slightly and thus, should not be seen as the formal source code for replication. For a more precise replication of original paper, please visit the source [website](https://github.com/xuyiqing/lalonde/).
-:::
-
-Next, we outline the 10 wrapper functions designed to address 6 research objectives. The table below offers a brief overview of each category. Clicking "More" will direct you to a subsequent section with detailed explanations as well as the full code.
-
-### Overview
-
-| Function                         | Description                                                                                                                                                                     |                 Code                  |
-|------------------|-------------------------------------|:----------------:|
-| `plot_hist()`, `love.plot()` and `assess_overlap()` | Evaluates and visualizes the overlap in propensity scores and covariate balance between treated and control groups.                                                                                   | [More](#plot-hist-and-assess-overlap) |
-| `psmatch()`                        | Performs 1:1 matching based on estimated propensity scores.                                                                                                                     |           [More](#psmatch)            |
-| `estimate_all()` and `plot_coef()`   | Computes and visualizes the Average Treatment Effect on the Treated (ATT) using a number of estimators.                                                                         |         [More](#estimate-all)         |
-| `catt()` and `plot_catt()`           | Calculates and visualizes the Conditional Average Treatment Effect on the Treated (CATT) using Augmented Inverse Probability Weighting (AIPW)-Generalized Random Forests (GRF). |        [More](#catt-plot-catt)        |
-| `est_qte()` and `plot_qte()`         | Estimates and visualizes the Quantile Treatment Effect on the Treated (QTET) using a doubly-robust estimator.                                                                   |     [More](#est-qte-and-plot-qte)     |
-| `sens_ana()`                       | Implements sensitivity analyses using contour plots.                                                                                                                            |           [More](#sens-ana)           |
-
-<a name="plot-hist-and-assess-overlap"></a>
-
-### `plot_hist()` , `love.plot()` & `assess_overlap()`
-
-`plot_hist()` visualizes the distribution of propensity scores across treated and control groups, with options to adjust for odds and density.
-
-```{r class.source = 'fold-hide'}
 plot_hist <- function(data, var, treat, main = NULL, odds = FALSE,
                       breaks = 40, density = TRUE, xlim = NULL, ylim = NULL,
                       xlab = NULL, text.size = 0.8) {
@@ -115,11 +83,34 @@ plot_hist <- function(data, var, treat, main = NULL, odds = FALSE,
        pos = 4, cex = text.size)
   box()
 }
-```
 
-`love.plot()`  is a summary plot of covariate balance before and after conditioning popularized by Dr. Thomas E. Love. 
-
-```{r}
+assess_overlap <- function(data, treat, cov, odds = TRUE, num.trees = NULL, seed = 1234, breaks = 50, xlim = NULL, ylim = NULL) {
+  if(is.null(num.trees))
+  {
+    p.forest1 <- probability_forest(X = data[, cov],
+                                    Y = as.factor(data[,treat]), seed = seed)
+  }
+  else
+  {
+    p.forest1 <- probability_forest(X = data[, cov],
+                                    Y = as.factor(data[,treat]), seed = seed, num.trees = num.trees)
+  }
+  data$ps_assoverlap <- p.forest1$predictions[,2]
+  #range(lcps.plus$ps)
+  data$ps_assoverlap[which(abs(data$ps_assoverlap) <= 1e-7)] <- 1e-7
+  #range(lcps.plus$ps)
+  if(odds == TRUE)
+  {
+    plot_hist(data, "ps_assoverlap", treat, odds = TRUE, breaks = breaks,
+              density = TRUE, main = "", xlim = xlim, ylim = ylim)
+  }
+  else
+  {
+    plot_hist(data, "ps_assoverlap", treat, odds = FALSE, breaks = breaks,
+              density = TRUE, main = "", xlim = c(0, 1), ylim = ylim)
+  }
+  return(data)
+}
 
 love.plot <- function(data_pre, data_post, treat, covar, threshold = 0.1, title = "Love.Plot") {
   
@@ -160,106 +151,22 @@ love.plot <- function(data_pre, data_post, treat, covar, threshold = 0.1, title 
   
   return(p)
 }
-```
 
+# 1.2.3 psmatch()
 
-`assess_overlap()` estimates the overlap in propensity scores between the treatment group and the control group. It fits a probability forest to estimate propensity scores based on covariates (`cov`) and treatment indicators in the input dataset. Then, the function adjusts propensity scores close to zero to facilitate further calculations. Finally, it calls `plot_hist` to visualize the distribution of the propensity scores or their log odds, depending on the odds parameter.
-
-```{r class.source = 'fold-hide'}
-assess_overlap <- function(data, treat, cov, odds = TRUE, num.trees = NULL, seed = 1234, breaks = 50, xlim = NULL, ylim = NULL) {
-  if(is.null(num.trees))
-  {
-    p.forest1 <- probability_forest(X = data[, cov],
-                                    Y = as.factor(data[,treat]), seed = seed)
-  }
-  else
-  {
-    p.forest1 <- probability_forest(X = data[, cov],
-                                    Y = as.factor(data[,treat]), seed = seed, num.trees = num.trees)
-  }
-  data$ps_assoverlap <- p.forest1$predictions[,2]
-  #range(lcps.plus$ps)
-  data$ps_assoverlap[which(abs(data$ps_assoverlap) <= 1e-7)] <- 1e-7
-  #range(lcps.plus$ps)
-  if(odds == TRUE)
-  {
-    plot_hist(data, "ps_assoverlap", treat, odds = TRUE, breaks = breaks,
-          density = TRUE, main = "", xlim = xlim, ylim = ylim)
-  }
-  else
-  {
-    plot_hist(data, "ps_assoverlap", treat, odds = FALSE, breaks = breaks,
-              density = TRUE, main = "", xlim = c(0, 1), ylim = ylim)
-  }
-  return(data)
-}
-```
-
-**Arguments**
-
-Data
-
--   `data`: The targeted dataset.
--   `var`: The variable of interest to plot.
--   `treat`: The (binary) treatment indicator documented in the dataset (usually 0 for control and 1 for treated).
-
-Analysis
-
--   `odds`: If TRUE, the function transforms the variable into log odds.
--   `cov`: Covariates used to estimate the propensity score.
--   `num.trees`: Number of trees to use in the probability forest. If NULL, a default is used.
--   `seed`: Seed for reproducibility.
-
-Plotting
-
--   `breaks`, `density`, `xlim`, `ylim`, `xlab`: Parameters for histogram aesthetics and scaling.
--   `text.size`: The size of the text for additional information on the plot.
-
-<br>
-
-<a name="psmatch"></a>
-
-### `psmatch()` {#psmatch}
-
-`psmatch()` function matches observations in the treatment group with those in the control group according to propensity scores. The matching procedure is executed on a one-to-one basis without replacement. The function then yields a subset of the original dataset with only the matched cases.
-
-```{r class.source = 'fold-hide'}
 psmatch <- function(data, Y, treat, cov, num.trees = 4000, seed = 1234, replace = FALSE, estimand = "ATT")
 {
   set.seed(seed) # need to set seed b/c tie-breaking is random
   data$psmatch <- probability_forest(X = data[, cov],
-                                Y = as.factor(data[, treat]), seed = seed, num.trees = num.trees)$predictions[,2]
+                                     Y = as.factor(data[, treat]), seed = seed, num.trees = num.trees)$predictions[,2]
   mout <- Match(Y = data[,Y], Tr = data[,treat], X = data$psmatch, estimand = estimand, M = 1,
                 BiasAdjust = FALSE, replace=replace, ties = FALSE)
   data <- data[c(mout$index.treated, mout$index.control), ]
   return(data)
 }
-```
 
-**Arguments**
+# 1.2.4 estimate_all() & plot_coef()
 
-The parameters used in `plot_hist` and `assess_overlap` are carried through for the inputs for the `psmatch` function. Note that, we differentiate `psmatch` by using `Y` to represents the outcome variable of interest. Additional parameters are:
-
--   `replace`: A boolean indicating whether sampling of controls is with replacement (default is FALSE).
--   `estimand`: The estimand to be estimated, defaulting to ATT.
-
-<br>
-
-<a name="estimate_all"></a>
-
-### `estimate_all()` & `plot_coef()`
-
-`estimate_all()` is a comprehensive tool for estimating the Average Treatment Effect on the Treated (ATT) with observational data. Here, we condensed several estimates such as:
-
--   Difference in Means
--   Regression
--   Oaxaca Blinder (OM:Reg) and Generalized Random Forests (OM:GRF) as an outcome model
--   1: 5 nearest neighbor matching with bias correction, propensity score matching
--   Inverse Probability Weighting (IPW), Covariate Balancing Propensity Score(CBPS), and Entropy Balancing
--   Double/debiased matching learning using elastic net
--   Augmented Inverse Probability Weighting (AIPW) with GRF
-
-```{r class.source = 'fold-hide'}
 quiet <- function(x) {
   sink(tempfile())
   on.exit(sink())
@@ -403,36 +310,36 @@ aipw.match <- function(data, Y, treat, covar) {
 ### This script checks for robustness by estimating original model
 ### using double/debiased machine learning using DoubleML package
 dml <-function(data, Y = NULL, treat = NULL, covar = NULL, clust_var = NULL, ml_l = lrn("regr.lm"), ml_m = lrn("regr.lm")){
-
+  
   if(is.null(covar)){
     stop("No controls in specification.")
   }
-
+  
   #require(DoubleML)
   #require(mlr3learners)
   #require(fixest)
   #require(ggplot2)
-
+  
   if(is.null(clust_var) == TRUE){
-
+    
     dat = data[,c(Y,treat,covar)]
     dat = na.omit(dat)
-
+    
     dml_dat = DoubleMLData$new(dat,
                                y_col = Y,
                                d_cols = treat,
                                use_other_treat_as_covariate = FALSE,
                                x_cols = covar)
-
+    
   }else{
-
+    
     dat = data[,c(Y, treat, covar, clust_var)]
     dat[,clust_var] = as.numeric(factor(dat[,clust_var]))
     dat = dat[is.na(dat[,Y]) == FALSE,]
     dat = dat[is.na(dat[,D]) == FALSE,]
     features = data.frame(model.matrix(formula(paste(c('~ 1',treat,covar), collapse="+")), dat))
     dat = cbind(dat[,c(Y,clust_var)],features)
-
+    
     dml_dat = DoubleMLClusterData$new(dat,
                                       y_col = Y,
                                       d_cols = treat,
@@ -440,26 +347,26 @@ dml <-function(data, Y = NULL, treat = NULL, covar = NULL, clust_var = NULL, ml_
                                       use_other_treat_as_covariate = FALSE,
                                       x_cols = covar)
   }
-
+  
   # Set active treatment treatment
   dml_dat$set_data_model(treat)
-
+  
   # Estimate with DML
   set.seed(pi)
   dml_mod = DoubleMLPLR$new(dml_dat, ml_l=ml_l, ml_m=ml_m)
   quiet(dml_mod$fit())
   out = c(dml_mod$coef[treat], dml_mod$se[treat], dml_mod$confint()[treat,])
-
+  
   return(out)
-
+  
 }
 
 # execute all estimators
 ## estimate all
 estimate_all <- function(data, Y, treat, covar, 
-    methods = c("diff", "reg", "om.reg", "om.grf",
-      "matching", "psm", "ipw", "cbps", "ebal", 
-      "dml", "aipw_grf")) {
+                         methods = c("diff", "reg", "om.reg", "om.grf",
+                                     "matching", "psm", "ipw", "cbps", "ebal", 
+                                     "dml", "aipw_grf")) {
   
   results <- as.data.frame(matrix(NA, length(methods), 4))
   rownames(results) <- methods
@@ -515,44 +422,23 @@ estimate_all <- function(data, Y, treat, covar,
   }
   return(results)
 }
-```
 
-#### Function calls
-
--   `quiet`: Suppresses output from a function call.
--   `diff`: Difference in means estimator. It runs a linear regression adjusting for robust standard errors and returns the coefficient, standard error, and confidence interval for the treatment variable.
--   `reg`: Regression adjustment. Similar to `diff` but includes additional covariates in the regression model.
--   `matching`: Propensity score matching using the Matching package. It aligns treated units to control units based on covariates and returns the estimated ATT and its confidence interval.
--   `psm`: Propensity score matching using a probability forest, followed by matching and estimation of the ATT.
--   `om.reg`: Outcome modeling using regression. It predicts the outcome for the treated units based on the model fitted to the control units, and then estimates the ATT.
--   `om.grf`: Outcome modeling using generalized random forests, noted as GRF.
--   `ipw`: Inverse probability weighting,denoted as IPW. It weights observations by the inverse of their estimated propensity scores and calculates the treatment effect with a weighted regression.
--   `cbps`: Covariate balancing propensity score, noted as CBPS. It estimates propensity scores to achieve balance on covariates across groups.
--   `ebal`: Entropy balancing. It reweights the data to balance the covariate distributions.
--   `hbal`: Hierarchical balancing. It is an extension of `ebal` with more complex balancing methods.
--   `aipw`: Augmented inverse probability weighting, noted as AIPW.
--   `aipw.match`: Combines matching on propensity scores with AIPW.
--   `dml`: Double machine learning. It uses machine learning algorithms to control for confounders when estimating treatment effects.
-
-`plot_coef()` plots the the ATT estimates, allowing for visual comparison.
-
-```{r}
 plot_coef <- function(out, 
-    methods = c("diff", "reg", "om.reg", "om.grf", 
-    "matching", "psm", "ipw", "cbps", "ebal", 
-        "dml", "aipw_grf"),
-    labels = c("Diff-in-Means", "Reg", "OM: Reg", "OM: GRF",
-        "NN\nMatching", "PS\nMatching",
-        "IPW", "CBPS", "Ebal", "DML\nElasnet", "AIPW-GRF"),
-    main = NULL,
-    ylab = "Estimate",
-    band = NULL,
-    line = NULL,
-    grid = TRUE,
-    main.pos = 1,
-    main.line = -2,
-    ylim = NULL,
-    textsize = 1
+                      methods = c("diff", "reg", "om.reg", "om.grf", 
+                                  "matching", "psm", "ipw", "cbps", "ebal", 
+                                  "dml", "aipw_grf"),
+                      labels = c("Diff-in-Means", "Reg", "OM: Reg", "OM: GRF",
+                                 "NN\nMatching", "PS\nMatching",
+                                 "IPW", "CBPS", "Ebal", "DML\nElasnet", "AIPW-GRF"),
+                      main = NULL,
+                      ylab = "Estimate",
+                      band = NULL,
+                      line = NULL,
+                      grid = TRUE,
+                      main.pos = 1,
+                      main.line = -2,
+                      ylim = NULL,
+                      textsize = 1
 ) {
   
   if (is.null(methods) == TRUE) {
@@ -608,19 +494,9 @@ plot_coef <- function(out,
   points(1: ncoefs, data[, 1], pch = 16, col = 1, cex = 1.2) #point coefs
   box()
 }
-```
 
-<br>
+# 1.2.5 catt() & plot_catt()
 
-<a name="catt-plot-catt"></a>
-
-### `catt()` & `plot_catt()`
-
-These functions aim to estimate and visualize the Conditional Average Treatment Effect on the Treated (CATT). By using robust standard errors ( `se_type` = "stata"), we aim to obtain reliable standard errors even in the presence of heteroskedasticity or other violations of the classical linear regression assumptions.
-
-`catt()` estimates the CATT using causal forests.
-
-```{r class.source = 'fold-hide'}
 catt <- function(data, Y, treat, covar){
   tau.forest <- causal_forest(X = data[, covar], Y = data[, Y],
                               W = data[, treat], num.trees = 4000)
@@ -631,15 +507,10 @@ catt <- function(data, Y, treat, covar){
   return(list(catt = tau.tr, att = tau0))
 }
 
-```
-
-`plot_catt()` plots the CATT density and the ATT estimates, allowing for visual comparison.
-
-```{r class.source = 'fold-hide'}
 plot_catt <- function(catt1, catt2, att1, att2,
                       xlab = NULL, ylab = NULL, main = NULL, axes.range = NULL,
                       file = NULL, width = 7, height = 7) {
-
+  
   if (is.null(axes.range)==TRUE) {
     axes.range <- range(c(catt1,catt2))
   }
@@ -671,22 +542,9 @@ plot_catt <- function(catt1, catt2, att1, att2,
   box()
   if (!is.null(file)) {graphics.off()}
 }
-```
 
-#### Function calls
+# 1.2.6 est_qte() & plot_qte()
 
--   `causal_forest`: The `catt` function begins by training a causal forest model using the `causal_forest` function from the `grf` package.
--   `average_treatment_effect`: After the causal forest is trained, the function estimates ATT using the doubly-robust AIPW method.
-
-<br>
-
-<a name="est-qte-and-plot-qte"></a>
-
-### `est_qte()` & `plot_qte()`
-
--   `est_qte()` function estimates the Quantile Treatment Effect on the Treated (QTET) using doubly robust methods. This effect is the difference in a particular quantile of the outcome distribution between the treated and untreated units.
-
-```{r class.source = 'fold-hide'}
 est_qte <- function(Y, treat, covar, data, ps = TRUE,
                     probs = seq(0.05,0.95,0.05), cores = 20,
                     ylim = NULL) {
@@ -707,12 +565,6 @@ est_qte <- function(Y, treat, covar, data, ps = TRUE,
   return(mod)
 }
 
-
-```
-
--   `plot_qte()` function visualizes the QTET estimates.
-
-```{r class.source = 'fold-hide'}
 plot_qte <- function(mod, mod2 = NULL, bm = NULL, main= "", ylim = NULL,
                      col = NULL) {
   # ylim
@@ -741,7 +593,7 @@ plot_qte <- function(mod, mod2 = NULL, bm = NULL, main= "", ylim = NULL,
   # main
   if (is.null(col) == TRUE) {
     col1 <- "gray30"
-      col2 <- "#AAAAAA90"
+    col2 <- "#AAAAAA90"
   } else {
     col1 <- col[1]
     col2 <- col[2]
@@ -761,24 +613,9 @@ plot_qte <- function(mod, mod2 = NULL, bm = NULL, main= "", ylim = NULL,
   lines(mod$probs, mod$qte.upper, col = col1, lty = 3, lwd = 1.5)
   points(mod$probs, mod$qte, col = col1, pch = 16)
 }
-```
 
-**Arguments**
+# 1.2.7 sens_ana()
 
--   `ps`: A boolean argument; if set to TRUE, propensity scores are used in the estimation.
--   `probs`: A sequence of probabilities for which the quantile treatment effects are estimated.
--   `cores`: Number of cores to use for parallel computation, which speeds up the process.
--   `mod`, `mod2`, `bm`: Within the function for QTET estimation, the `mod` parameter is mandatory, whereas `mod2` and `bm` are optional and may be included for comparative analysis.
-
-<br>
-
-<a name="sens-ana"></a>
-
-### `sens_ana()`
-
-`sens_ana()` function conducts sensitivity analysis on an estimated treatment effect to assess how susceptible the findings are to potential unobserved confounding.
-
-```{r class.source = 'fold-hide'}
 sens_ana <- function(data, Y, treat, covar, bm = NULL, kd = 1)
 {
   p.forest <- probability_forest(X = data[, covar],
@@ -790,17 +627,3 @@ sens_ana <- function(data, Y, treat, covar, bm = NULL, kd = 1)
   sens <- sensemakr(model = mod, treatment = treat, benchmark_covariates = bm, kd = kd, sensitivity.of = "t-value")
   plot(sens)
 }
-```
-
-#### Function calls
-
--   `probability_forest`: The probability forest is trained on the covariates to estimate the propensity score using the probability of each unit receiving the treatment given the observed covariates.
--   `sensemakr`: The function from the `sensemakr` package utilizes sensitivity analysis on the linear model with the treatment variable, optional benchmark covariates, and a *kd* multiplier that specifies the range of the sensitivity analysis in terms of the proportion of the treatment effect that is due to the omitted variable.
-
-
-::: callout-note
-To use the above functions, we also provide an additional R script. You can source the R script and apply these functions. Again, this should NOT be seen as the formal replication file and you should examine carefully before use it.
-:::
-
- 
-

@@ -1,7 +1,0 @@
-"0","threshold = 0.85"
-"0","#cps"
-"0","nsw_trim_cps <- subset(nsw_cps_trim, sample %in% c(0,0.5))"
-"0","nsw_trim_cps$treat[which(nsw_trim_cps$sample == 0.5)] <- 0"
-"0","#psid"
-"0","nsw_trim_psid <- subset(nsw_psid_trim, sample %in% c(0,0.5))"
-"0","nsw_trim_psid$treat[which(nsw_trim_psid$sample == 0.5)] <- 0"

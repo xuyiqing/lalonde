@@ -1,8 +1,0 @@
-"0",""
-"0","# plot catt - ""CATT (Experimental)"" and ""CATT (PSID-Trimmed)"""
-"0","catt1 <- catt.nsw.psid$catt"
-"0","att1 <- catt.nsw.psid$att[1]"
-"0","catt2 <- catt.psid.trim$catt"
-"0","att2 <- catt.psid.trim$att[1]"
-"0","plot_catt(catt1, catt2, att1, att2, ""CATT (Experimental)"", ""CATT (PSID-Trimmed)"","
-"0","    main = ""D. NSW-PSID1 Trimmed"", c(-8000, 8000))"

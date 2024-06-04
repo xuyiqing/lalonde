@@ -1,0 +1,15 @@
+# Welcome! {.unnumbered}
+
+This Quarto Book (Rmarkdown, Rbookdown previously) tutorial condenses the analysis from Imbens & Xu (2024). We reflect on five key lessons from the methodological literature following LaLonde's 1986 study:
+
+-   The central role of unconfoundedness
+-   The importance of overlap in covariate distributions
+-   The focus of propensity scores in constructing modern estimators
+-   Credibility through validation exercises
+-   Investigation of alternative estimands
+
+Revisiting LaLonde's analysis, we present how modern methods could enhance causal inference using data compiled by Rajeev Dehejia and Sadek Wahba (Dehejia and Wahba 1999, 2002) and survey data of lottery players in Imbens, Rubin, and Sacerdote (2001). Hereafter, we denote the former dataset as the LaLonde-Dehejia-Wahba (LDW) data, and the latter as IRS data. Our findings highlight that causal inference with observational data demands rigorous ( i ) examination of the assignment process, ( ii ) assessment of overlap, and ( iii ) execution of validation checks. This tutorial streamlines the methodology used in Imbens & Xu (2024), making it easier for readers to replicate the study and apply its techniques in their own research. In addition, we supplement a complementary application of our analytics with the original LaLonde (1986) data after the LDW analysis to further demonstrate and validate our methodologies.
+
+**Reference**: Imbens, Guido and Yiqing Xu (2024). “LaLonde (1986) after Nearly Four Decades: Lessons Learned.” Working Paper, Stanford University.
+
+**Acknowledgement**: We thank Zihan Xie and Jinwen Wu for their excellent research assistance, which makes this tutorial possible.

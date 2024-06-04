@@ -6,7 +6,14 @@ We now reanalyze the lottery data from Imbens, Rubin, and Sacerdote (2001), who 
 
 There are three treatment and control groups. The control group, termed "non-winners," consists of 259 season ticket holders who have won a small, one-time prize, ranging from \$100 to \$5,000 (in essence, they are one-time, minor winners). The treatment groups, labeled "big winners" (43 individuals) and "small winners" (194 individuals), are those who clinched a major prize.
 
+```{r, message=FALSE, warning=FALSE}
+#| code-fold: show
+# source the functions provided in part 1
+source("functions.R")
+```
+
 ```{r, class.source = "fold-show"}
+#| code-fold: show
 load("data/lottery.RData")
 d$tr <- d$winner
 d$tr1 <- ifelse(d$bigwinner == 1, 1, 0) # big winner
@@ -16,11 +23,13 @@ d$college <- ifelse(d$educ >= 16, 1, 0)
 ```
 
 ## Assessing Overlap
+
 In the subsequent analysis, we will consider labor earnings from seven post-lottery winning periods as the outcomes. These are denoted as $Y_{i,0}$, ..., $Y_{i,6}$, where t = 0 represents the year of winning a lottery---recall that individuals in the control group also received a modest, one-time prize that year. We will treat the labor earnings from the three years immediately preceding the lottery win, i.e., $Y_{i,-3}$, $Y_{i,-2}$, $Y_{i,-1}$, as well as their average, as placebo outcomes. The labor earnings from the three years before those, i.e., $Y_{i,-6}$, $Y_{i,-5}$, $Y_{i,-4}$, will be used as covariates for adjustment, alongside a set of time-invariant pre-lottery-winning variables. These include the number of tickets purchased (tixbot), gender (male), employment status at the time of winning (workthen), age when the lottery was won (agew), total years of education (educ), and the presence of a college degree (college).
 
-First, we estimate the overlap between the two treatment groups(the big winner treatment group on the left & the smaller winner treatment group on the right) and the control group. The `assess_overlap` function will conveniently present the overlap between the control and the treated.  
+First, we estimate the overlap between the two treatment groups(the big winner treatment group on the left & the smaller winner treatment group on the right) and the control group. The `assess_overlap` function will conveniently present the overlap between the control and the treated.
 
 ```{r, class.source = "fold-show", fig.cap='FIGURE 7. SubfigureA:Big Winners vs Non-Winners. SubfigureB:Small Winners vs Non-Winners.',out.width='100%', fig.asp=0.5}
+#| code-fold: show
 par(mfrow = c(1,2))
 # select big winner
 
@@ -52,13 +61,15 @@ covar <- c("tixbot", "male", "workthen", "agew", "educ", "college",
 s2_ps <- assess_overlap(data = s2, treat = treat, cov = covar, xlim = c(-3, 3), ylim = c(-0.2, 0.2), breaks = 30)
 
 ```
+
 The figures indicate that while the propensity score distributions of individuals in the treatment groups differ from that of the control group, the propensity scores of the treatment groups still fall within the support of the control group.
- 
+
 ## Trimming to Improve Overlap
 
-To improve overlap, we further trim the control group for each of the two treatment groups by implementing 1:1 matching based on propensity scores. Then, we reassess the overlap for the two trimmed datasets. 
+To improve overlap, we further trim the control group for each of the two treatment groups by implementing 1:1 matching based on propensity scores. Then, we reassess the overlap for the two trimmed datasets.
 
 ```{r, class.source = "fold-show", fig.cap='FIGURE A9. SubfigureA:Big Winners vs Control. SubfigureB:Small Winners vs Control.',out.width='100%', fig.asp=0.5}
+#| code-fold: show
 par(mfrow = c(1,2))
 # matching
   ## In the matching procedure, we don't need Y actually, so just pick one Y to satisfy function's requirement
@@ -80,8 +91,7 @@ s2_ps_match <- psmatch(data = s2_ps, Y = "yearn.2", treat = treat, cov = covar)
 ss <- assess_overlap(data = s2_ps_match, treat = treat, cov = covar, xlim = c(-3,3), breaks = 30)
 ```
 
-
-From the histograms, trimming improved the overlap for the big winner treatment group but not for the small winner one. Here are a few points to consider. 
+From the histograms, trimming improved the overlap for the big winner treatment group but not for the small winner one. Here are a few points to consider.
 
 First, if the treatment and control groups have very different covariate distributions, it is difficult to achieve good overlap even after trimming. As the plots suggest, the big winner group likely had more control units that were similar to the treated units, making it easier to find matches.
 
@@ -89,7 +99,7 @@ Second, the small winner group's log odds have a wide range before trimming and 
 
 ## ATT and Placebo Estimates
 
-Since trimming does not significantly improve the overlap between the treated and the control, we will proceed with the original dataset.  
+Since trimming does not significantly improve the overlap between the treated and the control, we will proceed with the original dataset.
 
 ```{r class.source = 'fold-hide'}
 # prepare data again
@@ -109,7 +119,10 @@ d$yearn.avg <- apply(d[, paste0("y", 1:7)], 1, mean) # avg pst outcome
 
 s1 <- subset(d, tr1 == 1 | co == 1) # big winner
 s2 <- subset(d, tr2 == 1 | co == 1) # small winner
+```
 
+```{r}
+#| code-fold: show
 # estimate and placebo analyses
 
 covar <- c("tixbot", "male", "workthen", "agew", "educ", "college",
@@ -141,8 +154,7 @@ plot_coef(out3, ylim = ylim, main = "Small Winner vs. Non-Winner", main.pos = 3)
 plot_coef(out4, ylim = ylim, main = "Small Winner vs. Non-Winner: Placebo Test", main.pos = 3)
 ```
 
-
-The ATT results are presented in the table below: 
+The ATT results are presented in the table below:
 
 ```{r class.source = 'fold-hide'}
 # print the result
@@ -166,7 +178,7 @@ Using the original data, the above table presents both the ATT estimates and res
 
 ## ATT Visualization
 
-While tables can enumerate the standard errors for each estimate, graphical visualization offer a more intuitive presentation of our findings. To facilitate a clearer understanding, we calculate and compare the ATT estimates derived from both the original and the matched dataset. The following code computes the difference-in-means alongside the AIPW-GRF estimates. 
+While tables can enumerate the standard errors for each estimate, graphical visualization offer a more intuitive presentation of our findings. To facilitate a clearer understanding, we calculate and compare the ATT estimates derived from both the original and the matched dataset. The following code computes the difference-in-means alongside the AIPW-GRF estimates.
 
 ```{r class.source = 'fold-hide'}
 # big winners
@@ -218,7 +230,8 @@ for (i in 1:length(outcomes)) {
 }
 ```
 
-ATT Results Visualization: 
+ATT Results Visualization:
+
 ```{r, out.width='100%', fig.asp=1, fig.cap="9(A) and (B). ATT Estimates: IRS Data"}
 par(mfrow = c(2,1))
 par(mar = c(4, 4, 1, 2))
@@ -271,7 +284,6 @@ The above figures show that in the comparison of "big winners" and "non-winners,
 ## CATT Estimates and Visualization
 
 To assess the effects of the treatment, we proceed to evaluate the CATT, determined at the covariate values of the treated units. This assessment is conducted using the AIPW-GRF method for each of the ten outcomes within both the original big winners and the original small winners samples.
-
 
 ```{r class.source = 'fold-hide'}
 data <- s1_ps
@@ -332,9 +344,10 @@ for (i in 4:length(outcomes)) {
 }
 ```
 
-Beyond providing corroborative evidence for the placebo tests (i.e., CATT estimates align closely with 0 in the years leading up to the win as expected), the figures also reveal substantial treatment effect heterogeneity among lottery winners. In Post-Winning Years (Years 1 to 6), the effect of winning on earnings changes over time. 
+Beyond providing corroborative evidence for the placebo tests (i.e., CATT estimates align closely with 0 in the years leading up to the win as expected), the figures also reveal substantial treatment effect heterogeneity among lottery winners. In Post-Winning Years (Years 1 to 6), the effect of winning on earnings changes over time.
 
 Notably, the distributions of the CATT for many post-winning years appear bimodal. We observe two peaks in the distribution of the effects, which could suggest there are two different common outcomes or reactions to winning among the two treated groups.
 
 ## Summary
+
 Overall, we find that in the lottery study, the unconfoundedness assumption can be empirically validated through placebo tests, bolstering the credibility of the causal estimates. Importantly, the unconfoundedness assumption is much more believable in this study than in the LaLonde case because the inherent randomization of lotteries played a key role in treatment assignment, while supplementary covariates help account for discrepancies between treatment and control groups stemming from challenges like differential responses to the survey. The inclusion of six preceding outcomes also proves invaluable, as they likely explain both the selection mechanism and are highly correlated with the outcome variables; moreover, they also serve as good candidates for placebo outcomes, given their comparability to these outcomes.

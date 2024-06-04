@@ -1,3 +1,0 @@
-"0",""
-"0","# PSID trimmed"
-"0","plot_qte(qte.ldw_psid.trim, qte.ldw_psid.trim0, qte.ldw.psid, main = ""LDW-PSID (Trimmed)"", ylim = c(-25000, 15000))"

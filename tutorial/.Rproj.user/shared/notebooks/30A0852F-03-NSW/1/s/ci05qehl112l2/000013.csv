@@ -1,3 +1,0 @@
-"0",""
-"0","## CPS trimmed"
-"0","plot_qte(qte.nsw_cps.trim, qte.nsw_cps.trim0, qte.nsw.cps, main = ""NSW-CPS (Trimmed)"", ylim = c(-25000, 15000))"

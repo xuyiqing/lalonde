@@ -1,0 +1,32 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Tutorial for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’"
+  chapters:
+    - index.qmd
+    - 01-Start.Rmd
+    - 02-LDW.Rmd
+    - 03-NSW.Rmd
+    - 04-IRS.Rmd
+    - references.Qmd
+
+bibliography: references.bib
+nocite: |
+  @*
+
+format:
+  html:
+    theme: cosmo
+    code-fold: true
+    code-tools: true
+    code-link: true
+
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#>" 
+
+editor: visual
+

@@ -1,8 +1,0 @@
-"0","# We conduct this procedure to trim all samples simultaneously to improve overlap in the final samples."
-"0",""
-"0","#cps"
-"0","ldw_trim_cps <- subset(ldw_cps_trim, sample %in% c(1,2) & ps_assoverlap <= 0.9)"
-"0","ldw_trim_cps$treat[which(ldw_trim_cps$sample == 2)] <- 0"
-"0","#psid"
-"0","ldw_trim_psid <- subset(ldw_psid_trim, sample %in% c(1,2) & ps_assoverlap <= 0.8)"
-"0","ldw_trim_psid$treat[which(ldw_trim_psid$sample == 2)] <- 0"

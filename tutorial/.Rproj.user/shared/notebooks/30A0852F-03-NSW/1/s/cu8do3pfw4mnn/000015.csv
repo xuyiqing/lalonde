@@ -1,4 +1,0 @@
-"0",""
-"0","# psid data"
-"0","nsw_psid_trim_match_ps <- assess_overlap(data = nsw_psid_trim_match, treat = treat, cov = covar, xlim = c(-3,3))"
-"0",""

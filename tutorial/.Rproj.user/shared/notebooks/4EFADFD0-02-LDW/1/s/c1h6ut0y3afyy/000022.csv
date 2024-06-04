@@ -1,8 +1,0 @@
-"0","# plot qte"
-"0",""
-"0","#load the data"
-"0","load(""data/qte_ldw.rds"")"
-"0",""
-"0","par(mfrow = c(2,2))"
-"0","# CPS"
-"0","plot_qte(qte.ldw_cps, qte.ldw_cps0, qte.ldw, main = ""LDW-CPS"", ylim = c(-25000, 15000))"
