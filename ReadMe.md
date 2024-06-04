@@ -3,8 +3,12 @@ Replications Files for Imbens & Xu (2024)
 
 This Github repo contains the data and code necessary to replicate
 **Imbens and Xu (2024)**: “LaLonde (1986) After Nearly Four Decades:
-Lessons Learned.” For a more detialed tutorial, click
-[here](https://yiqingxu.org/papers/english/2024_lalonde/tutorial.html).
+Lessons Learned.”
+
+**Tutorial**: For a detailed bookdown tutorial, see
+[here](https://yiqingxu.org/tutorials/lalonde/). We thank Zihan Xie and
+Jinwen Wu for their excellent research assistance, which makes this
+tutorial possible.
 
 ## Folder Structure
 
@@ -83,7 +87,8 @@ suggestions are welcome.
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-dehejiawahba" class="csl-entry">
 
