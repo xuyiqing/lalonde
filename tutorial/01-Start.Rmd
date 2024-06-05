@@ -1,7 +1,7 @@
 # Getting Started
 
-::: callout-warning
-The following functions are wrapped by RA. It may differ from the original code slightly and thus, should not be seen as the formal source code for replication. For a more precise replication of original paper ([Arxiv Link](https://arxiv.org/abs/2406.00827)), please visit the source [Github repo](https://github.com/xuyiqing/lalonde/).
+::: callout-caution
+The following functions have been wrapped and may differ slightly from the original code. Therefore, they should NOT be considered the official source code for replication. For an exact replication of the [original paper](https://arxiv.org/abs/2406.00827), please refer to the source GitHub [repository](https://github.com/xuyiqing/lalonde/).
 :::
 
 ## Installation
@@ -49,7 +49,7 @@ library(sensemakr)
 Next, we outline the 10 wrapper functions designed to address 6 research objectives. The table below offers a brief overview of each category. Clicking "More" will direct you to a subsequent section with detailed explanations as well as the full code.
 
 ::: callout-note
-To use the wrapper functions, the easiest way is to source the R script by the following code. Again, this should NOT be seen as the formal replication file and you should examine the code carefully before using it.
+To use the wrapper functions, the simplest method is to source the R script with the following code. Please note, this is NOT the official replication file, and you should carefully review the code before using it.
 :::
 
 ```{r, message=FALSE, warning=FALSE}
@@ -57,18 +57,18 @@ To use the wrapper functions, the easiest way is to source the R script by the f
 source("https://github.com/xuyiqing/lalonde/blob/main/tutorial/functions.R?raw=TRUE")
 ```
 
-Now, you should see the functions in Environment section (if you use Rstudio).
+Now, you should see the functions in the Environment section (if you are using RStudio).
 
 ### Overview
 
-| Function                         | Description                                                                                                                                                                     |                 Code                  |
-|------------------|-------------------------------------|:----------------:|
-| `plot_hist()`, `love.plot()` and `assess_overlap()` | Evaluates and visualizes the overlap in propensity scores and covariate balance between treated and control groups.                                                                                   | [More](#plot-hist-and-assess-overlap) |
-| `psmatch()`                        | Performs 1:1 matching based on estimated propensity scores.                                                                                                                     |           [More](#psmatch)            |
-| `estimate_all()` and `plot_coef()`   | Computes and visualizes the Average Treatment Effect on the Treated (ATT) using a number of estimators.                                                                         |         [More](#estimate-all)         |
-| `catt()` and `plot_catt()`           | Calculates and visualizes the Conditional Average Treatment Effect on the Treated (CATT) using Augmented Inverse Probability Weighting (AIPW)-Generalized Random Forests (GRF). |        [More](#catt-plot-catt)        |
-| `est_qte()` and `plot_qte()`         | Estimates and visualizes the Quantile Treatment Effect on the Treated (QTET) using a doubly-robust estimator.                                                                   |     [More](#est-qte-and-plot-qte)     |
-| `sens_ana()`                       | Implements sensitivity analyses using contour plots.                                                                                                                            |           [More](#sens-ana)           |
+| Function                                            | Description                                                                                                                                                                     |                 Code                  |
+|------------------|------------------------------------|:----------------:|
+| `plot_hist()`, `love.plot()` and `assess_overlap()` | Evaluates and visualizes the overlap in propensity scores and covariate balance between treated and control groups.                                                             | [More](#plot-hist-and-assess-overlap) |
+| `psmatch()`                                         | Performs 1:1 matching based on estimated propensity scores.                                                                                                                     |           [More](#psmatch)            |
+| `estimate_all()` and `plot_coef()`                  | Computes and visualizes the Average Treatment Effect on the Treated (ATT) using a number of estimators.                                                                         |         [More](#estimate-all)         |
+| `catt()` and `plot_catt()`                          | Calculates and visualizes the Conditional Average Treatment Effect on the Treated (CATT) using Augmented Inverse Probability Weighting (AIPW)-Generalized Random Forests (GRF). |        [More](#catt-plot-catt)        |
+| `est_qte()` and `plot_qte()`                        | Estimates and visualizes the Quantile Treatment Effect on the Treated (QTET) using a doubly-robust estimator.                                                                   |     [More](#est-qte-and-plot-qte)     |
+| `sens_ana()`                                        | Implements sensitivity analyses using contour plots.                                                                                                                            |           [More](#sens-ana)           |
 
 <a name="plot-hist-and-assess-overlap"></a>
 
@@ -128,7 +128,7 @@ plot_hist <- function(data, var, treat, main = NULL, odds = FALSE,
 }
 ```
 
-`love.plot()`  is a summary plot of covariate balance before and after conditioning popularized by Dr. Thomas E. Love. 
+`love.plot()` is a summary plot of covariate balance before and after conditioning popularized by Dr. Thomas E. Love.
 
 ```{r}
 
@@ -172,7 +172,6 @@ love.plot <- function(data_pre, data_post, treat, covar, threshold = 0.1, title 
   return(p)
 }
 ```
-
 
 `assess_overlap()` estimates the overlap in propensity scores between the treatment group and the control group. It fits a probability forest to estimate propensity scores based on covariates (`cov`) and treatment indicators in the input dataset. Then, the function adjusts propensity scores close to zero to facilitate further calculations. Finally, it calls `plot_hist` to visualize the distribution of the propensity scores or their log odds, depending on the odds parameter.
 
@@ -808,10 +807,6 @@ sens_ana <- function(data, Y, treat, covar, bm = NULL, kd = 1)
 -   `probability_forest`: The probability forest is trained on the covariates to estimate the propensity score using the probability of each unit receiving the treatment given the observed covariates.
 -   `sensemakr`: The function from the `sensemakr` package utilizes sensitivity analysis on the linear model with the treatment variable, optional benchmark covariates, and a *kd* multiplier that specifies the range of the sensitivity analysis in terms of the proportion of the treatment effect that is due to the omitted variable.
 
-
 ::: callout-note
-To use the above functions, we also provide an additional R script. You can source the R script and apply these functions. Again, this should NOT be seen as the formal replication file and you should examine carefully before use it.
+To use the above functions, we provide an additional R script. You can source the script and apply these functions. However, this is NOT the official replication file, so please review it carefully before use.
 :::
-
- 
-
