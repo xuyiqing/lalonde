@@ -11,6 +11,11 @@ book:
     - 03-NSW.Rmd
     - 04-IRS.Rmd
     - references.Qmd
+  repo-url: https://github.com/xuyiqing/lalonde
+  repo-actions: [source, issue]
+  repo-branch: main
+  repo-subdir: tutorial
+  sharing: [twitter, facebook]
 
 bibliography: references.bib
 nocite: |
@@ -20,7 +25,8 @@ format:
   html:
     theme: cosmo
     code-fold: true
-    code-tools: true
+    code-tools:
+      source: repo
     code-link: true
 
 knitr:

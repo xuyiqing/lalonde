@@ -1,5 +1,9 @@
 # Getting Started
 
+::: callout-warning
+The following functions are wrapped by RA. It may differ from the original code slightly and thus, should not be seen as the formal source code for replication. For a more precise replication of original paper ([Arxiv Link](https://arxiv.org/abs/2406.00827)), please visit the source [Github repo](https://github.com/xuyiqing/lalonde/).
+:::
+
 ## Installation
 
 Several R packages are required for subsequent data analysis and visualization. The code below checks for all required messages and installs the missing ones. After the installation, call to load the packages.
@@ -42,11 +46,18 @@ library(sensemakr)
 
 ## Wrapper Functions
 
-::: callout-warning
-The following functions are wrapped by RA. It may differ from the original code slightly and thus, should not be seen as the formal source code for replication. For a more precise replication of original paper, please visit the source [website](https://github.com/xuyiqing/lalonde/).
+Next, we outline the 10 wrapper functions designed to address 6 research objectives. The table below offers a brief overview of each category. Clicking "More" will direct you to a subsequent section with detailed explanations as well as the full code.
+
+::: callout-note
+To use the wrapper functions, the easiest way is to source the R script by the following code. Again, this should NOT be seen as the formal replication file and you should examine the code carefully before using it.
 :::
 
-Next, we outline the 10 wrapper functions designed to address 6 research objectives. The table below offers a brief overview of each category. Clicking "More" will direct you to a subsequent section with detailed explanations as well as the full code.
+```{r, message=FALSE, warning=FALSE}
+#| code-fold: show
+source("https://github.com/xuyiqing/lalonde/blob/main/tutorial/functions.R?raw=TRUE")
+```
+
+Now, you should see the functions in Environment section (if you use Rstudio).
 
 ### Overview
 

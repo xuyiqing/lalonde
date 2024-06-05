@@ -129,6 +129,26 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Tutorial for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/xuyiqing/lalonde/tree/main/tutorial/" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Share" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Share"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+<li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+              <i class="bi bi-bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+              <i class="bi bi-bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+</div>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -201,13 +221,13 @@ div.csl-indent {
   </ul>
 </li>
   <li><a href="#sensitivity-analyses" id="toc-sensitivity-analyses" class="nav-link" data-scroll-target="#sensitivity-analyses"><span class="header-section-number">3.7</span> Sensitivity Analyses</a></li>
-  </ul></nav>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/xuyiqing/lalonde/blob/main/tutorial/03-NSW.Rmd" class="toc-action">View source</a></p><p><a href="https://github.com/xuyiqing/lalonde/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">
 <span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Original LaLonde Data (Male Sample)</span>
-</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/xuyiqing/lalonde/blob/main/tutorial/03-NSW.Rmd">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -226,7 +246,7 @@ div.csl-indent {
 <p>First, the dataset is split into treatment and control groups by the treatment dummy. Note, two pretreatment variables (earnings in 1974 and employment status in 1974) are absent from this sample. We thus remove variables re74 (earnings in 1974), u74 (unemployment status in 1974), and tau (the treatment effect estimate) from the CPS-1 and PSID-1 datasets to match the structure of the treatment dataset.</p>
 <div class="cell">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># source the functions provided in part 1</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"functions.R"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://github.com/xuyiqing/lalonde/blob/main/tutorial/functions.R?raw=TRUE"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
@@ -729,8 +749,6 @@ div.csl-indent {
 <p>The analyses suggest that the estimated training effect based on trimmed NSW-CPS is less sensitive to potential confounders compared to trimmed NSW-PSID.</p>
 
 
-<!-- -->
-
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-dehejiawahba" class="csl-entry" role="listitem">
 Dehejia, Rajeev H, and Sadek Wahba. 1999. <span>“Causal Effects in Nonexperimental Studies: Reevaluating the Evaluation of Training Programs.”</span> <em>Journal of the American Statistical Association</em> 94 (448): 1053–62.
@@ -1041,319 +1059,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Lottery Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Original LaLonde Data (Male Sample)</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>In this section, we will focus on the original LaLonde data set (loaded as NSW below) to assess the effect of the treatment (participation in the job training program) on the participants' earnings in 1978.</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prepare the Data</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>First, the dataset is split into treatment and control groups by the treatment dummy. Note, two pretreatment variables (earnings in 1974 and employment status in 1974) are absent from this sample. We thus remove variables re74 (earnings in 1974), u74 (unemployment status in 1974), and tau (the treatment effect estimate) from the CPS-1 and PSID-1 datasets to match the structure of the treatment dataset.</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, message=FALSE, warning=FALSE}</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># source the functions provided in part 1</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"functions.R"</span>)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show"}</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/lalonde.RData"</span>)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/trimmed.RData"</span>)</span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>treat <span class="ot">&lt;-</span> <span class="st">"treat"</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>nsw_co<span class="sc">$</span>treat <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># drop re74, u74, tau from cps1 and psid1</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>cps1a <span class="ot">&lt;-</span> <span class="fu">subset</span>(cps1, <span class="at">select =</span>  <span class="sc">-</span><span class="fu">c</span>(re74, u74))</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>nsw_cps <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(nsw_tr, cps1a)</span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>psid1a <span class="ot">&lt;-</span> <span class="fu">subset</span>(psid1, <span class="at">select =</span>  <span class="sc">-</span><span class="fu">c</span>(re74, u74))</span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>nsw_psid <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(nsw_tr, psid1a)</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>nsw_cps.plus <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(nsw_cps, nsw_co)</span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>nsw_psid.plus <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(nsw_psid, nsw_co)</span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Assessing Overlap</span></span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>In this step, we define variables for the outcome (Y = "re78"), treatment indicator (treat), and covariates that include age, education, race/ethnicity indicators, marital status, degree status, and earnings in 1975.</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>Again, we assess overlap in covariate distributions between treated and control groups based on the propensity score via GRF (log odds ratio) for the LDW-Experimental, LDW-CPS1, and LWD-PSID1 data.</span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show"}</span></span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="co"># define variables</span></span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="st">"re78"</span></span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>treat <span class="ot">&lt;-</span> <span class="st">"treat"</span></span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>covar <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"age"</span>, <span class="st">"education"</span>, <span class="st">"black"</span>, <span class="st">"hispanic"</span>, <span class="st">"married"</span>, <span class="st">"nodegree"</span>, <span class="st">"re75"</span>, <span class="st">"u75"</span>)</span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### NSW-Experimental</span></span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a>Figure: Experimental (male sample).</span>
-<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show", fig.cap='FIGUREA5 (SM). SubfigureA:LDW-Experimental.', out.width='80%', fig.asp=1, fig.align='center'}</span></span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>nsw_ps <span class="ot">&lt;-</span> <span class="fu">assess_overlap</span>(<span class="at">data =</span> nsw, <span class="at">treat =</span> treat, <span class="at">cov =</span> covar, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="fl">1.5</span>))</span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### NSW-CPS1 and NSW-PSID1</span></span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show", fig.cap='FIGUREA5 (SM). SubfigureB:NSW-CPS1. SubfigureC:NSW-PSID1.',out.width='100%', fig.asp=0.5}</span></span>
-<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>nsw_cps_ps <span class="ot">&lt;-</span> <span class="fu">assess_overlap</span>(<span class="at">data =</span> nsw_cps, <span class="at">treat =</span> treat, <span class="at">cov =</span> covar, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">15</span>, <span class="dv">5</span>))</span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>nsw_psid_ps <span class="ot">&lt;-</span> <span class="fu">assess_overlap</span>(<span class="at">data =</span> nsw_psid, <span class="at">treat =</span> treat, <span class="at">cov =</span> covar, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">15</span>, <span class="dv">5</span>))</span>
-<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Trimming to Improve Overlap</span></span>
-<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>We then trim the data to improve overlap in covariate distributions by removing units with poor overlap based on the propensity score. This step aims to refine the datasets to improve later causal inference. With the trimmed data, we can reassess overlap for each group.</span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>Like before, we start by assessing overlaps between the distributions of the treated and control groups based on log-odds derived from propensity scores.</span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show", fig.show = "hide"}</span></span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>nsw_cps.plus_ps <span class="ot">&lt;-</span> <span class="fu">assess_overlap</span>(<span class="at">data =</span> nsw_cps.plus, <span class="at">treat =</span> treat, <span class="at">cov =</span> covar, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">15</span>, <span class="dv">5</span>))</span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>nsw_psid.plus_ps <span class="ot">&lt;-</span> <span class="fu">assess_overlap</span>(<span class="at">data =</span> nsw_psid.plus, <span class="at">treat =</span> treat, <span class="at">cov =</span> covar, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">15</span>, <span class="dv">5</span>))</span>
-<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>Then, we proceed with trimming to improve the quality of the causal inference. After trimming, we would expect the distributions to align more closely - the treatment and control groups are more comparable according to their covariates.</span>
-<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show"}</span></span>
-<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a>trim <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">ps =</span> <span class="st">"ps_assoverlap"</span>, <span class="at">threshold =</span> <span class="fl">0.9</span>) {</span>
-<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a>  sub <span class="ot">&lt;-</span> data[<span class="fu">which</span>(data[, ps] <span class="sc">&lt;</span> threshold), ]</span>
-<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sub)</span>
-<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="co">#Trim</span></span>
-<span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a>nsw_cps_trim <span class="ot">&lt;-</span> <span class="fu">trim</span>(nsw_cps.plus_ps, <span class="at">threshold =</span> <span class="fl">0.85</span>)</span>
-<span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a>nsw_psid_trim <span class="ot">&lt;-</span> <span class="fu">trim</span>(nsw_psid.plus_ps, <span class="at">threshold =</span> <span class="fl">0.85</span>)</span>
-<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a><span class="co"># cps data</span></span>
-<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a><span class="co"># excluding the experimental controls</span></span>
-<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a>nsw_cps_trim_match <span class="ot">&lt;-</span> <span class="fu">subset</span>(nsw_cps_trim, sample <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>) <span class="sc">&amp;</span> ps_assoverlap)</span>
-<span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a><span class="co"># re-estimate propensity scores and employ 1:1 matching</span></span>
-<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a>nsw_cps_trim_match <span class="ot">&lt;-</span> <span class="fu">psmatch</span>(<span class="at">data =</span> nsw_cps_trim_match, <span class="at">Y =</span> <span class="st">"re78"</span>, <span class="at">treat =</span> <span class="st">"treat"</span>, <span class="at">cov =</span> covar)</span>
-<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a><span class="co"># psid data</span></span>
-<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a><span class="co"># excluding the experimental controls</span></span>
-<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a>nsw_psid_trim_match <span class="ot">&lt;-</span> <span class="fu">subset</span>(nsw_psid_trim, sample <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>) <span class="sc">&amp;</span> ps_assoverlap)</span>
-<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a><span class="co"># re-estimate propensity scores and employ 1:1 matching</span></span>
-<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>nsw_psid_trim_match <span class="ot">&lt;-</span> <span class="fu">psmatch</span>(<span class="at">data =</span> nsw_psid_trim_match, <span class="at">Y =</span> <span class="st">"re78"</span>, <span class="at">treat =</span> <span class="st">"treat"</span>, <span class="at">cov =</span> covar)</span>
-<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show"}</span></span>
-<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a><span class="co">#cps</span></span>
-<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a>nsw_trim_cps <span class="ot">&lt;-</span> <span class="fu">subset</span>(nsw_cps_trim, sample <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>))</span>
-<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>nsw_trim_cps<span class="sc">$</span>treat[<span class="fu">which</span>(nsw_trim_cps<span class="sc">$</span>sample <span class="sc">==</span> <span class="fl">0.5</span>)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a><span class="co">#psid</span></span>
-<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>nsw_trim_psid <span class="ot">&lt;-</span> <span class="fu">subset</span>(nsw_psid_trim, sample <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>))</span>
-<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a>nsw_trim_psid<span class="sc">$</span>treat[<span class="fu">which</span>(nsw_trim_psid<span class="sc">$</span>sample <span class="sc">==</span> <span class="fl">0.5</span>)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reassessing Overlap</span></span>
-<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a>The propensity scores are reestimated after trimming.The plots below show good overlaps especially in the center, indicating an improved balance and common support between the treated and control groups. The before-after trimming comparison suggests that the trim effectively removes units that were less comparable.</span>
-<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, out.width='100%', fig.asp=0.5, fig.cap="FIGUREA5 (SM). SubfigureD:TrimmedLDW-CPS1. SubfigureE:TrimmedLDW-PSID1."}</span></span>
-<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a><span class="co"># cps data</span></span>
-<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>nsw_cps_trim_match_ps <span class="ot">&lt;-</span> <span class="fu">assess_overlap</span>(<span class="at">data =</span> nsw_cps_trim_match, <span class="at">treat =</span> treat, <span class="at">cov =</span> covar, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a><span class="co"># psid data</span></span>
-<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a>nsw_psid_trim_match_ps <span class="ot">&lt;-</span> <span class="fu">assess_overlap</span>(<span class="at">data =</span> nsw_psid_trim_match, <span class="at">treat =</span> treat, <span class="at">cov =</span> covar, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Estimating the ATT</span></span>
-<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a>The table below presents the ATT estimates using the original LaLonde male sample, of which the LDW sample is a subset. Table shows that, with sufficient overlap, most estimators yield estimates within relatively narrow ranges when using either CPS-SSA-1 or PSID-1 as control groups. However, these estimates do not align with the experimental benchmarks, with most estimates being negative.</span>
-<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show", warning=FALSE}</span></span>
-<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a><span class="co"># experimental</span></span>
-<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a>out1 <span class="ot">&lt;-</span> <span class="fu">estimate_all</span>(nsw, <span class="st">"re78"</span>, <span class="st">"treat"</span>, covar)</span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>out2 <span class="ot">&lt;-</span> <span class="fu">estimate_all</span>(nsw_trim_cps, <span class="st">"re78"</span>, <span class="st">"treat"</span>, covar)</span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>out3 <span class="ot">&lt;-</span> <span class="fu">estimate_all</span>(nsw_trim_psid, <span class="st">"re78"</span>, <span class="st">"treat"</span>, covar)</span>
-<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a><span class="co"># nonexperimental</span></span>
-<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>out4 <span class="ot">&lt;-</span> <span class="fu">estimate_all</span>(nsw_cps, <span class="st">"re78"</span>, <span class="st">"treat"</span>, covar)</span>
-<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>out5 <span class="ot">&lt;-</span> <span class="fu">estimate_all</span>(nsw_psid, <span class="st">"re78"</span>, <span class="st">"treat"</span>, covar)</span>
-<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>out6 <span class="ot">&lt;-</span> <span class="fu">estimate_all</span>(nsw_cps_trim_match, <span class="st">"re78"</span>, <span class="st">"treat"</span>, covar)</span>
-<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>out7 <span class="ot">&lt;-</span> <span class="fu">estimate_all</span>(nsw_psid_trim_match, <span class="st">"re78"</span>, <span class="st">"treat"</span>, covar)</span>
-<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a><span class="in">```{r class.source = 'fold-hide'}</span></span>
-<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a><span class="co"># print the result</span></span>
-<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(out4, out5, out6, out7)</span>
-<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(out1)</span>
-<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a>sav <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="st">""</span>, n<span class="sc">+</span><span class="dv">1</span>, <span class="fu">length</span>(a)<span class="sc">*</span><span class="dv">3-1</span>)</span>
-<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(a)) {</span>
-<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a>    out <span class="ot">&lt;-</span> a[[j]]</span>
-<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(out)</span>
-<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>(<span class="fu">nrow</span>(out)<span class="sc">+</span><span class="dv">1</span>)) {</span>
-<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a>        sav[i, j<span class="sc">*</span><span class="dv">3-2</span>] <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out[i<span class="dv">-1</span>, <span class="dv">1</span>])</span>
-<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a>        sav[i, j<span class="sc">*</span><span class="dv">3-1</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out[i<span class="dv">-1</span>, <span class="dv">2</span>]), <span class="st">")"</span>)</span>
-<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a>sav[<span class="dv">1</span>, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out1[<span class="dv">1</span>, <span class="dv">1</span>])</span>
-<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a>sav[<span class="dv">1</span>, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out1[<span class="dv">1</span>, <span class="dv">2</span>]), <span class="st">")"</span>)</span>
-<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a>sav[<span class="dv">1</span>, <span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out1[<span class="dv">1</span>, <span class="dv">1</span>])</span>
-<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a>sav[<span class="dv">1</span>, <span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out1[<span class="dv">1</span>, <span class="dv">2</span>]), <span class="st">")"</span>)</span>
-<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a>sav[<span class="dv">1</span>, <span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out2[<span class="dv">1</span>, <span class="dv">1</span>])</span>
-<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a>sav[<span class="dv">1</span>, <span class="dv">8</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out2[<span class="dv">1</span>, <span class="dv">2</span>]), <span class="st">")"</span>)</span>
-<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a>sav[<span class="dv">1</span>, <span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out3[<span class="dv">1</span>, <span class="dv">1</span>])</span>
-<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a>sav[<span class="dv">1</span>, <span class="dv">11</span>] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, out3[<span class="dv">1</span>, <span class="dv">2</span>]), <span class="st">")"</span>)</span>
-<span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sav) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"NSW-CPS1"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"NSW-PSID1"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"NSW-CPS1 (PS Trimmed) "</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"NSW-PSID1 (PS Trimmed)"</span>, <span class="st">""</span>)</span>
-<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sav) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Experimental Benchmark"</span>, <span class="st">"Difference-in-Means"</span>, <span class="st">"Regression"</span>, <span class="st">" Oaxaca Blinder"</span>, <span class="st">"GRF"</span>, <span class="st">"NN Matching"</span>, <span class="st">"PS Matching"</span>, <span class="st">"IPW"</span>, <span class="st">"CBPS"</span>, <span class="st">"Entropy Balancing"</span>, <span class="st">"DML-ElasticNet"</span>, <span class="st">"AIPW-GRF"</span>)</span>
-<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a>sav <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">booktabs=</span><span class="cn">TRUE</span>, <span class="at">caption =</span> <span class="st">" Table A4 in the Supplementary Materials (SM), ATT Estimates: LaLonde Male Sample"</span>)</span>
-<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a>The table above lists the ATT estimates using different statistical methods to assess the impact of a treatment-job training program- on earnings in 1978 (re78). The results are shown for two control groups (CPS1 and PSID1) both before and after trimming based on propensity scores to improve the match between treated and control units. While the trimming generally moves the estimates closer to the experimental benchmark, estimates derived from observational data are generally lower (more negative) than the experimental benchmark.</span>
-<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a><span class="fu">## Alternative Estimands: CATT and QTET</span></span>
-<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a><span class="fu">### Conditional Average Treatment Effect on the Treated (CATT)</span></span>
-<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-180"><a href="#cb17-180" aria-hidden="true" tabindex="-1"></a>The figures below show the CATT estimates using the original LaLonde data (male sample).</span>
-<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a>Each point on the scatter plots represents a pair of CATT estimates for a single unit: one from the experimental benchmark and one from the observational method. Points that lie on the 45-degree line (the red line) are cases where the observational and experimental methods yield the same estimate.</span>
-<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show", warning=FALSE}</span></span>
-<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate catt</span></span>
-<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a>catt.nsw <span class="ot">&lt;-</span> <span class="fu">catt</span>(nsw, Y, treat, covar)</span>
-<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a>catt.cps <span class="ot">&lt;-</span> <span class="fu">catt</span>(nsw_cps, Y, treat, covar)</span>
-<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a>catt.psid <span class="ot">&lt;-</span> <span class="fu">catt</span>(nsw_psid, Y, treat, covar)</span>
-<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a>catt.cps.trim <span class="ot">&lt;-</span> <span class="fu">catt</span>(nsw_cps_trim_match, Y, treat, covar)</span>
-<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a>catt.psid.trim <span class="ot">&lt;-</span> <span class="fu">catt</span>(nsw_psid_trim_match, Y, treat, covar)</span>
-<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a><span class="co"># trimmed experimental data</span></span>
-<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a>catt.nsw.cps <span class="ot">&lt;-</span> <span class="fu">catt</span>(nsw_trim_cps, Y, treat, covar)</span>
-<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a>catt.nsw.psid <span class="ot">&lt;-</span> <span class="fu">catt</span>(nsw_trim_psid, Y, treat, covar)</span>
-<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, out.width='100%', fig.asp=1, fig.cap="FIGURE A6. CATT Estimates for the LaLonde Data (Male Sample)"}</span></span>
-<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a><span class="co"># plot catt - "CATT (Experimental)" and "CATT (CPS-Full)"</span></span>
-<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a>catt1 <span class="ot">&lt;-</span> catt.nsw<span class="sc">$</span>catt</span>
-<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a>att1 <span class="ot">&lt;-</span> catt.nsw<span class="sc">$</span>att[<span class="dv">1</span>]</span>
-<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a>catt2 <span class="ot">&lt;-</span> catt.cps<span class="sc">$</span>catt</span>
-<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a>att2 <span class="ot">&lt;-</span> catt.cps<span class="sc">$</span>att[<span class="dv">1</span>]</span>
-<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_catt</span>(catt1, catt2, att1, att2, <span class="st">"CATT (Experimental)"</span>, <span class="st">"CATT (CPS-Full)"</span>,</span>
-<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"A. NSW-CPS1"</span>, <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8000</span>, <span class="dv">8000</span>))</span>
-<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a><span class="co"># plot catt - "CATT (Experimental)" and "CATT (PSID-Full)"</span></span>
-<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a>catt1 <span class="ot">&lt;-</span> catt.nsw<span class="sc">$</span>catt</span>
-<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a>att1 <span class="ot">&lt;-</span> catt.nsw<span class="sc">$</span>att[<span class="dv">1</span>]</span>
-<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a>catt2 <span class="ot">&lt;-</span> catt.psid<span class="sc">$</span>catt</span>
-<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a>att2 <span class="ot">&lt;-</span> catt.psid<span class="sc">$</span>att[<span class="dv">1</span>]</span>
-<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_catt</span>(catt1, catt2, att1, att2, <span class="st">"CATT (Experimental)"</span>, <span class="st">"CATT (PSID-Full)"</span>,</span>
-<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"B. NSW-PSID1"</span>, <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8000</span>, <span class="dv">8000</span>))</span>
-<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a><span class="co"># plot catt - "CATT (Experimental)" and "CATT (CPS-Trimmed)"</span></span>
-<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a>catt1 <span class="ot">&lt;-</span> catt.nsw.cps<span class="sc">$</span>catt</span>
-<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a>att1 <span class="ot">&lt;-</span> catt.nsw.cps<span class="sc">$</span>att[<span class="dv">1</span>]</span>
-<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a>catt2 <span class="ot">&lt;-</span> catt.cps.trim<span class="sc">$</span>catt</span>
-<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a>att2 <span class="ot">&lt;-</span> catt.cps.trim<span class="sc">$</span>att[<span class="dv">1</span>]</span>
-<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_catt</span>(catt1, catt2, att1, att2, <span class="st">"CATT (Experimental)"</span>, <span class="st">"CATT (CPS-Trimmed)"</span>,</span>
-<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"C. NSW-CPS1 Trimmed"</span>, <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8000</span>, <span class="dv">8000</span>))</span>
-<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a><span class="co"># plot catt - "CATT (Experimental)" and "CATT (PSID-Trimmed)"</span></span>
-<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a>catt1 <span class="ot">&lt;-</span> catt.nsw.psid<span class="sc">$</span>catt</span>
-<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a>att1 <span class="ot">&lt;-</span> catt.nsw.psid<span class="sc">$</span>att[<span class="dv">1</span>]</span>
-<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a>catt2 <span class="ot">&lt;-</span> catt.psid.trim<span class="sc">$</span>catt</span>
-<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a>att2 <span class="ot">&lt;-</span> catt.psid.trim<span class="sc">$</span>att[<span class="dv">1</span>]</span>
-<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_catt</span>(catt1, catt2, att1, att2, <span class="st">"CATT (Experimental)"</span>, <span class="st">"CATT (PSID-Trimmed)"</span>,</span>
-<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"D. NSW-PSID1 Trimmed"</span>, <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8000</span>, <span class="dv">8000</span>))</span>
-<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a>Note: Scatterplots show the CATT using both experimental data (x-axis) and nonexperimental data (y-axis) from LaLonde (1986) (male sample). Each dot corresponds to a CATT estimate based on the covariate values of a treated unit, while each red cross symbolizes the ATT estimates. For every estimate, the AIPW estimator is employed, with the GRF approach for estimating nuisance parameters. Different subfigures indicate various data comparisons: Subfigure A: Compares Experimental with LaLonde-CPS1. Subfigure B: Compares Experimental with LaLonde-PSID1. Subfigure C: Compares trimmed Experimental (removing 30 treated units) against trimmed NSW-CPS1. Subfigure D: Compares trimmed Experimental (removing 150 treated units) to trimmed NSW-PSID1.</span>
-<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a>Based on untrimmed data, Subfigure A and B show a wide dispersion of points around the 45-degree line. This raises our concern about the lack of agreement between the experimental benchmark and the CATT estimates from the CPS1 and PSID1 control groups.</span>
-<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a>On the other hand, after trimming based on propensity scores, the dispersion of points in Subfigure C and D is more concentrated around the 45-degree line, indicating that the agreement between the experimental benchmark and the CATT estimates has improved. The comparison suggests that trimming has successfully reduced bias in estimating the treatment effect by ensuring that the treated and control groups are more similar in covariates distributions.</span>
-<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quantile Treatment Effect on the Treated (QTET)</span></span>
-<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a>The Figures below show the quantile treatment effects on the treated in the original LaLonde male sample. QTET analysis helps us to see where along the outcome distribution the treatment is more or less effective. The code below consists of two main parts:</span>
-<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>The <span class="in">`est_qte`</span> function estimates the QTET.</span>
-<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Plotting QTET: The <span class="in">`plot_qte`</span> function creates the plots, with separate plots for each data comparison (NSW-CPS, NSW-CPS trimmed, NSW-PSID, and NSW-PSID trimmed).</span>
-<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, class.source = "fold-show", warning=FALSE}</span></span>
-<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a><span class="co"># estimate qte (some of the following lines are not run due to computational limitation)</span></span>
-<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a>qte.nsw <span class="ot">&lt;-</span> <span class="fu">est_qte</span>(Y, treat, <span class="cn">NULL</span>, <span class="at">data =</span> nsw)</span>
-<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a>qte.nsw.cps <span class="ot">&lt;-</span> <span class="fu">est_qte</span>(Y, treat, <span class="cn">NULL</span>, <span class="at">data =</span> nsw_trim_cps)</span>
-<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a>qte.nsw.psid <span class="ot">&lt;-</span> <span class="fu">est_qte</span>(Y, treat, <span class="cn">NULL</span>, <span class="at">data =</span> nsw_trim_psid)</span>
-<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a><span class="co">#qte.nsw_cps &lt;- est_qte(Y, treat, covar, data = nsw_cps) # adjusted</span></span>
-<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a><span class="co">#qte.nsw_cps0 &lt;- est_qte(Y, treat, NULL, data = nsw_cps) # unadjusted</span></span>
-<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a>qte.nsw_cps.trim <span class="ot">&lt;-</span> <span class="fu">est_qte</span>(Y, treat, covar, <span class="at">data =</span> nsw_cps_trim_match) <span class="co"># adjusted</span></span>
-<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a>qte.nsw_cps.trim0 <span class="ot">&lt;-</span> <span class="fu">est_qte</span>(Y, treat, <span class="cn">NULL</span>, <span class="at">data =</span> nsw_cps_trim_match) <span class="co"># unadjusted</span></span>
-<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a><span class="co">#qte.nsw_psid &lt;- est_qte(Y, treat, covar, data = nsw_psid) # adjusted</span></span>
-<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a><span class="co">#qte.nsw_psid0 &lt;- est_qte(Y, treat, NULL, data = nsw_psid) # unadjusted</span></span>
-<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a>qte.nsw_psid.trim <span class="ot">&lt;-</span> <span class="fu">est_qte</span>(Y, treat, covar, <span class="at">data =</span> nsw_psid_trim_match) <span class="co"># adjusted</span></span>
-<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a>qte.nsw_psid.trim0 <span class="ot">&lt;-</span> <span class="fu">est_qte</span>(Y, treat, <span class="cn">NULL</span>, <span class="at">data =</span> nsw_psid_trim_match) <span class="co"># unadjusted</span></span>
-<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, out.width='100%', fig.asp=1, fig.cap="FIGURE A7. Quantile Treatment Effects: Experimental vs. Nonexperimental"}</span></span>
-<span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a><span class="co"># plot qte</span></span>
-<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a><span class="co">#load the data</span></span>
-<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/qte_nsw.rds"</span>)</span>
-<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a><span class="co"># CPS</span></span>
-<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_qte</span>(qte.nsw_cps, qte.nsw_cps0, qte.nsw, <span class="at">main =</span> <span class="st">"NSW-CPS"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">25000</span>, <span class="dv">15000</span>))</span>
-<span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Experimental"</span>, <span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">16</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
-<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a><span class="do">## CPS trimmed</span></span>
-<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_qte</span>(qte.nsw_cps.trim, qte.nsw_cps.trim0, qte.nsw.cps, <span class="at">main =</span> <span class="st">"NSW-CPS (Trimmed)"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">25000</span>, <span class="dv">15000</span>))</span>
-<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Experimental"</span>, <span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span>), </span>
-<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">16</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
-<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a><span class="co"># PSID</span></span>
-<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_qte</span>(qte.nsw_psid, qte.nsw_psid0, qte.nsw, <span class="at">main =</span> <span class="st">"NSW-PSID"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">25000</span>, <span class="dv">15000</span>))</span>
-<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Experimental"</span>, <span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span>), </span>
-<span id="cb17-280"><a href="#cb17-280" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">16</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
-<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a><span class="co"># PSID trimmed</span></span>
-<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_qte</span>(qte.nsw_psid.trim, qte.nsw_psid.trim0, qte.nsw.psid, <span class="at">main =</span> <span class="st">"NSW-PSID (Trimmed)"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">25000</span>, <span class="dv">15000</span>))</span>
-<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Experimental"</span>, <span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span>), </span>
-<span id="cb17-285"><a href="#cb17-285" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">pch =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">16</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
-<span id="cb17-286"><a href="#cb17-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-287"><a href="#cb17-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-288"><a href="#cb17-288" aria-hidden="true" tabindex="-1"></a>Note: Figures show QTET using both experimental data (in blue) and nonexperimental data (in red for raw estimates and black for covariate-adjusted estimates). Each dot corresponds to a QTET estimate at a particular quantile, while shaded areas represent bootstrapped 95% confidence intervals. Unadjusted models do not incorporate covariates while adjustment models use the full set of covariates to estimate the propensity scores with a logit.</span>
-<span id="cb17-289"><a href="#cb17-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-290"><a href="#cb17-290" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sensitivity Analyses</span></span>
-<span id="cb17-291"><a href="#cb17-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-292"><a href="#cb17-292" aria-hidden="true" tabindex="-1"></a>Below are our sensitivity analyses using the original LaLonde male sample, with results depicted in contour plots below.</span>
-<span id="cb17-293"><a href="#cb17-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-294"><a href="#cb17-294" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, out.width='100%', fig.asp=0.75, fig.cap="FIGURE A3. Sensitivity Analyses for Trimmed NSW-CPS1 and NSW-PSID1"}</span></span>
-<span id="cb17-295"><a href="#cb17-295" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb17-296"><a href="#cb17-296" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb17-297"><a href="#cb17-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-298"><a href="#cb17-298" aria-hidden="true" tabindex="-1"></a><span class="do">## datasets to be used: nsw, nsw_trim_cps, nsw_trim_psid</span></span>
-<span id="cb17-299"><a href="#cb17-299" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="st">"re78"</span></span>
-<span id="cb17-300"><a href="#cb17-300" aria-hidden="true" tabindex="-1"></a>treat <span class="ot">&lt;-</span> <span class="st">"treat"</span></span>
-<span id="cb17-301"><a href="#cb17-301" aria-hidden="true" tabindex="-1"></a>covar <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"age"</span>, <span class="st">"education"</span>, <span class="st">"black"</span>, <span class="st">"hispanic"</span>, <span class="st">"married"</span>, <span class="st">"nodegree"</span>, <span class="st">"re75"</span>, <span class="st">"u75"</span>)</span>
-<span id="cb17-302"><a href="#cb17-302" aria-hidden="true" tabindex="-1"></a>bm <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"re75"</span>)</span>
-<span id="cb17-303"><a href="#cb17-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-304"><a href="#cb17-304" aria-hidden="true" tabindex="-1"></a><span class="co"># trimmed NSW-CPS data</span></span>
-<span id="cb17-305"><a href="#cb17-305" aria-hidden="true" tabindex="-1"></a><span class="fu">sens_ana</span>(nsw_trim_cps, Y, treat, covar, bm, <span class="at">kd =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb17-306"><a href="#cb17-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-307"><a href="#cb17-307" aria-hidden="true" tabindex="-1"></a><span class="co"># trimmed NSW-PSID data</span></span>
-<span id="cb17-308"><a href="#cb17-308" aria-hidden="true" tabindex="-1"></a><span class="fu">sens_ana</span>(nsw_trim_psid, Y, treat, covar, bm, <span class="at">kd =</span> <span class="dv">1</span>)</span>
-<span id="cb17-309"><a href="#cb17-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb17-310"><a href="#cb17-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-311"><a href="#cb17-311" aria-hidden="true" tabindex="-1"></a>The analyses suggest that the estimated training effect based on trimmed NSW-CPS is less sensitive to potential confounders compared to trimmed NSW-PSID.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

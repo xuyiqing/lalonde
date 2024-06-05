@@ -9,7 +9,7 @@ First, the dataset is split into treatment and control groups by the treatment d
 ```{r, message=FALSE, warning=FALSE}
 #| code-fold: show
 # source the functions provided in part 1
-source("functions.R")
+source("https://github.com/xuyiqing/lalonde/blob/main/tutorial/functions.R?raw=TRUE")
 ```
 
 ```{r, class.source = "fold-show"}
