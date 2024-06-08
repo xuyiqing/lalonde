@@ -14,19 +14,19 @@ tutorial possible.
 
 The folder structure of this repo is as follows:
 
-| folder | usage                                                |
-|:-------|:-----------------------------------------------------|
-| code   | R scripts                                            |
-| data   | Data files, include two subfolders “lalonde” & “irs” |
-| graphs | To store graphics                                    |
-| output | To store estimation results                          |
-| tables | To store tables                                      |
+| folder | usage                                                      |
+|:-------|:-----------------------------------------------------------|
+| code   | R scripts                                                  |
+| data   | Data files, include two subfolders “lalonde”, “cs” & “irs” |
+| graphs | To store graphics                                          |
+| output | To store estimation results                                |
+| tables | To store tables                                            |
 
 ## Data Files
 
-The paper uses the following datasets, which are based on LaLonde
-(1986), Dehejia and Wahba (1999), and Imbens, Rubin, and Sacerdote
-(2001).
+Imbens and Xu (2024) uses the following datasets, which are based on
+LaLonde (1986), Dehejia and Wahba (1999), Calónico and Smith (2017), and
+Imbens, Rubin, and Sacerdote (2001).
 
 | Data.files        | Details                                                          | File_Type | Experimental |
 |:------------------|:-----------------------------------------------------------------|:----------|:-------------|
@@ -35,6 +35,7 @@ The paper uses the following datasets, which are based on LaLonde
 | cps_controls.dta  | CPS-SSA-1 controls, used in both papers                          | Stata     | No           |
 | psid_controls.dta | PSID-1 controls, used in both papers                             | Stata     | No           |
 | lottery.RData     | Data of lottery winners, used in Imbens, Rubin & Sacerdote (201) | R         | No           |
+| NSW_AFDC_CS.dta   | Reconstructed NSW AFDC female samples                            | Stata     | Both         |
 
 ## R Scripts
 
@@ -49,11 +50,12 @@ the usage of each R script:
 | functions_plot.R    | Store functions for making plots                       |
 | lalonde1_prepare.R  | Preprocess LaLonde datasets                            |
 | lalonde2_trim.R     | Trim datasets to improve overlap                       |
-| lalonde3_estimate.R | Estimate the ATT                                       |
-| lalonde4_overlap.R  | Visualize overlap in propensity scores                 |
+| lalonde3_overlap.R  | Visualize overlap in propensity scores                 |
+| lalonde4_estimate.R | Estimate the ATT                                       |
 | lalonde5_catt.R     | Estimate and visualize CATT                            |
 | lalonde6_qte.R      | Estimate and visualize quantile treatment effects      |
 | laldone7_sens.R     | Conduct sensitivity analyses                           |
+| lalonde8_lcs.R      | Analyze the female samples by Calonico & Smith (2017)  |
 | irs1_est.R          | Estimate the ATT using the IRS data                    |
 | irs2_big.R          | Additional analyses for winning big prizes             |
 | irs3_small.R        | Additional analyses for winning small prizes           |
@@ -89,6 +91,14 @@ suggestions are welcome.
 
 <div id="refs" class="references csl-bib-body hanging-indent"
 entry-spacing="0">
+
+<div id="ref-calonico2017women" class="csl-entry">
+
+Calónico, Sebastian, and Jeffrey Smith. 2017. “The Women of the National
+Supported Work Demonstration.” *Journal of Labor Economics* 35 (S1):
+S65–97.
+
+</div>
 
 <div id="ref-dehejiawahba" class="csl-entry">
 
