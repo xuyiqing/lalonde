@@ -49,9 +49,8 @@ ldw_cps.plus$ps[which(abs(ldw_cps.plus$ps) <= 1e-7)] <- 1e-7
 range(ldw_cps.plus$ps)
 
 round(quantile(ldw_cps.plus$ps[which(ldw_cps.plus$sample == 3 & ldw_cps.plus$ps > 0.6)], probs = seq(0, 1, 0.1)),3)
-subset(ldw_cps.plus, sample == 3 & ps > 0.900)
+nrow(subset(ldw_cps.plus, sample == 3 & ps > 0.900)) # only 4 control units have ps > 0.9; choose a cutoff at 0.9
 
-# only 4 control units have ps > 0.9; choose a cutoff at 0.9
 threshold <- 0.9
 ldw_trim_cps <- subset(ldw_cps.plus, sample %in% c(1,2) & ps <= threshold)
 ldw_trim_cps$treat[which(ldw_trim_cps$sample == 2)] <- 0
@@ -89,8 +88,8 @@ range(ldw_psid.plus$ps)
 
 # histogram of propensity scores
 round(quantile(ldw_psid.plus$ps[which(ldw_psid.plus$sample == 4 & ldw_psid.plus$ps > 0.6)], probs = seq(0, 1, 0.1)),3)
-dim(subset(ldw_psid.plus, sample == 4 & ps > 0.8))
-threshold <- 0.8 # only 9 control units have ps > 0.8
+nrow(subset(ldw_psid.plus, sample == 4 & ps > 0.8)) # only 9 control units have ps > 0.8
+threshold <- 0.8 
 
 # trim experimental data
 ldw_trim_psid <- subset(ldw_psid.plus, sample %in% c(1,2) & ps <= threshold)
@@ -424,6 +423,7 @@ save(ldw_trim_cps, ldw_trim_psid, ldw_cps_trim, ldw_psid_trim,
     nsw_trim_cps, nsw_trim_psid, nsw_cps_trim, nsw_psid_trim, 
     file = "data/trimmed.RData")
 
+gc() # free up memory
 
 
 

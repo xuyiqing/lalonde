@@ -1,0 +1,8 @@
+Credit to Sebastian Calónico and Jeffrey Smith
+
+Reference:
+Sebastian Calónico and Jeffrey Smith. The Women of the National Supported Work Demonstration.
+Journal of Labor Economics, 35(S1):S65–S97, 2017.
+
+Data downloaded from:
+https://www.journals.uchicago.edu/doi/abs/10.1086/692397?journalCode=jole

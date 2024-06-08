@@ -33,8 +33,8 @@ summary(d)
 class(d)
 str(d)
 
-hist(d$agew)
-hist(log10(d$yearlpr), breaks = 50)
+#hist(d$agew)
+#hist(log10(d$yearlpr), breaks = 50)
 table(d$winner, d$bigwinner)
                                       
 d$tr <- d$winner                                                 
@@ -273,8 +273,8 @@ covar <- c("tixbot", "male", "workthen", "agew", "educ", "college",
     "xearn.1", "xearn.2", "xearn.3")
 
 
-hist(s2$xearn.avg, breaks = 50)
-hist(s2$yearn.avg, breaks = 50)
+#hist(s2$xearn.avg, breaks = 50)
+#hist(s2$yearn.avg, breaks = 50)
 
 library(qte)
 

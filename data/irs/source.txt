@@ -1,0 +1,8 @@
+Credit to Guido Imbens, Donald Rubin, and Bruce Sacerdote
+
+Reference:
+Guido W Imbens, Donald B Rubin, and Bruce I Sacerdote. Estimating the effect of unearned
+income on labor earnings, savings, and consumption: Evidence from a survey of lottery players.
+American Economic Review, pages 778–794, 2001.
+
+Data provided by Guido Imbens

@@ -3,6 +3,7 @@
 # 2024
 
 ## Master script to run all the analyses
+## Note: gc() is for garbage collection to free up memory
 
 rm(list = ls())
 path <- "~/Dropbox/ProjectZ/lalonde/replication/" # change to the root directory of the project
@@ -34,11 +35,12 @@ for (pkg in packages) {
 ## LaLonde data
 source("code/lalonde1_prepare.R") # data preparation
 source("code/lalonde2_trim.R") # trimming
-source("code/lalonde3_estimate.R") # ATT estimates
-source("code/lalonde4_overlap.R") # overlap in propensity scores
+source("code/lalonde3_overlap.R") # overlap in propensity scores
+source("code/lalonde4_estimate.R") # ATT estimates
 source("code/lalonde5_catt.R") # conditional average treatment effects
 source("code/lalonde6_qte.R") # quantile treatment effects
 source("code/lalonde7_sens.R") # sensitivity analysis
+source("code/lalonde8_lcs.R") # LaLonde female data reconstrcted by Calonico & Smith (2017)
 
 ## IRS data
 source("code/irs1_est.R") # ATT estimates

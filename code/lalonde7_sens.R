@@ -108,6 +108,7 @@ pdf("graphs/lalonde/sens_nsw_psid.pdf", width = 7, height = 7)
 plot(sens.nsw.psid)
 graphics.off()
 
+gc() # free up memory
 
 
                                         

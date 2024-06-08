@@ -4,6 +4,8 @@
 
 ## Estimating and Visualizing Quantile Treatment Effects
 
+## Note: gc() is for garbage collection to free up memory
+
 rm(list = ls())
 source("code/functions_est.R")
 source("code/functions_plot.R")
@@ -29,14 +31,14 @@ covar <- c("age", "education", "black", "hispanic", "married", "nodegree",
 ## experimental
 qte.ldw <- est_qte(Y, treat, NULL, data = ldw)
 qte.ldw.cps <- est_qte(Y, treat, NULL, data = ldw_trim_cps)
-qte.ldw.psid <- est_qte(Y, treat, NULL, data = ldw_trim_psid)
+qte.ldw.psid <- est_qte(Y, treat, NULL, data = ldw_trim_psid); gc()
 ## non-experimental
-qte.ldw_cps <- est_qte(Y, treat, covar, data = ldw_cps) # adjusted
-qte.ldw_cps0 <- est_qte(Y, treat, NULL, data = ldw_cps) # unadjusted
+qte.ldw_cps <- est_qte(Y, treat, covar, data = ldw_cps); gc() # adjusted
+qte.ldw_cps0 <- est_qte(Y, treat, NULL, data = ldw_cps); gc() # unadjusted
 qte.ldw_cps.trim <- est_qte(Y, treat, covar, data = ldw_cps_trim) # adjusted
 qte.ldw_cps.trim0 <- est_qte(Y, treat, NULL, data = ldw_cps_trim) # unadjusted
-qte.ldw_psid <- est_qte(Y, treat, covar, data = ldw_psid) # adjusted
-qte.ldw_psid0 <- est_qte(Y, treat, NULL, data = ldw_psid) # unadjusted
+qte.ldw_psid <- est_qte(Y, treat, covar, data = ldw_psid); gc() # adjusted
+qte.ldw_psid0 <- est_qte(Y, treat, NULL, data = ldw_psid); gc() # unadjusted
 qte.ldw_psid.trim <- est_qte(Y, treat, covar, data = ldw_psid_trim) # adjusted
 qte.ldw_psid.trim0 <- est_qte(Y, treat, NULL, data = ldw_psid_trim) # unadjusted
 
@@ -46,6 +48,8 @@ save(qte.ldw, qte.ldw.cps, qte.ldw.psid,
     qte.ldw_psid, qte.ldw_psid0, 
     qte.ldw_psid.trim, qte.ldw_psid.trim0, 
     file = "output/qte_ldw.rds")
+
+gc() # free up memory
 
 ############################
 ## plotting 
@@ -108,12 +112,12 @@ qte.nsw <- est_qte(Y, treat, NULL, data = nsw)
 qte.nsw.cps <- est_qte(Y, treat, NULL, data = nsw_trim_cps)
 qte.nsw.psid <- est_qte(Y, treat, NULL, data = nsw_trim_psid)
 # non-experimental
-qte.nsw_cps <- est_qte(Y, treat, covar, data = nsw_cps) # adjusted
-qte.nsw_cps0 <- est_qte(Y, treat, NULL, data = nsw_cps) # unadjusted
+qte.nsw_cps <- est_qte(Y, treat, covar, data = nsw_cps); gc() # adjusted
+qte.nsw_cps0 <- est_qte(Y, treat, NULL, data = nsw_cps); gc() # unadjusted
 qte.nsw_cps.trim <- est_qte(Y, treat, covar, data = nsw_cps_trim) # adjusted
 qte.nsw_cps.trim0 <- est_qte(Y, treat, NULL, data = nsw_cps_trim) # unadjusted
-qte.nsw_psid <- est_qte(Y, treat, covar, data = nsw_psid) # adjusted
-qte.nsw_psid0 <- est_qte(Y, treat, NULL, data = nsw_psid) # unadjusted
+qte.nsw_psid <- est_qte(Y, treat, covar, data = nsw_psid); gc() # adjusted
+qte.nsw_psid0 <- est_qte(Y, treat, NULL, data = nsw_psid); gc() # unadjusted
 qte.nsw_psid.trim <- est_qte(Y, treat, covar, data = nsw_psid_trim) # adjusted
 qte.nsw_psid.trim0 <- est_qte(Y, treat, NULL, data = nsw_psid_trim) # unadjusted
 
@@ -124,6 +128,7 @@ save(qte.nsw, qte.nsw.cps, qte.nsw.psid,
     qte.nsw_psid.trim, qte.nsw_psid.trim0, 
     file = "output/qte_nsw.rds")
 
+gc() # free up memory
 
 ############################
 ## plotting 

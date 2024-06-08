@@ -1,0 +1,7 @@
+Credit to Rajeev H. Dehejia and Sadek Wahba
+
+Reference:
+Rajeev H Dehejia and Sadek Wahba. Causal Effects in Nonexperimental Studies: Reevaluating the Evaluation of Training Programs. Journal of the American statistical Association, 94(448):1053–1062, 1999.
+
+Downloaded from:
+https://users.nber.org/~rdehejia/data/.nswdata2.html

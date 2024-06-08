@@ -135,3 +135,5 @@ for (j in 1:n) {
 print(sav)
 
 write.csv(sav, file = "tables/stats.csv", row.names = FALSE)
+
+gc() # free up memory

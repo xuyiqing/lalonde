@@ -7,3 +7,4 @@ cps_controls3,CPS-SSA-3,nonexperimental,controls,same as above
 psid_controls,PSID-1,nonexperimental,controls,same as above
 psid_controls2,PSID-2,nonexperimental,controls,same as above
 psid_controls3,PSID-3,nonexperimental,controls,same as above
+NSW_AFDC_CS,LCS,both,treated and controls,https://www.journals.uchicago.edu/doi/abs/10.1086/692397?journalCode=jole

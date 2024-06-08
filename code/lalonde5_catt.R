@@ -25,10 +25,10 @@ catt.psid.trim <- catt(ldw_psid_trim, Y, treat, covar)
 catt.ldw.cps <- catt(ldw_trim_cps, Y, treat, covar)
 catt.ldw.psid <- catt(ldw_trim_psid, Y, treat, covar)
 
-range(catt.ldw.cps$catt)
+range(catt.ldw$catt)
 range(catt.cps$catt)
 range(catt.psid$catt)
-
+ 
 pdf("graphs/lalonde/catt_cps.pdf", width = 5.5, height = 5.5)
 par(mar = c(4, 4, 1, 1))
 catt1 <- catt.ldw$catt
@@ -280,3 +280,5 @@ att2 <- catt.psid.trim$att[1]
 plot_catt(catt1, catt2, att1, att2, "CATT (Experimental)", "CATT (PSID-Trimmed)",
     main = "", c(-8000, 8000))
 graphics.off()
+
+gc() # free up memory

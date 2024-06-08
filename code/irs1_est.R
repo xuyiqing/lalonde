@@ -17,8 +17,8 @@ summary(d)
 class(d)
 str(d)
 
-hist(d$agew)
-hist(log10(d$yearlpr), breaks = 50)
+#hist(d$agew)
+#hist(log10(d$yearlpr), breaks = 50)
 table(d$winner, d$bigwinner)
 
                                        
