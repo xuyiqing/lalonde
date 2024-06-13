@@ -203,7 +203,7 @@ psm <- function(data, Y, treat, covar) {
   ps <- probability_forest(X = data[, covar],
                            Y = as.factor(data[,treat]), seed = 1234, num.trees = 4000)$predictions[,2]
   m.out <- Match(Y = data[, Y], Tr = data[, treat], X = matrix(ps, nrow(data), 1),
-                 estimand = "ATT", M = 1, replace = FALSE, ties = FALSE, BiasAdjust = FALSE)
+                 estimand = "ATT", M = 5, replace = FALSE, ties = FALSE, BiasAdjust = FALSE)
   if (is.null(m.out$se)==FALSE) {
     se <- m.out$se[1]
   } else {
