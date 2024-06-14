@@ -9,7 +9,8 @@ book:
     - 01-Start.Rmd
     - 02-LDW.Rmd
     - 03-NSW.Rmd
-    - 04-IRS.Rmd
+    - 04-LCS.Rmd
+    - 05-IRS.Rmd
     - references.Qmd
   repo-url: https://github.com/xuyiqing/lalonde
   repo-actions: [source, issue]
@@ -28,6 +29,9 @@ format:
     code-tools:
       source: repo
     code-link: true
+
+execute: 
+  cache: true
 
 knitr:
   opts_chunk: 

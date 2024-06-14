@@ -19,3 +19,18 @@ Revisiting LaLonde's analysis, we present how modern methods could enhance causa
 **Reference**: Imbens, Guido and Yiqing Xu (2024). “LaLonde (1986) after Nearly Four Decades: Lessons Learned.” [arXiv:2406.00827](https://arxiv.org/abs/2406.00827).
 
 **Acknowledgement**: We thank Zihan Xie and Jinwen Wu for their excellent research assistance, which makes this tutorial possible.
+
+## Data Files
+
+Imbens and Xu (2024) uses the following datasets, which are based on
+LaLonde (1986), Dehejia and Wahba (1999), Calónico and Smith (2017), and
+Imbens, Rubin, and Sacerdote (2001).
+
+| Data.files        | Details                                                          | File_Type | Experimental |
+|:------------------|:-----------------------------------------------------------------|:----------|:-------------|
+| nsw.dta           | NSW experimental data, used in LaLonde (1986)                    | Stata     | Yes          |
+| nsw_dw.dta        | Subset of NSW experimental data, used in Dehejia & Wahba (1999)  | Stata     | Yes          |
+| cps_controls.dta  | CPS-SSA-1 controls, used in both papers                          | Stata     | No           |
+| psid_controls.dta | PSID-1 controls, used in both papers                             | Stata     | No           |
+| lottery.RData     | Data of lottery winners, used in Imbens, Rubin & Sacerdote (201) | R         | No           |
+| NSW_AFDC_CS.dta   | Reconstructed NSW AFDC female samples                            | Stata     | Both         |

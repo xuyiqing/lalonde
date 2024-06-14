@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Tutorial for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’ - 3&nbsp; Original LaLonde Data (Male Sample)</title>
+<title>Tutorial for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’ - 3&nbsp; LaLonde Male Samples</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +79,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./04-IRS.html" rel="next">
+<link href="./04-LCS.html" rel="next">
 <link href="./02-LDW.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +117,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-NSW.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Original LaLonde Data (Male Sample)</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-NSW.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LaLonde Male Samples</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -179,13 +179,19 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-NSW.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Original LaLonde Data (Male Sample)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LaLonde Male Samples</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-IRS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Lottery Data</span></span></a>
+  <a href="./04-LCS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">LCS Female Samples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-IRS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Lottery Data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -212,21 +218,22 @@ div.csl-indent {
 </li>
   <li><a href="#trimming-to-improve-overlap" id="toc-trimming-to-improve-overlap" class="nav-link" data-scroll-target="#trimming-to-improve-overlap"><span class="header-section-number">3.3</span> Trimming to Improve Overlap</a></li>
   <li><a href="#reassessing-overlap" id="toc-reassessing-overlap" class="nav-link" data-scroll-target="#reassessing-overlap"><span class="header-section-number">3.4</span> Reassessing Overlap</a></li>
-  <li><a href="#estimating-the-att" id="toc-estimating-the-att" class="nav-link" data-scroll-target="#estimating-the-att"><span class="header-section-number">3.5</span> Estimating the ATT</a></li>
+  <li><a href="#checking-covariate-balance" id="toc-checking-covariate-balance" class="nav-link" data-scroll-target="#checking-covariate-balance"><span class="header-section-number">3.5</span> Checking Covariate Balance</a></li>
+  <li><a href="#estimating-the-att" id="toc-estimating-the-att" class="nav-link" data-scroll-target="#estimating-the-att"><span class="header-section-number">3.6</span> Estimating the ATT</a></li>
   <li>
-<a href="#alternative-estimands-catt-and-qtet" id="toc-alternative-estimands-catt-and-qtet" class="nav-link" data-scroll-target="#alternative-estimands-catt-and-qtet"><span class="header-section-number">3.6</span> Alternative Estimands: CATT and QTET</a>
+<a href="#alternative-estimands-catt-and-qtet" id="toc-alternative-estimands-catt-and-qtet" class="nav-link" data-scroll-target="#alternative-estimands-catt-and-qtet"><span class="header-section-number">3.7</span> Alternative Estimands: CATT and QTET</a>
   <ul class="collapse">
-<li><a href="#conditional-average-treatment-effect-on-the-treated-catt" id="toc-conditional-average-treatment-effect-on-the-treated-catt" class="nav-link" data-scroll-target="#conditional-average-treatment-effect-on-the-treated-catt"><span class="header-section-number">3.6.1</span> Conditional Average Treatment Effect on the Treated (CATT)</a></li>
-  <li><a href="#quantile-treatment-effect-on-the-treated-qtet" id="toc-quantile-treatment-effect-on-the-treated-qtet" class="nav-link" data-scroll-target="#quantile-treatment-effect-on-the-treated-qtet"><span class="header-section-number">3.6.2</span> Quantile Treatment Effect on the Treated (QTET)</a></li>
+<li><a href="#conditional-average-treatment-effect-on-the-treated-catt" id="toc-conditional-average-treatment-effect-on-the-treated-catt" class="nav-link" data-scroll-target="#conditional-average-treatment-effect-on-the-treated-catt"><span class="header-section-number">3.7.1</span> Conditional Average Treatment Effect on the Treated (CATT)</a></li>
+  <li><a href="#quantile-treatment-effect-on-the-treated-qtet" id="toc-quantile-treatment-effect-on-the-treated-qtet" class="nav-link" data-scroll-target="#quantile-treatment-effect-on-the-treated-qtet"><span class="header-section-number">3.7.2</span> Quantile Treatment Effect on the Treated (QTET)</a></li>
   </ul>
 </li>
-  <li><a href="#sensitivity-analyses" id="toc-sensitivity-analyses" class="nav-link" data-scroll-target="#sensitivity-analyses"><span class="header-section-number">3.7</span> Sensitivity Analyses</a></li>
+  <li><a href="#sensitivity-analyses" id="toc-sensitivity-analyses" class="nav-link" data-scroll-target="#sensitivity-analyses"><span class="header-section-number">3.8</span> Sensitivity Analyses</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/xuyiqing/lalonde/blob/main/tutorial/03-NSW.Rmd" class="toc-action">View source</a></p><p><a href="https://github.com/xuyiqing/lalonde/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">
-<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Original LaLonde Data (Male Sample)</span>
+<span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LaLonde Male Samples</span>
 </h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/xuyiqing/lalonde/blob/main/tutorial/03-NSW.Rmd">View Source</a></li></ul></div></div>
 </div>
 
@@ -244,12 +251,12 @@ div.csl-indent {
 <section id="prepare-the-data" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="prepare-the-data">
 <span class="header-section-number">3.1</span> Prepare the Data</h2>
 <p>First, the dataset is split into treatment and control groups by the treatment dummy. Note, two pretreatment variables (earnings in 1974 and employment status in 1974) are absent from this sample. We thus remove variables re74 (earnings in 1974), u74 (unemployment status in 1974), and tau (the treatment effect estimate) from the CPS-1 and PSID-1 datasets to match the structure of the treatment dataset.</p>
-<div class="cell">
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-1_c5d9d373f9d954012c21a5629149460e">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># source the functions provided in part 1</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://github.com/xuyiqing/lalonde/blob/main/tutorial/functions.R?raw=TRUE"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell">
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-2_ce753e7682f571930d6b7d6fbc571ea4">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/lalonde.RData"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/trimmed.RData"</span><span class="op">)</span></span>
 <span><span class="va">treat</span> <span class="op">&lt;-</span> <span class="st">"treat"</span></span>
@@ -270,8 +277,8 @@ div.csl-indent {
 </section><section id="assessing-overlap" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="assessing-overlap">
 <span class="header-section-number">3.2</span> Assessing Overlap</h2>
 <p>In this step, we define variables for the outcome (Y = “re78”), treatment indicator (treat), and covariates that include age, education, race/ethnicity indicators, marital status, degree status, and earnings in 1975.</p>
-<p>Again, we assess overlap in covariate distributions between treated and control groups based on the propensity score via GRF (log odds ratio) for the LDW-Experimental, LDW-CPS1, and LWD-PSID1 data.</p>
-<div class="cell">
+<p>Again, we assess overlap in covariate distributions between treated and control groups based on the propensity score via GRF (log odds ratio) for the LDW-Experimental, LDW-CPS1, and LDW-PSID1 data.</p>
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-3_adc2105f74132ef9bd16d18d051b432b">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># define variables</span></span>
 <span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="st">"re78"</span></span>
 <span><span class="va">treat</span> <span class="op">&lt;-</span> <span class="st">"treat"</span></span>
@@ -281,25 +288,25 @@ div.csl-indent {
 <section id="nsw-experimental" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="nsw-experimental">
 <span class="header-section-number">3.2.1</span> NSW-Experimental</h3>
 <p>Figure: Experimental (male sample).</p>
-<div class="cell" data-layout-align="center" data-fig.asp="1">
+<div class="cell" data-layout-align="center" data-fig.asp="1" data-hash="03-NSW_cache/html/unnamed-chunk-4_587ce74527e0d5ee23bf144260dae90d">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nsw_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">nsw</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="03-NSW_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">FIGUREA5 (SM). SubfigureA:LDW-Experimental.</figcaption></figure>
+<figcaption class="figure-caption">FIGURE B5 (SM). Subfigure A: LDW-Experimental.</figcaption></figure>
 </div>
 </div>
 </div>
 </section><section id="nsw-cps1-and-nsw-psid1" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="nsw-cps1-and-nsw-psid1">
 <span class="header-section-number">3.2.2</span> NSW-CPS1 and NSW-PSID1</h3>
-<div class="cell" data-fig.asp="0.5">
+<div class="cell" data-fig.asp="0.5" data-hash="03-NSW_cache/html/unnamed-chunk-5_fd878f9f34ccf6707064a85b6a611ca9">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">nsw_cps_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">nsw_cps</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">nsw_psid_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">nsw_psid</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="03-NSW_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">FIGUREA5 (SM). SubfigureB:NSW-CPS1. SubfigureC:NSW-PSID1.</figcaption></figure>
+<figcaption class="figure-caption">FIGURE B5 (SM). Subfigure B: NSW-CPS1. Subfigure C: NSW-PSID1.</figcaption></figure>
 </div>
 </div>
 </div>
@@ -307,13 +314,13 @@ div.csl-indent {
 <span class="header-section-number">3.3</span> Trimming to Improve Overlap</h2>
 <p>We then trim the data to improve overlap in covariate distributions by removing units with poor overlap based on the propensity score. This step aims to refine the datasets to improve later causal inference. With the trimmed data, we can reassess overlap for each group.</p>
 <p>Like before, we start by assessing overlaps between the distributions of the treated and control groups based on log-odds derived from propensity scores.</p>
-<div class="cell">
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-6_5043c911e792a1b64477e74adce30334">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nsw_cps.plus_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">nsw_cps.plus</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">nsw_psid.plus_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">nsw_psid.plus</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">15</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Then, we proceed with trimming to improve the quality of the causal inference. After trimming, we would expect the distributions to align more closely - the treatment and control groups are more comparable according to their covariates.</p>
-<div class="cell">
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-7_d002e80a2750a18f75bc72f4ff0e8083">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">trim</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">ps</span> <span class="op">=</span> <span class="st">"ps_assoverlap"</span>, <span class="va">threshold</span> <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">sub</span> <span class="op">&lt;-</span> <span class="va">data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>, <span class="va">ps</span><span class="op">]</span> <span class="op">&lt;</span> <span class="va">threshold</span><span class="op">)</span>, <span class="op">]</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">sub</span><span class="op">)</span></span>
@@ -336,7 +343,7 @@ div.csl-indent {
 <span><span class="va">nsw_psid_trim_match</span> <span class="op">&lt;-</span> <span class="fu">psmatch</span><span class="op">(</span>data <span class="op">=</span> <span class="va">nsw_psid_trim_match</span>, Y <span class="op">=</span> <span class="st">"re78"</span>, treat <span class="op">=</span> <span class="st">"treat"</span>, cov <span class="op">=</span> <span class="va">covar</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell">
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-8_c43c2d6bf3035c6efb7bd282cdb4c893">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#cps</span></span>
 <span><span class="va">nsw_trim_cps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">nsw_cps_trim</span>, <span class="va">sample</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">nsw_trim_cps</span><span class="op">$</span><span class="va">treat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">nsw_trim_cps</span><span class="op">$</span><span class="va">sample</span> <span class="op">==</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
@@ -348,7 +355,7 @@ div.csl-indent {
 </section><section id="reassessing-overlap" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="reassessing-overlap">
 <span class="header-section-number">3.4</span> Reassessing Overlap</h2>
 <p>The propensity scores are reestimated after trimming.The plots below show good overlaps especially in the center, indicating an improved balance and common support between the treated and control groups. The before-after trimming comparison suggests that the trim effectively removes units that were less comparable.</p>
-<div class="cell" data-fig.asp="0.5">
+<div class="cell" data-fig.asp="0.5" data-hash="03-NSW_cache/html/unnamed-chunk-9_e9e97aae270d7cfee61939bf3f7a2e36">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># cps data</span></span>
 <span><span class="va">nsw_cps_trim_match_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">nsw_cps_trim_match</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
@@ -358,15 +365,35 @@ div.csl-indent {
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="03-NSW_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">FIGUREA5 (SM). SubfigureD:TrimmedLDW-CPS1. SubfigureE:TrimmedLDW-PSID1.</figcaption></figure>
+<figcaption class="figure-caption">FIGURE B5 (SM). Subfigure D: Trimmed NSW-CPS1. Subfigure E: Trimmed NSW-PSID1.</figcaption></figure>
 </div>
 </div>
 </div>
-</section><section id="estimating-the-att" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="estimating-the-att">
-<span class="header-section-number">3.5</span> Estimating the ATT</h2>
+</section><section id="checking-covariate-balance" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="checking-covariate-balance">
+<span class="header-section-number">3.5</span> Checking Covariate Balance</h2>
+<p>We can also check covariate balance directly by <code>love.plot()</code>. As shown in the following figures, covariate overlap improves significantly in both samples post-trimming (matching).</p>
+<div>
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># cps data</span></span>
+<span><span class="fu">love.plot</span><span class="op">(</span><span class="va">nsw_cps</span>, <span class="va">nsw_cps_trim_match</span>, treat <span class="op">=</span> <span class="va">treat</span>, covar <span class="op">=</span> <span class="va">covar</span>, title <span class="op">=</span> <span class="st">"Covariate Balance of NSW-CPS1"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># psid data</span></span>
+<span><span class="fu">love.plot</span><span class="op">(</span><span class="va">nsw_psid</span>, <span class="va">nsw_psid_trim_match</span>, treat <span class="op">=</span> <span class="va">treat</span>, covar <span class="op">=</span> <span class="va">covar</span>, title <span class="op">=</span> <span class="st">"Covariate Balance of NSW-PSID1"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell quarto-layout-panel" data-fig.asp="0.8" data-hash="03-NSW_cache/html/unnamed-chunk-10_eb55885868308f74d857bf9de5c5faf5">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="03-NSW_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="03-NSW_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="estimating-the-att" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="estimating-the-att">
+<span class="header-section-number">3.6</span> Estimating the ATT</h2>
 <p>The table below presents the ATT estimates using the original LaLonde male sample, of which the LDW sample is a subset. Table shows that, with sufficient overlap, most estimators yield estimates within relatively narrow ranges when using either CPS-SSA-1 or PSID-1 as control groups. However, these estimates do not align with the experimental benchmarks, with most estimates being negative.</p>
-<div class="cell">
-<details open=""><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># experimental</span></span>
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-11_b8be544d69164693aa4fee1a65884d48">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># experimental</span></span>
 <span><span class="va">out1</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">nsw</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
 <span><span class="va">out2</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">nsw_trim_cps</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
 <span><span class="va">out3</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">nsw_trim_psid</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span>
@@ -377,8 +404,8 @@ div.csl-indent {
 <span><span class="va">out7</span> <span class="op">&lt;-</span> <span class="fu">estimate_all</span><span class="op">(</span><span class="va">nsw_psid_trim_match</span>, <span class="st">"re78"</span>, <span class="st">"treat"</span>, <span class="va">covar</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># print the result</span></span>
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-12_25579884411feb6962b21a8dbe545c18">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># print the result</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">out4</span>, <span class="va">out5</span>, <span class="va">out6</span>, <span class="va">out7</span><span class="op">)</span></span>
 <span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">out1</span><span class="op">)</span></span>
 <span><span class="va">sav</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="st">""</span>, <span class="va">n</span><span class="op">+</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span><span class="op">*</span><span class="fl">3</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
@@ -400,10 +427,10 @@ div.csl-indent {
 <span><span class="va">sav</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">11</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%.2f"</span>, <span class="va">out3</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="st">")"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">sav</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NSW-CPS1"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"NSW-PSID1"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"NSW-CPS1 (PS Trimmed) "</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"NSW-PSID1 (PS Trimmed)"</span>, <span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">sav</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Experimental Benchmark"</span>, <span class="st">"Difference-in-Means"</span>, <span class="st">"Regression"</span>, <span class="st">" Oaxaca Blinder"</span>, <span class="st">"GRF"</span>, <span class="st">"NN Matching"</span>, <span class="st">"PS Matching"</span>, <span class="st">"IPW"</span>, <span class="st">"CBPS"</span>, <span class="st">"Entropy Balancing"</span>, <span class="st">"DML-ElasticNet"</span>, <span class="st">"AIPW-GRF"</span><span class="op">)</span></span>
-<span><span class="va">sav</span> <span class="op">%&gt;%</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>booktabs<span class="op">=</span><span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">" Table A4 in the Supplementary Materials (SM), ATT Estimates: LaLonde Male Sample"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">sav</span> <span class="op">%&gt;%</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>booktabs<span class="op">=</span><span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">" Table B4 in the Supplementary Materials (SM), ATT Estimates: LaLonde Male Sample"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <table class="table table-sm table-striped small">
-<caption>Table A4 in the Supplementary Materials (SM), ATT Estimates: LaLonde Male Sample</caption>
+<caption>Table B4 in the Supplementary Materials (SM), ATT Estimates: LaLonde Male Sample</caption>
 <colgroup>
 <col style="width: 17%">
 <col style="width: 6%">
@@ -519,17 +546,17 @@ div.csl-indent {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">PS Matching</td>
-<td style="text-align: left;">-351.66</td>
-<td style="text-align: left;">(565.05)</td>
+<td style="text-align: left;">-272.11</td>
+<td style="text-align: left;">(547.31)</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">-4085.43</td>
-<td style="text-align: left;">(770.63)</td>
+<td style="text-align: left;">-1682.58</td>
+<td style="text-align: left;">(744.21)</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">-235.15</td>
-<td style="text-align: left;">(571.57)</td>
+<td style="text-align: left;">-145.53</td>
+<td style="text-align: left;">(557.97)</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">-3805.68</td>
-<td style="text-align: left;">(1172.63)</td>
+<td style="text-align: left;">-5116.83</td>
+<td style="text-align: left;">(1503.83)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">IPW</td>
@@ -606,14 +633,14 @@ div.csl-indent {
 </div>
 </div>
 <p>The table above lists the ATT estimates using different statistical methods to assess the impact of a treatment-job training program- on earnings in 1978 (re78). The results are shown for two control groups (CPS1 and PSID1) both before and after trimming based on propensity scores to improve the match between treated and control units. While the trimming generally moves the estimates closer to the experimental benchmark, estimates derived from observational data are generally lower (more negative) than the experimental benchmark.</p>
-</section><section id="alternative-estimands-catt-and-qtet" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="alternative-estimands-catt-and-qtet">
-<span class="header-section-number">3.6</span> Alternative Estimands: CATT and QTET</h2>
-<section id="conditional-average-treatment-effect-on-the-treated-catt" class="level3" data-number="3.6.1"><h3 data-number="3.6.1" class="anchored" data-anchor-id="conditional-average-treatment-effect-on-the-treated-catt">
-<span class="header-section-number">3.6.1</span> Conditional Average Treatment Effect on the Treated (CATT)</h3>
+</section><section id="alternative-estimands-catt-and-qtet" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="alternative-estimands-catt-and-qtet">
+<span class="header-section-number">3.7</span> Alternative Estimands: CATT and QTET</h2>
+<section id="conditional-average-treatment-effect-on-the-treated-catt" class="level3" data-number="3.7.1"><h3 data-number="3.7.1" class="anchored" data-anchor-id="conditional-average-treatment-effect-on-the-treated-catt">
+<span class="header-section-number">3.7.1</span> Conditional Average Treatment Effect on the Treated (CATT)</h3>
 <p>The figures below show the CATT estimates using the original LaLonde data (male sample).</p>
 <p>Each point on the scatter plots represents a pair of CATT estimates for a single unit: one from the experimental benchmark and one from the observational method. Points that lie on the 45-degree line (the red line) are cases where the observational and experimental methods yield the same estimate.</p>
-<div class="cell">
-<details open=""><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># estimate catt</span></span>
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-13_fb64985060bf299c0398a8c390d08923">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># estimate catt</span></span>
 <span><span class="va">catt.nsw</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">nsw</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span>
 <span><span class="va">catt.cps</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">nsw_cps</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span>
 <span><span class="va">catt.psid</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">nsw_psid</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span>
@@ -624,8 +651,8 @@ div.csl-indent {
 <span><span class="va">catt.nsw.psid</span> <span class="op">&lt;-</span> <span class="fu">catt</span><span class="op">(</span><span class="va">nsw_trim_psid</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-fig.asp="1">
-<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<div class="cell" data-fig.asp="1" data-hash="03-NSW_cache/html/unnamed-chunk-14_0bfd9170056b6321d7b1d996e56d500d">
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># plot catt - "CATT (Experimental)" and "CATT (CPS-Full)"</span></span>
 <span><span class="va">catt1</span> <span class="op">&lt;-</span> <span class="va">catt.nsw</span><span class="op">$</span><span class="va">catt</span></span>
 <span><span class="va">att1</span> <span class="op">&lt;-</span> <span class="va">catt.nsw</span><span class="op">$</span><span class="va">att</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
@@ -659,23 +686,23 @@ div.csl-indent {
 <span>    main <span class="op">=</span> <span class="st">"D. NSW-PSID1 Trimmed"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8000</span>, <span class="fl">8000</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-NSW_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">FIGURE A6. CATT Estimates for the LaLonde Data (Male Sample)</figcaption></figure>
+<figure class="figure"><p><img src="03-NSW_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">FIGURE B7. CATT Estimates for the LaLonde Data (Male Sample)</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Note: Scatterplots show the CATT using both experimental data (x-axis) and nonexperimental data (y-axis) from LaLonde (1986) (male sample). Each dot corresponds to a CATT estimate based on the covariate values of a treated unit, while each red cross symbolizes the ATT estimates. For every estimate, the AIPW estimator is employed, with the GRF approach for estimating nuisance parameters. Different subfigures indicate various data comparisons: Subfigure A: Compares Experimental with LaLonde-CPS1. Subfigure B: Compares Experimental with LaLonde-PSID1. Subfigure C: Compares trimmed Experimental (removing 30 treated units) against trimmed NSW-CPS1. Subfigure D: Compares trimmed Experimental (removing 150 treated units) to trimmed NSW-PSID1.</p>
 <p>Based on untrimmed data, Subfigure A and B show a wide dispersion of points around the 45-degree line. This raises our concern about the lack of agreement between the experimental benchmark and the CATT estimates from the CPS1 and PSID1 control groups.</p>
 <p>On the other hand, after trimming based on propensity scores, the dispersion of points in Subfigure C and D is more concentrated around the 45-degree line, indicating that the agreement between the experimental benchmark and the CATT estimates has improved. The comparison suggests that trimming has successfully reduced bias in estimating the treatment effect by ensuring that the treated and control groups are more similar in covariates distributions.</p>
-</section><section id="quantile-treatment-effect-on-the-treated-qtet" class="level3" data-number="3.6.2"><h3 data-number="3.6.2" class="anchored" data-anchor-id="quantile-treatment-effect-on-the-treated-qtet">
-<span class="header-section-number">3.6.2</span> Quantile Treatment Effect on the Treated (QTET)</h3>
+</section><section id="quantile-treatment-effect-on-the-treated-qtet" class="level3" data-number="3.7.2"><h3 data-number="3.7.2" class="anchored" data-anchor-id="quantile-treatment-effect-on-the-treated-qtet">
+<span class="header-section-number">3.7.2</span> Quantile Treatment Effect on the Treated (QTET)</h3>
 <p>The Figures below show the quantile treatment effects on the treated in the original LaLonde male sample. QTET analysis helps us to see where along the outcome distribution the treatment is more or less effective. The code below consists of two main parts:</p>
 <ul>
 <li>The <code>est_qte</code> function estimates the QTET.</li>
 <li>Plotting QTET: The <code>plot_qte</code> function creates the plots, with separate plots for each data comparison (NSW-CPS, NSW-CPS trimmed, NSW-PSID, and NSW-PSID trimmed).</li>
 </ul>
-<div class="cell">
-<details open=""><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># estimate qte (some of the following lines are not run due to computational limitation)</span></span>
+<div class="cell" data-hash="03-NSW_cache/html/unnamed-chunk-15_989f1664f7899e45477e2795d7b84b6b">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># estimate qte (some of the following lines are not run due to computational limitation)</span></span>
 <span><span class="va">qte.nsw</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="cn">NULL</span>, data <span class="op">=</span> <span class="va">nsw</span><span class="op">)</span></span>
 <span><span class="va">qte.nsw.cps</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="cn">NULL</span>, data <span class="op">=</span> <span class="va">nsw_trim_cps</span><span class="op">)</span></span>
 <span><span class="va">qte.nsw.psid</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="cn">NULL</span>, data <span class="op">=</span> <span class="va">nsw_trim_psid</span><span class="op">)</span></span>
@@ -689,8 +716,8 @@ div.csl-indent {
 <span><span class="va">qte.nsw_psid.trim0</span> <span class="op">&lt;-</span> <span class="fu">est_qte</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="cn">NULL</span>, data <span class="op">=</span> <span class="va">nsw_psid_trim_match</span><span class="op">)</span> <span class="co"># unadjusted</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-fig.asp="1">
-<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># plot qte</span></span>
+<div class="cell" data-fig.asp="1" data-hash="03-NSW_cache/html/unnamed-chunk-16_703e79f3030f786a0dec70f9421e6af9">
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># plot qte</span></span>
 <span></span>
 <span><span class="co">#load the data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/qte_nsw.rds"</span><span class="op">)</span></span>
@@ -716,17 +743,17 @@ div.csl-indent {
 <span>    lty <span class="op">=</span> <span class="fl">1</span>, pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">17</span>, <span class="fl">16</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-NSW_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">FIGURE A7. Quantile Treatment Effects: Experimental vs.&nbsp;Nonexperimental</figcaption></figure>
+<figure class="figure"><p><img src="03-NSW_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">FIGURE B8. Quantile Treatment Effects: Experimental vs.&nbsp;Nonexperimental</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Note: Figures show QTET using both experimental data (in blue) and nonexperimental data (in red for raw estimates and black for covariate-adjusted estimates). Each dot corresponds to a QTET estimate at a particular quantile, while shaded areas represent bootstrapped 95% confidence intervals. Unadjusted models do not incorporate covariates while adjustment models use the full set of covariates to estimate the propensity scores with a logit.</p>
-</section></section><section id="sensitivity-analyses" class="level2" data-number="3.7"><h2 data-number="3.7" class="anchored" data-anchor-id="sensitivity-analyses">
-<span class="header-section-number">3.7</span> Sensitivity Analyses</h2>
+</section></section><section id="sensitivity-analyses" class="level2" data-number="3.8"><h2 data-number="3.8" class="anchored" data-anchor-id="sensitivity-analyses">
+<span class="header-section-number">3.8</span> Sensitivity Analyses</h2>
 <p>Below are our sensitivity analyses using the original LaLonde male sample, with results depicted in contour plots below.</p>
-<div class="cell" data-fig.asp="0.75">
-<details open=""><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<div class="cell" data-fig.asp="0.75" data-hash="03-NSW_cache/html/unnamed-chunk-17_a765140561c9004783d8382f4ad80ee2">
+<details open=""><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## datasets to be used: nsw, nsw_trim_cps, nsw_trim_psid</span></span>
 <span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="st">"re78"</span></span>
@@ -741,8 +768,8 @@ div.csl-indent {
 <span><span class="fu">sens_ana</span><span class="op">(</span><span class="va">nsw_trim_psid</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span>, <span class="va">bm</span>, kd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="03-NSW_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">FIGURE A3. Sensitivity Analyses for Trimmed NSW-CPS1 and NSW-PSID1</figcaption></figure>
+<figure class="figure"><p><img src="03-NSW_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">FIGURE B9. Sensitivity Analyses for Trimmed NSW-CPS1 and NSW-PSID1</figcaption></figure>
 </div>
 </div>
 </div>
@@ -750,6 +777,9 @@ div.csl-indent {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-calonico2017women" class="csl-entry" role="listitem">
+Calónico, Sebastian, and Jeffrey Smith. 2017. <span>“The Women of the National Supported Work Demonstration.”</span> <em>Journal of Labor Economics</em> 35 (S1): S65–97.
+</div>
 <div id="ref-dehejiawahba" class="csl-entry" role="listitem">
 Dehejia, Rajeev H, and Sadek Wahba. 1999. <span>“Causal Effects in Nonexperimental Studies: Reevaluating the Evaluation of Training Programs.”</span> <em>Journal of the American Statistical Association</em> 94 (448): 1053–62.
 </div>
@@ -1055,8 +1085,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./04-IRS.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Lottery Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./04-LCS.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">LCS Female Samples</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.450">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Tutorial for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’ - 4&nbsp; The Lottery Data</title>
+<title>Tutorial for ‘LaLonde (1986) after Nearly Four Decades: Lessons Learned’ - 5&nbsp; The Lottery Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./references.html" rel="next">
-<link href="./03-NSW.html" rel="prev">
+<link href="./04-LCS.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-IRS.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Lottery Data</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-IRS.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Lottery Data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -179,13 +179,19 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-NSW.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Original LaLonde Data (Male Sample)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LaLonde Male Samples</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-IRS.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Lottery Data</span></span></a>
+  <a href="./04-LCS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">LCS Female Samples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-IRS.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Lottery Data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -202,20 +208,20 @@ div.csl-indent {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#the-imbens-rubin-and-sacerdote-irs-lottery-data" id="toc-the-imbens-rubin-and-sacerdote-irs-lottery-data" class="nav-link active" data-scroll-target="#the-imbens-rubin-and-sacerdote-irs-lottery-data"><span class="header-section-number">4.1</span> The Imbens, Rubin, and Sacerdote (IRS) Lottery Data</a></li>
-  <li><a href="#assessing-overlap" id="toc-assessing-overlap" class="nav-link" data-scroll-target="#assessing-overlap"><span class="header-section-number">4.2</span> Assessing Overlap</a></li>
-  <li><a href="#trimming-to-improve-overlap" id="toc-trimming-to-improve-overlap" class="nav-link" data-scroll-target="#trimming-to-improve-overlap"><span class="header-section-number">4.3</span> Trimming to Improve Overlap</a></li>
-  <li><a href="#att-and-placebo-estimates" id="toc-att-and-placebo-estimates" class="nav-link" data-scroll-target="#att-and-placebo-estimates"><span class="header-section-number">4.4</span> ATT and Placebo Estimates</a></li>
-  <li><a href="#att-visualization" id="toc-att-visualization" class="nav-link" data-scroll-target="#att-visualization"><span class="header-section-number">4.5</span> ATT Visualization</a></li>
-  <li><a href="#catt-estimates-and-visualization" id="toc-catt-estimates-and-visualization" class="nav-link" data-scroll-target="#catt-estimates-and-visualization"><span class="header-section-number">4.6</span> CATT Estimates and Visualization</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.7</span> Summary</a></li>
-  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/xuyiqing/lalonde/blob/main/tutorial/04-IRS.Rmd" class="toc-action">View source</a></p><p><a href="https://github.com/xuyiqing/lalonde/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<li><a href="#the-imbens-rubin-and-sacerdote-irs-lottery-data" id="toc-the-imbens-rubin-and-sacerdote-irs-lottery-data" class="nav-link active" data-scroll-target="#the-imbens-rubin-and-sacerdote-irs-lottery-data"><span class="header-section-number">5.1</span> The Imbens, Rubin, and Sacerdote (IRS) Lottery Data</a></li>
+  <li><a href="#assessing-overlap" id="toc-assessing-overlap" class="nav-link" data-scroll-target="#assessing-overlap"><span class="header-section-number">5.2</span> Assessing Overlap</a></li>
+  <li><a href="#trimming-to-improve-overlap" id="toc-trimming-to-improve-overlap" class="nav-link" data-scroll-target="#trimming-to-improve-overlap"><span class="header-section-number">5.3</span> Trimming to Improve Overlap</a></li>
+  <li><a href="#att-and-placebo-estimates" id="toc-att-and-placebo-estimates" class="nav-link" data-scroll-target="#att-and-placebo-estimates"><span class="header-section-number">5.4</span> ATT and Placebo Estimates</a></li>
+  <li><a href="#att-visualization" id="toc-att-visualization" class="nav-link" data-scroll-target="#att-visualization"><span class="header-section-number">5.5</span> ATT Visualization</a></li>
+  <li><a href="#catt-estimates-and-visualization" id="toc-catt-estimates-and-visualization" class="nav-link" data-scroll-target="#catt-estimates-and-visualization"><span class="header-section-number">5.6</span> CATT Estimates and Visualization</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.7</span> Summary</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/xuyiqing/lalonde/blob/main/tutorial/05-IRS.Rmd" class="toc-action">View source</a></p><p><a href="https://github.com/xuyiqing/lalonde/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">
-<span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Lottery Data</span>
-</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/xuyiqing/lalonde/blob/main/tutorial/04-IRS.Rmd">View Source</a></li></ul></div></div>
+<span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Lottery Data</span>
+</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/xuyiqing/lalonde/blob/main/tutorial/05-IRS.Rmd">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -228,16 +234,16 @@ div.csl-indent {
   </div>
   
 
-</header><section id="the-imbens-rubin-and-sacerdote-irs-lottery-data" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="the-imbens-rubin-and-sacerdote-irs-lottery-data">
-<span class="header-section-number">4.1</span> The Imbens, Rubin, and Sacerdote (IRS) Lottery Data</h2>
+</header><section id="the-imbens-rubin-and-sacerdote-irs-lottery-data" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="the-imbens-rubin-and-sacerdote-irs-lottery-data">
+<span class="header-section-number">5.1</span> The Imbens, Rubin, and Sacerdote (IRS) Lottery Data</h2>
 <p>We now reanalyze the lottery data from Imbens, Rubin, and Sacerdote (2001), who carried out an original survey to investigate the impact of the size of lottery prizes in Massachusetts during the mid-1980s on the economic behavior of lottery players. The primary outcome is post-winning labor earnings.</p>
 <p>There are three treatment and control groups. The control group, termed “non-winners,” consists of 259 season ticket holders who have won a small, one-time prize, ranging from $100 to $5,000 (in essence, they are one-time, minor winners). The treatment groups, labeled “big winners” (43 individuals) and “small winners” (194 individuals), are those who clinched a major prize.</p>
-<div class="cell">
+<div class="cell" data-hash="05-IRS_cache/html/unnamed-chunk-1_77cf3a55d46859a71bd36cf0694f77f1">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># source the functions provided in part 1</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://github.com/xuyiqing/lalonde/blob/main/tutorial/functions.R?raw=TRUE"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell">
+<div class="cell" data-hash="05-IRS_cache/html/unnamed-chunk-2_96e290a78e771dc6de24137749ee271f">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="st">"data/lottery.RData"</span><span class="op">)</span></span>
 <span><span class="va">d</span><span class="op">$</span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="va">d</span><span class="op">$</span><span class="va">winner</span></span>
 <span><span class="va">d</span><span class="op">$</span><span class="va">tr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">bigwinner</span> <span class="op">==</span> <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span> <span class="co"># big winner</span></span>
@@ -246,11 +252,11 @@ div.csl-indent {
 <span><span class="va">d</span><span class="op">$</span><span class="va">college</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">educ</span> <span class="op">&gt;=</span> <span class="fl">16</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section><section id="assessing-overlap" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="assessing-overlap">
-<span class="header-section-number">4.2</span> Assessing Overlap</h2>
+</section><section id="assessing-overlap" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="assessing-overlap">
+<span class="header-section-number">5.2</span> Assessing Overlap</h2>
 <p>In the subsequent analysis, we will consider labor earnings from seven post-lottery winning periods as the outcomes. These are denoted as <span class="math inline">\(Y_{i,0}\)</span>, …, <span class="math inline">\(Y_{i,6}\)</span>, where t = 0 represents the year of winning a lottery—recall that individuals in the control group also received a modest, one-time prize that year. We will treat the labor earnings from the three years immediately preceding the lottery win, i.e., <span class="math inline">\(Y_{i,-3}\)</span>, <span class="math inline">\(Y_{i,-2}\)</span>, <span class="math inline">\(Y_{i,-1}\)</span>, as well as their average, as placebo outcomes. The labor earnings from the three years before those, i.e., <span class="math inline">\(Y_{i,-6}\)</span>, <span class="math inline">\(Y_{i,-5}\)</span>, <span class="math inline">\(Y_{i,-4}\)</span>, will be used as covariates for adjustment, alongside a set of time-invariant pre-lottery-winning variables. These include the number of tickets purchased (tixbot), gender (male), employment status at the time of winning (workthen), age when the lottery was won (agew), total years of education (educ), and the presence of a college degree (college).</p>
 <p>First, we estimate the overlap between the two treatment groups(the big winner treatment group on the left &amp; the smaller winner treatment group on the right) and the control group. The <code>assess_overlap</code> function will conveniently present the overlap between the control and the treated.</p>
-<div class="cell" data-fig.asp="0.5">
+<div class="cell" data-fig.asp="0.5" data-hash="05-IRS_cache/html/unnamed-chunk-3_31e9f4c0e3979b029802ecb28b02df6d">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># select big winner</span></span>
 <span></span>
@@ -282,16 +288,16 @@ div.csl-indent {
 <span><span class="va">s2_ps</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">s2</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.2</span>, <span class="fl">0.2</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="04-IRS_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="05-IRS_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption class="figure-caption">FIGURE 7. SubfigureA:Big Winners vs Non-Winners. SubfigureB:Small Winners vs Non-Winners.</figcaption></figure>
 </div>
 </div>
 </div>
 <p>The figures indicate that while the propensity score distributions of individuals in the treatment groups differ from that of the control group, the propensity scores of the treatment groups still fall within the support of the control group.</p>
-</section><section id="trimming-to-improve-overlap" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="trimming-to-improve-overlap">
-<span class="header-section-number">4.3</span> Trimming to Improve Overlap</h2>
+</section><section id="trimming-to-improve-overlap" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="trimming-to-improve-overlap">
+<span class="header-section-number">5.3</span> Trimming to Improve Overlap</h2>
 <p>To improve overlap, we further trim the control group for each of the two treatment groups by implementing 1:1 matching based on propensity scores. Then, we reassess the overlap for the two trimmed datasets.</p>
-<div class="cell" data-fig.asp="0.5">
+<div class="cell" data-fig.asp="0.5" data-hash="05-IRS_cache/html/unnamed-chunk-4_05e1cadd4580f84c7b230556f78fcef3">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># matching</span></span>
 <span>  <span class="co">## In the matching procedure, we don't need Y actually, so just pick one Y to satisfy function's requirement</span></span>
@@ -313,18 +319,18 @@ div.csl-indent {
 <span><span class="va">ss</span> <span class="op">&lt;-</span> <span class="fu">assess_overlap</span><span class="op">(</span>data <span class="op">=</span> <span class="va">s2_ps_match</span>, treat <span class="op">=</span> <span class="va">treat</span>, cov <span class="op">=</span> <span class="va">covar</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="04-IRS_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">FIGURE A9. SubfigureA:Big Winners vs Control. SubfigureB:Small Winners vs Control.</figcaption></figure>
+<figure class="figure"><p><img src="05-IRS_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">FIGURE B16. Subfigure A: Big Winners vs Control. Subfigure B: Small Winners vs Control.</figcaption></figure>
 </div>
 </div>
 </div>
 <p>From the histograms, trimming improved the overlap for the big winner treatment group but not for the small winner one. Here are a few points to consider.</p>
 <p>First, if the treatment and control groups have very different covariate distributions, it is difficult to achieve good overlap even after trimming. As the plots suggest, the big winner group likely had more control units that were similar to the treated units, making it easier to find matches.</p>
 <p>Second, the small winner group’s log odds have a wide range before trimming and remain wide after trimming. This suggests that the small winner group might have more extreme values or outliers that are not present in the control group.</p>
-</section><section id="att-and-placebo-estimates" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="att-and-placebo-estimates">
-<span class="header-section-number">4.4</span> ATT and Placebo Estimates</h2>
+</section><section id="att-and-placebo-estimates" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="att-and-placebo-estimates">
+<span class="header-section-number">5.4</span> ATT and Placebo Estimates</h2>
 <p>Since trimming does not significantly improve the overlap between the treated and the control, we will proceed with the original dataset.</p>
-<div class="cell">
+<div class="cell" data-hash="05-IRS_cache/html/unnamed-chunk-5_1b3daf2fc870cfa35f5beb39bff712ac">
 <details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># prepare data again</span></span>
 <span></span>
 <span><span class="va">d</span><span class="op">$</span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="va">d</span><span class="op">$</span><span class="va">winner</span></span>
@@ -344,7 +350,7 @@ div.csl-indent {
 <span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">tr2</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">co</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># small winner</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell">
+<div class="cell" data-hash="05-IRS_cache/html/unnamed-chunk-6_ff6fcefd69a77000341c28506ba029bf">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># estimate and placebo analyses</span></span>
 <span></span>
 <span><span class="va">covar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tixbot"</span>, <span class="st">"male"</span>, <span class="st">"workthen"</span>, <span class="st">"agew"</span>, <span class="st">"educ"</span>, <span class="st">"college"</span>,</span>
@@ -363,7 +369,7 @@ div.csl-indent {
 <span><span class="co">#out4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-fig.asp="1">
+<div class="cell" data-fig.asp="1" data-hash="05-IRS_cache/html/unnamed-chunk-7_0e27fa2c4c6dfc0ee0d03aeae127029d">
 <details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ylim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span></span>
 <span></span>
@@ -376,13 +382,13 @@ div.csl-indent {
 <span><span class="fu">plot_coef</span><span class="op">(</span><span class="va">out4</span>, ylim <span class="op">=</span> <span class="va">ylim</span>, main <span class="op">=</span> <span class="st">"Small Winner vs. Non-Winner: Placebo Test"</span>, main.pos <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="04-IRS_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">FIGURE 8. ATT and Placebo Estimates: IRSData</figcaption></figure>
+<figure class="figure"><p><img src="05-IRS_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">FIGURE 8. ATT and Placebo Estimates: IRS Data</figcaption></figure>
 </div>
 </div>
 </div>
 <p>The ATT results are presented in the table below:</p>
-<div class="cell">
+<div class="cell" data-hash="05-IRS_cache/html/unnamed-chunk-8_7d9bca7d5affddecdfc91530073c9910">
 <details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># print the result</span></span>
 <span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">out1</span>, <span class="va">out2</span>, <span class="va">out3</span>, <span class="va">out4</span><span class="op">)</span></span>
 <span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">out1</span><span class="op">)</span></span>
@@ -397,10 +403,10 @@ div.csl-indent {
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">sav</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Big Prize: Post-Winning Average Earning"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"Big Prize: Pre-Winning Average Earning"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"Small Prize: Post-Winning Average Earning"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">"Small Prize: Pre-Winning Average Earning"</span>, <span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">sav</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Difference-in-Means"</span>, <span class="st">"Regression"</span>, <span class="st">" Oaxaca Blinder"</span>, <span class="st">"GRF"</span>, <span class="st">"NN Matching"</span>, <span class="st">"PS Matching"</span>, <span class="st">"IPW"</span>, <span class="st">"CBPS"</span>, <span class="st">"Entropy Balancing"</span>, <span class="st">"DML-ElasticNet"</span>, <span class="st">"AIPW-GRF"</span><span class="op">)</span></span>
-<span><span class="va">sav</span> <span class="op">%&gt;%</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>booktabs<span class="op">=</span><span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">" Table A5 in the Supplementary Materials (SM), ATT and Placebo Estimates: IRSData"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">sav</span> <span class="op">%&gt;%</span> <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>booktabs<span class="op">=</span><span class="cn">TRUE</span>, caption <span class="op">=</span> <span class="st">" Table B8 in the Supplementary Materials (SM), ATT and Placebo Estimates: IRSData"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <table class="table table-sm table-striped small">
-<caption>Table A5 in the Supplementary Materials (SM), ATT and Placebo Estimates: IRSData</caption>
+<caption>Table B8 in the Supplementary Materials (SM), ATT and Placebo Estimates: IRSData</caption>
 <colgroup>
 <col style="width: 9%">
 <col style="width: 18%">
@@ -502,17 +508,17 @@ div.csl-indent {
 </tr>
 <tr class="even">
 <td style="text-align: left;">PS Matching</td>
-<td style="text-align: left;">-5.69</td>
-<td style="text-align: left;">(3.13)</td>
+<td style="text-align: left;">-6.16</td>
+<td style="text-align: left;">(3.09)</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">2.69</td>
-<td style="text-align: left;">(3.57)</td>
+<td style="text-align: left;">0.57</td>
+<td style="text-align: left;">(3.39)</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">-3.32</td>
-<td style="text-align: left;">(1.49)</td>
+<td style="text-align: left;">-4.40</td>
+<td style="text-align: left;">(1.39)</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">-2.97</td>
-<td style="text-align: left;">(1.44)</td>
+<td style="text-align: left;">-2.51</td>
+<td style="text-align: left;">(1.33)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">IPW</td>
@@ -589,10 +595,10 @@ div.csl-indent {
 </div>
 </div>
 <p>Using the original data, the above table presents both the ATT estimates and results from a placebo test using various estimators. Columns 1 and 2 compare “big winners” with the controls, while columns 3 and 4 compare “small winners” with the control. Columns 1 and 3 display the ATT estimates, with the outcome being the average annual labor earnings from Year 0 to Year 6. The results of the placebo test are reported in columns 2 and 4, where the placebo outcome is the average annual labor earnings from Year 3 to Year 1. The results indicate that various methods produce consistent results, which align with the findings reported in the original paper: winning a large prize leads to a significant decrease in labor income in the following years, averaging as much as $8,000 annually. In contrast, winning a smaller prize results in a more modest decline, averaging approximately $3,000 per year. Notably, when applying doubly robust estimators like AIPW-GRF, the placebo test estimates hover near zero, reinforcing the credibility of the unconfoundedness assumption.</p>
-</section><section id="att-visualization" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="att-visualization">
-<span class="header-section-number">4.5</span> ATT Visualization</h2>
+</section><section id="att-visualization" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="att-visualization">
+<span class="header-section-number">5.5</span> ATT Visualization</h2>
 <p>While tables can enumerate the standard errors for each estimate, graphical visualization offer a more intuitive presentation of our findings. To facilitate a clearer understanding, we calculate and compare the ATT estimates derived from both the original and the matched dataset. The following code computes the difference-in-means alongside the AIPW-GRF estimates.</p>
-<div class="cell">
+<div class="cell" data-hash="05-IRS_cache/html/unnamed-chunk-9_3cd3be1cf4244a01531646f0e95f6d58">
 <details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># big winners</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va">s1_ps</span></span>
 <span><span class="va">s2</span> <span class="op">&lt;-</span> <span class="va">s1_ps_match</span></span>
@@ -643,7 +649,7 @@ div.csl-indent {
 </details>
 </div>
 <p>ATT Results Visualization:</p>
-<div class="cell" data-fig.asp="1">
+<div class="cell" data-fig.asp="1" data-hash="05-IRS_cache/html/unnamed-chunk-10_596d6480a89f08ff91bd0d2f6c3c6fd3">
 <details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.7</span>, <span class="fl">13.3</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">10</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"n"</span>, axes <span class="op">=</span> <span class="cn">FALSE</span>, </span>
@@ -690,16 +696,16 @@ div.csl-indent {
 <span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"grey50"</span>, <span class="st">"black"</span>, <span class="st">"maroon"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="04-IRS_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="05-IRS_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption class="figure-caption">9(A) and (B). ATT Estimates: IRS Data</figcaption></figure>
 </div>
 </div>
 </div>
 <p>The above figures show that in the comparison of “big winners” and “non-winners,” AIPW using the original or trimmed data produces estimates very similar to a simple difference-in-means estimator, suggesting minimal selection bias between the two groups. On the other hand, when comparing “small winners” with “non-winners,” the estimates from AIPW and difference-in-means diverge. However, findings from the former are much more credible than those from the latter because difference-in-means does not fare well in the placebo tests, whereas the former yields placebo estimates that are nearly 0.</p>
-</section><section id="catt-estimates-and-visualization" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="catt-estimates-and-visualization">
-<span class="header-section-number">4.6</span> CATT Estimates and Visualization</h2>
+</section><section id="catt-estimates-and-visualization" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="catt-estimates-and-visualization">
+<span class="header-section-number">5.6</span> CATT Estimates and Visualization</h2>
 <p>To assess the effects of the treatment, we proceed to evaluate the CATT, determined at the covariate values of the treated units. This assessment is conducted using the AIPW-GRF method for each of the ten outcomes within both the original big winners and the original small winners samples.</p>
-<div class="cell">
+<div class="cell" data-hash="05-IRS_cache/html/unnamed-chunk-11_396846f3b30e53f3aede5d4538d3ebc5">
 <details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="va">s1_ps</span></span>
 <span><span class="va">treat</span> <span class="op">&lt;-</span> <span class="st">"tr"</span></span>
 <span><span class="va">ntr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">data</span><span class="op">[</span>, <span class="va">treat</span><span class="op">]</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -728,7 +734,7 @@ div.csl-indent {
 </details>
 </div>
 <p>In both plots, the years before winning (Years -3, -2, and -1) serve as the placebo test period. In the years leading up to the win, the CATT estimates are expected to be around 0, which would suggest that the treatment (winning the lottery) has no effect in these years. The width of the violins indicates the density of the effect estimates — wider sections of the violin plot suggest that more data points are present at that effect size.</p>
-<div class="cell" data-fig.asp="1">
+<div class="cell" data-fig.asp="1" data-hash="05-IRS_cache/html/unnamed-chunk-12_9976102fd6d4ec82f405bc30f409217f">
 <details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">1</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.7</span>, <span class="fl">13.3</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span>, <span class="fl">10</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"n"</span>, axes <span class="op">=</span> <span class="cn">FALSE</span>, </span>
@@ -757,19 +763,22 @@ div.csl-indent {
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="04-IRS_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figure class="figure"><p><img src="05-IRS_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption class="figure-caption">9(C) and (D). CATT Estimates: IRS Data</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Beyond providing corroborative evidence for the placebo tests (i.e., CATT estimates align closely with 0 in the years leading up to the win as expected), the figures also reveal substantial treatment effect heterogeneity among lottery winners. In Post-Winning Years (Years 1 to 6), the effect of winning on earnings changes over time.</p>
 <p>Notably, the distributions of the CATT for many post-winning years appear bimodal. We observe two peaks in the distribution of the effects, which could suggest there are two different common outcomes or reactions to winning among the two treated groups.</p>
-</section><section id="summary" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="summary">
-<span class="header-section-number">4.7</span> Summary</h2>
+</section><section id="summary" class="level2" data-number="5.7"><h2 data-number="5.7" class="anchored" data-anchor-id="summary">
+<span class="header-section-number">5.7</span> Summary</h2>
 <p>Overall, we find that in the lottery study, the unconfoundedness assumption can be empirically validated through placebo tests, bolstering the credibility of the causal estimates. Importantly, the unconfoundedness assumption is much more believable in this study than in the LaLonde case because the inherent randomization of lotteries played a key role in treatment assignment, while supplementary covariates help account for discrepancies between treatment and control groups stemming from challenges like differential responses to the survey. The inclusion of six preceding outcomes also proves invaluable, as they likely explain both the selection mechanism and are highly correlated with the outcome variables; moreover, they also serve as good candidates for placebo outcomes, given their comparability to these outcomes.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-calonico2017women" class="csl-entry" role="listitem">
+Calónico, Sebastian, and Jeffrey Smith. 2017. <span>“The Women of the National Supported Work Demonstration.”</span> <em>Journal of Labor Economics</em> 35 (S1): S65–97.
+</div>
 <div id="ref-dehejiawahba" class="csl-entry" role="listitem">
 Dehejia, Rajeev H, and Sadek Wahba. 1999. <span>“Causal Effects in Nonexperimental Studies: Reevaluating the Evaluation of Training Programs.”</span> <em>Journal of the American Statistical Association</em> 94 (448): 1053–62.
 </div>
@@ -1070,8 +1079,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="./03-NSW.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Original LaLonde Data (Male Sample)</span></span>
+      <a href="./04-LCS.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">LCS Female Samples</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -179,13 +179,19 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-NSW.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Original LaLonde Data (Male Sample)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LaLonde Male Samples</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-IRS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Lottery Data</span></span></a>
+  <a href="./04-LCS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">LCS Female Samples</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-IRS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Lottery Data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -251,7 +257,7 @@ Caution
 <span class="header-section-number">1.1</span> Installation</h2>
 <p>Several R packages are required for subsequent data analysis and visualization. The code below checks for all required messages and installs the missing ones. After the installation, call to load the packages.</p>
 <p><strong>Packages</strong>: “haven”, “labelled”, “estimatr”, “grf”, “ggplot2”, “Matching”, “hbal”, “CBPS”, “DoubleML”, “mlr3learners”, “fixest”, “qte”, “sensemakr”</p>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-1_8a269d4ff60542015f3fad7b7bf5d37e">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># required packages</span></span>
 <span><span class="va">packages</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"haven"</span>, <span class="st">"labelled"</span>, <span class="st">"Matching"</span>, <span class="st">"grf"</span>, <span class="st">"sensemakr"</span>, <span class="st">"qte"</span>,</span>
 <span>    <span class="st">"estimatr"</span>, <span class="st">"CBPS"</span>, <span class="st">"hbal"</span>, <span class="st">"DoubleML"</span>, <span class="st">"mlr3learners"</span>, <span class="st">"mlr3"</span>,<span class="st">"fixest"</span>, <span class="st">"ggplot2"</span><span class="op">)</span></span>
@@ -301,7 +307,7 @@ Note
 <p>To use the wrapper functions, the simplest method is to source the R script with the following code. Please note, this is NOT the official replication file, and you should carefully review the code before using it.</p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-2_9850d13e61cd82fa170dcfed6b517d66">
 <details open=""><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://github.com/xuyiqing/lalonde/blob/main/tutorial/functions.R?raw=TRUE"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -360,7 +366,7 @@ Note
 <span class="header-section-number">1.2.2</span> <code>plot_hist()</code> , <code>love.plot()</code> &amp; <code>assess_overlap()</code>
 </h3>
 <p><code>plot_hist()</code> visualizes the distribution of propensity scores across treated and control groups, with options to adjust for odds and density.</p>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-3_ee3d798fa1ec419ecb593283de39a963">
 <details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_hist</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">var</span>, <span class="va">treat</span>, <span class="va">main</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">odds</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                      <span class="va">breaks</span> <span class="op">=</span> <span class="fl">40</span>, <span class="va">density</span> <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">xlim</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">ylim</span> <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                      <span class="va">xlab</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">text.size</span> <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> <span class="op">{</span></span>
@@ -413,7 +419,7 @@ Note
 </details>
 </div>
 <p><code>love.plot()</code> is a summary plot of covariate balance before and after conditioning popularized by Dr.&nbsp;Thomas E. Love.</p>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-4_a38183f6b1956a1d1d70f0daeaf89627">
 <details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="va">love.plot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data_pre</span>, <span class="va">data_post</span>, <span class="va">treat</span>, <span class="va">covar</span>, <span class="va">threshold</span> <span class="op">=</span> <span class="fl">0.1</span>, <span class="va">title</span> <span class="op">=</span> <span class="st">"Love.Plot"</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  </span>
@@ -457,7 +463,7 @@ Note
 </details>
 </div>
 <p><code>assess_overlap()</code> estimates the overlap in propensity scores between the treatment group and the control group. It fits a probability forest to estimate propensity scores based on covariates (<code>cov</code>) and treatment indicators in the input dataset. Then, the function adjusts propensity scores close to zero to facilitate further calculations. Finally, it calls <code>plot_hist</code> to visualize the distribution of the propensity scores or their log odds, depending on the odds parameter.</p>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-5_0f91e2913116e1e1810f0b1bec426a7b">
 <details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">assess_overlap</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">treat</span>, <span class="va">cov</span>, <span class="va">odds</span> <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">num.trees</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">seed</span> <span class="op">=</span> <span class="fl">1234</span>, <span class="va">breaks</span> <span class="op">=</span> <span class="fl">50</span>, <span class="va">xlim</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">ylim</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">num.trees</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">{</span></span>
@@ -521,7 +527,7 @@ Note
 <span class="header-section-number">1.2.3</span> <code>psmatch()</code>
 </h3>
 <p><code>psmatch()</code> function matches observations in the treatment group with those in the control group according to propensity scores. The matching procedure is executed on a one-to-one basis without replacement. The function then yields a subset of the original dataset with only the matched cases.</p>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-6_181d8c4c0314d00e3044620bc9a95363">
 <details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">psmatch</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">cov</span>, <span class="va">num.trees</span> <span class="op">=</span> <span class="fl">4000</span>, <span class="va">seed</span> <span class="op">=</span> <span class="fl">1234</span>, <span class="va">replace</span> <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">estimand</span> <span class="op">=</span> <span class="st">"ATT"</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="va">seed</span><span class="op">)</span> <span class="co"># need to set seed b/c tie-breaking is random</span></span>
@@ -557,7 +563,7 @@ Note
 <li>Double/debiased matching learning using elastic net</li>
 <li>Augmented Inverse Probability Weighting (AIPW) with GRF</li>
 </ul>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-7_f11c3fd6ef738de350c6f13bf95d3c59">
 <details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">quiet</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/sink.html">sink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/on.exit.html">on.exit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sink.html">sink</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -848,7 +854,7 @@ Note
 <code>dml</code>: Double machine learning. It uses machine learning algorithms to control for confounders when estimating treatment effects.</li>
 </ul>
 <p><code>plot_coef()</code> plots the the ATT estimates, allowing for visual comparison.</p>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-8_55675c09bab74109c675055f614f035d">
 <details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_coef</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">out</span>, </span>
 <span>    <span class="va">methods</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"diff"</span>, <span class="st">"reg"</span>, <span class="st">"om.reg"</span>, <span class="st">"om.grf"</span>, </span>
 <span>    <span class="st">"matching"</span>, <span class="st">"psm"</span>, <span class="st">"ipw"</span>, <span class="st">"cbps"</span>, <span class="st">"ebal"</span>, </span>
@@ -929,7 +935,7 @@ Note
 </h3>
 <p>These functions aim to estimate and visualize the Conditional Average Treatment Effect on the Treated (CATT). By using robust standard errors ( <code>se_type</code> = “stata”), we aim to obtain reliable standard errors even in the presence of heteroskedasticity or other violations of the classical linear regression assumptions.</p>
 <p><code>catt()</code> estimates the CATT using causal forests.</p>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-9_fdd16629b5d5871f8698d67e6723d30a">
 <details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">catt</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">tau.forest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/grf/man/causal_forest.html">causal_forest</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">data</span><span class="op">[</span>, <span class="va">covar</span><span class="op">]</span>, Y <span class="op">=</span> <span class="va">data</span><span class="op">[</span>, <span class="va">Y</span><span class="op">]</span>,</span>
 <span>                              W <span class="op">=</span> <span class="va">data</span><span class="op">[</span>, <span class="va">treat</span><span class="op">]</span>, num.trees <span class="op">=</span> <span class="fl">4000</span><span class="op">)</span></span>
@@ -942,7 +948,7 @@ Note
 </details>
 </div>
 <p><code>plot_catt()</code> plots the CATT density and the ATT estimates, allowing for visual comparison.</p>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-10_305909dbe9496482cbd2630bee552375">
 <details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_catt</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">catt1</span>, <span class="va">catt2</span>, <span class="va">att1</span>, <span class="va">att2</span>,</span>
 <span>                      <span class="va">xlab</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">ylab</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">main</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">axes.range</span> <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                      <span class="va">file</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">width</span> <span class="op">=</span> <span class="fl">7</span>, <span class="va">height</span> <span class="op">=</span> <span class="fl">7</span><span class="op">)</span> <span class="op">{</span></span>
@@ -997,7 +1003,7 @@ Note
 <li>
 <code>est_qte()</code> function estimates the Quantile Treatment Effect on the Treated (QTET) using doubly robust methods. This effect is the difference in a particular quantile of the outcome distribution between the treated and untreated units.</li>
 </ul>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-11_82b4609c5c3bff87511c4ffa098b7d50">
 <details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">est_qte</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span>, <span class="va">data</span>, <span class="va">ps</span> <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                    <span class="va">probs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.05</span>,<span class="fl">0.95</span>,<span class="fl">0.05</span><span class="op">)</span>, <span class="va">cores</span> <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>                    <span class="va">ylim</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1023,7 +1029,7 @@ Note
 <li>
 <code>plot_qte()</code> function visualizes the QTET estimates.</li>
 </ul>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-12_4c3b7ef913da920b3d1c0ebeebaed6ae">
 <details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">plot_qte</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">mod</span>, <span class="va">mod2</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">bm</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">main</span><span class="op">=</span> <span class="st">""</span>, <span class="va">ylim</span> <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                     <span class="va">col</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># ylim</span></span>
@@ -1091,7 +1097,7 @@ Note
 <span class="header-section-number">1.2.7</span> <code>sens_ana()</code>
 </h3>
 <p><code>sens_ana()</code> function conducts sensitivity analysis on an estimated treatment effect to assess how susceptible the findings are to potential unobserved confounding.</p>
-<div class="cell">
+<div class="cell" data-hash="01-Start_cache/html/unnamed-chunk-13_f3fd4df81d54b3890f93ec14bd092ecc">
 <details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sens_ana</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">Y</span>, <span class="va">treat</span>, <span class="va">covar</span>, <span class="va">bm</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">kd</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="va">p.forest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/grf/man/probability_forest.html">probability_forest</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">data</span><span class="op">[</span>, <span class="va">covar</span><span class="op">]</span>,</span>
@@ -1129,6 +1135,9 @@ Note
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-calonico2017women" class="csl-entry" role="listitem">
+Calónico, Sebastian, and Jeffrey Smith. 2017. <span>“The Women of the National Supported Work Demonstration.”</span> <em>Journal of Labor Economics</em> 35 (S1): S65–97.
+</div>
 <div id="ref-dehejiawahba" class="csl-entry" role="listitem">
 Dehejia, Rajeev H, and Sadek Wahba. 1999. <span>“Causal Effects in Nonexperimental Studies: Reevaluating the Evaluation of Training Programs.”</span> <em>Journal of the American Statistical Association</em> 94 (448): 1053–62.
 </div>

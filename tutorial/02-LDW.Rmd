@@ -42,7 +42,7 @@ Ideally, for a well-balanced experimental design, the distributions of the treat
 ldw_ps <- assess_overlap(data = ldw, treat = treat, cov = covar)
 ```
 
-### LDW-CPS1 and LWD-PSID1
+### LDW-CPS1 and LDW-PSID1
 
 ```{r, class.source = "fold-show", fig.cap='FIGURE1. SubfigureB:LDW-CPS1. SubfigureC:LDW-PSID1.',out.width='100%', fig.asp=0.5}
 #| code-fold: show
@@ -57,7 +57,7 @@ As expected, LDW-Experimental shows a almost perfect overlap. However, both obse
 
 ## Trimming to Improve Overlap
 
-Based on LDW-CPS1 and LWD-PSID1, we further construct two trimmed samples to improve overlap. Trimming involves two steps.
+Based on LDW-CPS1 and LDW-PSID1, we further construct two trimmed samples to improve overlap. Trimming involves two steps.
 
 First, we merge the experimental controls from LDW-Experimental into LDW-CPS1 (or LDW-PSID1) to enhance the control group with more units. Then, we can estimate each unit’s propensity included in the experiment using GRF. The purpose of trimming is to remove units that are too dissimilar from the other group to ensure a better balance between the treated and control groups. We can use `trim()` to trim the data.
 
@@ -127,6 +127,8 @@ ldw_cps_trim_match_ps <- assess_overlap(data = ldw_cps_trim_match, treat = treat
 # psid data
 ldw_psid_trim_match_ps <- assess_overlap(data = ldw_psid_trim_match, treat = treat, cov = covar, xlim = c(-3,3))
 ```
+
+## Checking Covariate Balance
 
 We can also check covariate balance directly by `love.plot()`. As shown in the following figures, covariate overlap improves significantly in both samples post-trimming (matching).
 
@@ -212,7 +214,7 @@ sav[1, 10] <- sprintf("%.2f", out3[1, 1])
 sav[1, 11] <- paste0("(", sprintf("%.2f", out3[1, 2]), ")")
 colnames(sav) <- c("LDW-CPS1", "", "", "LDW-PSID1", "", "", "LDW-CPS1 (PS Trimmed) ", "", "", "LDW-PSID1 (PS Trimmed)", "")
 rownames(sav) <- c("Experimental Benchmark", "Difference-in-Means", "Regression", " Oaxaca Blinder", "GRF", "NN Matching", "PS Matching", "IPW", "CBPS", "Entropy Balancing", "DML-ElasticNet", "AIPW-GRF")
-sav %>% knitr::kable(booktabs=TRUE, caption = " Table A1 in the Supplementary Materials (SM)")
+sav %>% knitr::kable(booktabs=TRUE, caption = " Table B1 in the Supplementary Materials (SM)")
 ```
 
 Columns 1 and 2 report the estimates from LDW-CPS1 and LDW-PSID1, respectively, while columns 3 and 4 report the estimates from the trimmed samples with improved overlap. Robust standard errors are in the parentheses. Improved overlap in trimmed samples generally leads to estimates with higher consistency with the benchmark. The trimmed samples often show increased standard errors, which is expected as trimming reduces the sample size, thus increasing variance.
@@ -421,7 +423,7 @@ sav[1, 10] <- sprintf("%.2f", out3[1, 1])
 sav[1, 11] <- paste0("(", sprintf("%.2f", out3[1, 2]), ")")
 colnames(sav) <- c("LDW-CPS1", "", "", "LDW-PSID1", "", "", "LDW-CPS1 (PS Trimmed) ", "", "", "LDW-PSID1 (PS Trimmed)", "")
 rownames(sav) <- c("Experimental Benchmark", "Difference-in-Means", "Regression", " Oaxaca Blinder", "GRF", "NN Matching", "PS Matching", "IPW", "CBPS", "Entropy Balancing", "DML-ElasticNet", "AIPW-GRF")
-sav %>% knitr::kable(booktabs=TRUE, caption = " Table A2 in the Supplementary Materials (SM)")
+sav %>% knitr::kable(booktabs=TRUE, caption = " Table B2 in the Supplementary Materials (SM)")
 ```
 
 The first row of the table shows that the experimental benchmarks are near zero and statistically insignificant. In the placebo analysis, all estimators using observational data generate large, negative estimates.
@@ -434,7 +436,7 @@ Moreover, almost all the estimators are significantly different from the targete
 
 We also conduct sensitivity analyses using the LDW data, with results depicted in contour plots below. We can use `sens_ana` to conduct the sensitivity analyses.
 
-```{r, out.width='100%', fig.asp=0.75, fig.cap="FIGURE A3. Sensitivity Analyses for Trimmed LDW-CPS1 and LDW-PSID1"}
+```{r, out.width='100%', fig.asp=0.75, fig.cap="FIGURE B3. Sensitivity Analyses for Trimmed LDW-CPS1 and LDW-PSID1"}
 #| code-fold: show
 par(mfrow = c(1,2))
 Y <- "re78"
