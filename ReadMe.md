@@ -134,3 +134,14 @@ Review* 76 (4): 604–20.
 </div>
 
 </div>
+## Student Replication Contribution
+
+This fork was created as part of an econometrics replication assignment.
+I reviewed the repository structure and documentation for the replication
+of LaLonde (1986) as discussed in Imbens & Xu (2024).
+
+My contribution focuses on clarifying the replication workflow and
+documenting how the data, code, and outputs are organized. Future
+extensions may include running alternative specifications or robustness
+checks.
+
